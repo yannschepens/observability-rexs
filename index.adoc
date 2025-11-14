@@ -1,0 +1,32 @@
+[.entrypoint]
+= !
+:source-highlighter: highlightjs
+:revealjs_theme: black
+:revealjs_progress: true
+:revealjs_history: true
+:customcss: ./styles/yannschepens/stylesheets/style.css
+:revealjsdir: ./node_modules/reveal.js
+:revealjs_defaultTiming: 40
+
+[.intro-block]
+[cols="1,2",frame=none,grid=none]
+|===
+a|[.yann-intro]
+image::styles/yannschepens/images/yann-square.png[yann]
+[.yann-name]
+Yann Schepens
+[.yann-role]
+Tech Lead +
+@onepoint
+a|[.yann-intro-title]
+Sample conf: please copy paste
+
+[.yann-intro-event]
+Yann Day : 9 juin 1987
+|===
+
+include::pages/start.adoc[leveloffset=+1]
+include::pages/sample.adoc[leveloffset=+1]
+include::pages/end.adoc[leveloffset=+1]
+
+

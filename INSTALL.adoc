@@ -1,0 +1,7 @@
+= INSTALL
+
+[source,shell script]
+----
+docker compose run --rm node npm i
+docker compose up -d
+----
