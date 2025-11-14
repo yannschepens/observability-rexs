@@ -1,0 +1,52 @@
+= Why ce talk ?
+
+[NOTE.speaker]
+====
+* Observabilité =
+** Sujet vaste
+** trop vaste
+
+* Peu de rex
+* Beaucoup de concept et d'approche
+
+Transition : Donc au lieu de chercher à faire un truc général, je vous propose plutôt 3 rexs en une session
+====
+
+== 3 REXs
+
+[%step]
+* Logs
+* Lessive
+* 350 vms
+
+[NOTE.speaker]
+====
+* Logs : comment gérer les logs d'une forge logicielle
+** de la reflexion à la mise en oeuvre
+** approche, technos, etc
+** Sur une forge qu'on a conçu avec notre équipe
+
+* Lessive : mission d'audit suite à une explosion de la taille des logs et métriques chez un client
+** Trop de débit de log
+** Compliqué à exploiter
+** Hétérogène
+
+* 350 vms : mission d'expertise pour monter une tour de controle sur une infra
+** Métriques couche basse
+** 350 vms, du windows, du linux
+** Clouder, on-prem
+** As Code et à la main
+
+Transition : On va regarder ça précisement, et on essayera d'en faire une synthèse
+====
+
+== La synthèse
+
+* On verra à la fin
+
+[NOTE.speaker]
+====
+* Avec des 3 rexs, j'ai essayé de synthétiser quelques idées et bonnes pratiques de manière générale
+
+Transition : mais voyons ça à la fin, commençons par notre premier cas.
+====

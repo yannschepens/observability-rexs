@@ -19,14 +19,18 @@ Yann Schepens
 Tech Lead +
 @onepoint
 a|[.yann-intro-title]
-Sample conf: please copy paste
+L'observabilité en vrai : logs, lessive et 350 VMs
 
 [.yann-intro-event]
 Yann Day : 9 juin 1987
 |===
 
 include::pages/start.adoc[leveloffset=+1]
-include::pages/sample.adoc[leveloffset=+1]
+include::pages/rexs.adoc[leveloffset=+1]
+include::pages/rex1-general-monitoring.adoc[leveloffset=+1]
+include::pages/rex2-elk.adoc[leveloffset=+1]
+include::pages/rex3-uniformation-control-center.adoc[leveloffset=+1]
+include::pages/synthesis.adoc[leveloffset=+1]
 include::pages/end.adoc[leveloffset=+1]
 
 

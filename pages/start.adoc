@@ -1,4 +1,4 @@
-= Start
+= Intro
 :imagesdir: assets/default/images
 
 == !
