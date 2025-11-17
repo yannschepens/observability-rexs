@@ -1,1 +1,88 @@
 = REX 1 : Forge logicielle
+:imagesdir: assets/default/images
+
+[NOTE.speaker]
+====
+* Ma mission principale depuis 6 ans maintenant, la creation et maintien d'une forge logicielle
+
+Transition : mais voyons un peu concrètement notre use case
+====
+
+[%notitle]
+== Le contexte
+
+//TODO : mettre une illustration
+
+[NOTE.speaker]
+====
+Les outils de la PIC:
+
+* 2 Gitlab, 1 VM Gitlab runner
+* 2 Artifactory, XRay
+* Sonarqube, Vault, Zabbix, etc.
+
+Transition : et chacun de ces outils est déployé sur 1 VM
+====
+
+[%notitle]
+== Le contexte
+
+image::rex1-forge.png[1, 75%]
+
+[NOTE.speaker]
+====
+Une VM
+
+* Un docker-compose avec tous les services dedans
+* Une base de données
+* Généralement un reverse proxy (nginx) devant
+====
+
+== Pourquoi monitorer ?
+
+[%step]
+* Tracabilité
+* Disponibilité
+* Sécurité Légalité
+
+[NOTE.speaker]
+====
+Déroule les steps
+
+* Tracabilité :
+** Suivre ce qui se passe sur la plateforme : Qui ? Quand ? Où ?
+
+* Dispo :
+** S'assurer que les plateformes et les outils fonctionnent correctement.
+
+* Au dela de l'aspect niveau de service, le monitoring permet surtout de sécuriser l'infra et les outils.
+De plus, le monitoring a un aspect légal.
+
+Transition : OK, on sait pourquoi, mais en fait, on doit suivre quoi ?
+====
+
+== Quoi monitorer là-dedans ?
+
+//TODO : illustration
+
+[NOTE.speaker]
+====
+Les stats serveurs :
+* CPU, RAM, Espace disque Etc.
+* => Via Zabbix
+
+Les indicateurs "métiers" :
+* Spécifiques à chaque outil
+
+Les logs d'access :
+* Les reverses proxy/serveur
+
+Les logs d'outils:
+* Messages d'erreurs
+* Logs métiers
+
+Transition : Ok, donc Zabbix s'occupe des métriques, et pour les logs on fait quoi ?
+====
+
+== Les logs de l'infra
+
