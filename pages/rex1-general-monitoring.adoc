@@ -179,7 +179,7 @@ Transition : Et maintenant comment on gère tout ça techniquement
 [%notitle]
 == Outils dispo
 
-image::rex1-tools-options.png[1, 75%]
+image::rex1-tools-options.png[1, 60%]
 
 [NOTE.speaker]
 ====
@@ -199,10 +199,12 @@ Transition : Et pour commencer, ces logs, il faut bien les récupérer
 [%notitle]
 == Collecteur : files
 
-image::rex1-filebeat.png[1, 75%]
+image::rex1-filebeat.png[1, 60%]
 
 [NOTE.speaker]
 ====
+Problématique : il faut lire le contenu des fichiers pour les stocker
+
 Pour les fichiers, on est parti sur filebeat :
 
 * Service externe à docker
@@ -217,10 +219,12 @@ Transition : et pour notre second point de collecte, la sortie standard de docke
 [%notitle]
 == Collecteur : docker
 
-image::rex1-docker-driver.png[1, 75%]
+image::rex1-docker-driver.png[1, 60%]
 
 [NOTE.speaker]
 ====
+Problématique : Récuperer les logs stdout/stderr docker
+
 Ben docker lui-même, docker propose plusieurs drivers pour envoyer les logs ailleurs que la sortie standard.
 
 Dont : none, json-file, local, syslog, fluentd, awslogs, splunk, gcplogs, etwlogs, etc.....
@@ -239,10 +243,12 @@ Transition : très bien, on a récupérer nos lofs, mais on les envoie où maint
 [%notitle]
 == Agregateur : Logstash
 
-image::rex1-logstash.png[1, 75%]
+image::rex1-logstash.png[1, 50%]
 
 [NOTE.speaker]
 ====
+Problématique : pour normaliser les logs, il faut déjà les centraliser
+
 On a choisi logstash
 
 * Plusieurs connecteurs d'input
@@ -269,9 +275,108 @@ Transition : Dont on utilise aussi Logstash pour normaliser nos logs
 
 [NOTE.speaker]
 ====
+Problématique : Comment organiser/normaliser les logs ?
+
 Via tout un tas de règles maison, on applique des règles d'organisation sur logs.
 
 => Déroule les steps
 
 Transition : très tout ça, mais on les stocke où ?
+====
+
+[%notitle]
+== Stockage
+
+image::rex1-es.png[1, 75%]
+
+[NOTE.speaker]
+====
+Problématique : il faut pouvoir stocker les logs rapidement et pouvoir interagir avec.
+
+Solution : ElasticSearch
+
+* Reconnu dans le domaine
+* Interrogeable facilement par les visualisateurs
+* Stockage en index
+* Gère très bien le JSON et les données plates
+====
+
+[%notitle]
+== Stockage : organisation
+
+image::rex1-indexes.png[1, 75%]
+
+[NOTE.speaker]
+====
+Problématique : Comment organiser le stockage des logs pour simplifier leur accès et leur maintenance ?
+
+Solution : Des index par types et origines des logs
+
+* Découpage par mois et années
+* Format des noms d'index : <service>_<env>-<log_file>-YYYY-MM
+* Une centaine d'index par mois
+* Nettoyage des logs via un script en fonction du type de log
+** 1 an pour les logs access par ex.
+** 1 <mois pour les logs d'erreurs
+** 1 mois pour les logs applicatifs
+
+Maintenant il y a les ILM et les datastream avec la stack ELK, mais c'était pas le cas à l'éqoque.
+
+Transition : et la dernière brique, la vis'
+====
+
+[%notitle]
+== Viz' : Kibana
+
+image::rex1-kibana.png[1, 45%]
+
+[NOTE.speaker]
+====
+Problématique : ce sont des logs, il faut pouvoir naviguer dedans
+Solution : Kibana
+
+* S'interface très bien avec elasticsearch
+* Pas d'authentification (no go internet)
+* Permet de filter/trier/visualiser les logs
+* Permet de sauvegarder des recherches de logs
+* Permet de visualiser plusieurs types de logs en même
+** Tous les access logs
+** Tous les logs d'erreur d'un service
+
+Transition : Mais ce ne sera pas suffisant
+====
+
+[%notitle]
+== Viz' : Grafana
+
+image::rex1-grafana.png[1, 45%]
+
+[NOTE.speaker]
+====
+Problématique : Comment exploiter un peu plus les logs
+Solution : Grafana
+
+* Faire des graphiques à partir des logs
+* Système d'alerting
+* Authentification possible, donc ouverture sur internet possible
+* Permet d'avoir une vision globale sur la plateforme
+* Peut se brancher avec d'autres outils :
+** Zabbix
+** Gitlab Prometheus
+** PFSense (en cours d'étude)
+** ...
+
+Transition : Et du coup, au global
+====
+
+[%notitle]
+== Stack
+
+image:rex1-global-stack.png[1]
+
+[NOTE.speaker]
+====
+Donc on est sur une archi relativement standard mais qui clairement répond à notre besoin.
+
+Transition : mais maintenant, ça donne quoi à l'exploit'
 ====
