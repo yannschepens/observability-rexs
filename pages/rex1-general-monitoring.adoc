@@ -43,7 +43,7 @@ Une VM
 [%step]
 * Tracabilité
 * Disponibilité
-* Sécurité Légalité
+* Sécurité/Légalité
 
 [NOTE.speaker]
 ====
@@ -86,3 +86,192 @@ Transition : Ok, donc Zabbix s'occupe des métriques, et pour les logs on fait q
 
 == Les logs de l'infra
 
+[NOTE.speaker]
+====
+Déjà, quand on parle de logs, on parle de quoi précisement.
+====
+
+[%notitle]
+== Quantité
+
+* 120 Type de log
+* Quelques gigas/jour
+
+[NOTE.speaker]
+====
+* 120 type de log ~= qlq gigas par jour
+
+Transition : niveau format
+====
+
+[%notitle]
+== Format
+
+* JSON
+* Combined Apache
+* Pipe séparator
+* etc.
+
+[NOTE.speaker]
+====
+Niveau format, chaque système son propre format, même si on retrouve des communs
+
+Transition : et ça parle de quoi ?
+====
+
+[%notitle]
+== Informations portées
+
+* Logs systèmes
+* Logs d'accès
+* Erreurs
+* Monitoring
+* etc.
+
+[NOTE.speaker]
+====
+Les logs portent tous des informations différentes. Que ce soit des logs systèmes, d'accès, d'erreur, de monitoring, etc.
+
+Transition : Où sont-il ?
+====
+
+[%notitle]
+== Logs access
+
+* Fichiers
+* Sortie standard
+
+[NOTE.speaker]
+====
+Chez nous, c'est soit du fichier soit de la sortie standard docker
+
+Transition : est-ce qu'on a des contraintes spécifiques legales ou de sécurité autour de ces sujets ?
+====
+
+[%notitle]
+== Légalité
+
+* RGPD
+* Sécurité
+
+[NOTE.speaker]
+====
+Oui, les logs d'accès par exemple, l'anonymisation d'informations, etc
+
+Transition : et pour finir, est-ce qu'on doit tout garder ?
+====
+
+[%notitle]
+== Pertinence
+
+* Nécessité de tout garder ?
+* Meilleur moyen d'avoir une info ?
+
+[NOTE.speaker]
+====
+Même si certains logs sont intéressants par curiosité, est-ce qu'il est intéressant de les conserver ? Est-ce le meilleur moyen d’acquérir une information ?
+
+Bref, ça fait une sacrée combinatoire et clairement, on ne va tout traiter en une fois,
+
+Transition : Et maintenant comment on gère tout ça techniquement
+====
+
+[%notitle]
+== Outils dispo
+
+image::rex1-tools-options.png[1, 75%]
+
+[NOTE.speaker]
+====
+On a regarder un peu le marché de l'époque, et on avait le choix il y avait des solutions :
+
+* Complètes/en brique
+* On Premise/Saas
+* Gratuite/payante
+* Diverse en termes de fonctionnalités
+* Avec des connecteurs différents
+
+Et du coup, on a regardé ce dont on avait besoin d'un point en partant des logs en eux mèmes
+
+Transition : Et pour commencer, ces logs, il faut bien les récupérer
+====
+
+[%notitle]
+== Collecteur : files
+
+image::rex1-filebeat.png[1, 75%]
+
+[NOTE.speaker]
+====
+Pour les fichiers, on est parti sur filebeat :
+
+* Service externe à docker
+* Beaucoup d'extensions
+* Parse le JSON
+* Possibilité d'ajouter/modifier les logs
+* Renvoie les logs vers beaucoup d'outils différents
+
+Transition : et pour notre second point de collecte, la sortie standard de docker
+====
+
+[%notitle]
+== Collecteur : docker
+
+image::rex1-docker-driver.png[1, 75%]
+
+[NOTE.speaker]
+====
+Ben docker lui-même, docker propose plusieurs drivers pour envoyer les logs ailleurs que la sortie standard.
+
+Dont : none, json-file, local, syslog, fluentd, awslogs, splunk, gcplogs, etwlogs, etc.....
+
+Docker : Gelf log driver
+
+* Natif docker
+* Configuration dans les docker-compose
+* Renvoie des logs vers un autre outil
+* Au format JSON
+* Possibilité d'ajouter du contenu
+
+Transition : très bien, on a récupérer nos lofs, mais on les envoie où maintenant ?
+====
+
+[%notitle]
+== Agregateur : Logstash
+
+image::rex1-logstash.png[1, 75%]
+
+[NOTE.speaker]
+====
+On a choisi logstash
+
+* Plusieurs connecteurs d'input
+* Connu sur le marché
+* Fonctionnement simple (input / filter / output)
+* Permet de recevoir les logs des différents collecteurs
+
+Mais laissez les logs tel quel, en mode logs sink, c'est pas très malin car pas forcement utilisable tel quel
+
+Transition : Dont on utilise aussi Logstash pour normaliser nos logs
+====
+
+[%notitle]
+== Logstash : normalisation
+
+[%step]
+* Découpe des logs textes en JSON
+* Taggage des types de logs
+* Taggage de l'origine des logs
+* Ajout d'information (localisation via GeoIp)
+* Normalisation des logs d'access HTTP et des index de stockage
+* Organisation par mois et année
+* Modification des logs
+
+[NOTE.speaker]
+====
+Via tout un tas de règles maison, on applique des règles d'organisation sur logs.
+
+=> Déroule les steps
+
+Transition : très tout ça, mais on les stocke où ?
+====
