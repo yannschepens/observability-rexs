@@ -1,0 +1,57 @@
+= 🏗️ L'Accroche : "Le syndrome du panier de linge sale"
+Commence par une image forte : Arriver dans une entreprise où l'observabilité est négligée, c'est comme entrer dans une chambre d'étudiant après un mois d'examens. Il y en a partout, on ne retrouve plus ses chaussettes (ses métriques), et ça commence à coûter cher en désodorisant (en disques durs).
+
+Le pitch : "Tout le monde veut des dashboards qui brillent comme dans les pubs de lessive, mais personne ne veut trier le linge sale. Aujourd'hui, on va voir comment passer du chaos à une infra qui sent le propre."
+
+== 👕 REX 1 : La Forge Logicielle – "Trier les couleurs"
+Le passage du vrac au dashboard utile.
+
+Le Contexte : Une forge logicielle, c'est une usine qui tourne H24. Des logs, il y en a des tonnes, mais ils sont "mélangés" (CI/CD, Runners, accès Git).
+
+Le Storytelling : On a souvent tendance à tout jeter dans la machine à laver (Grafana) en espérant qu'un dashboard magique en ressorte.
+
+L’Action : Ici, on parle de parsing et d'enrichissement. C'est l'étape où l'on sépare le coton du synthétique. Si tu ne sais pas qui a généré le log et pourquoi, ta donnée est une chaussette orpheline.
+
+Le "Take-away" : Un dashboard sans parsing propre, c'est juste du bruit en couleur.
+
+== 🧺 REX 2 : Audit & ELK – "Le syndrome de l'armoire pleine"
+L'art de ne pas racheter des placards (disques) tous les 6 mois.
+
+Le Contexte : La stack ELK sature. La solution du client ? "On va racheter du stockage".
+
+Le Storytelling : C'est la méthode Marie Kondo appliquée aux logs. Est-ce que ce log de DEBUG vieux de 4 mois "provoque de la joie" (ou une décision opérationnelle) ? Probablement pas.
+
+L’Action : L'audit de volumétrie. On découvre que 80% du bruit vient de 2% des apps qui loggent "OK" toutes les secondes. On met en place des Index Lifecycle Policies (ILM) : on range les vêtements d'hiver (logs froids) à la cave.
+
+Le "Take-away" : La meilleure donnée, c'est celle qu'on n'a pas besoin de stocker. La sobriété, c'est la survie de votre stack ELK.
+
+== 🏭 REX 3 : Les 350 VMs – "La laverie industrielle"
+Passer à l'échelle sans devenir sourd à cause des bips.
+
+Le Contexte : 350 VMs. Si chaque machine "bippe" pour un CPU à 80%, c'est l'enfer sonore.
+
+Le Storytelling : On ne gère pas 350 VMs comme on lave son pull préféré à la main. Il faut une automatisation et une stratégie d'alerte qui évite la "fatigue d'alerte".
+
+L’Action : Mise en place de seuils dynamiques et surtout de l'agrégation. Si 50 VMs tombent en même temps, ce n'est pas 50 problèmes, c'est probablement un seul (le réseau ou le storage). On parle de Runbooks : si l'alarme sonne, on doit savoir quelle lessive utiliser sans réfléchir.
+
+Le "Take-away" : L'alerte ne doit pas dire "Il y a un problème", elle doit dire "Voici ce que tu dois faire".
+
+== ✨ Conclusion : "Porter des vêtements propres"
+Termine sur une note pragmatique : l'observabilité, ce n'est pas pour faire de jolis graphes pour le management, c'est pour que les Ops dorment mieux la nuit.
+
+La Checklist "Lessive" :
+
+Trier (Parsing/Metadata)
+
+Dégraisser (Nettoyage/Retention)
+
+Automatiser (Alerting intelligent)
+
+"L'observabilité, ce n'est pas un luxe, c'est l'hygiène de base de votre production."
+
+Quelques conseils pour tes slides :
+Utilise des visuels contrastés : d'un côté le "Chaos" (fichiers textes bruts, dashboards rouges), de l'autre la "Clarté" (dashboards Grafana épurés).
+
+N'hésite pas à montrer un vrai morceau de log "sale" vs un log "propre" après ton pipeline. C'est très parlant pour le public.
+
+Garde un ton humble sur les échecs rencontrés (les disques pleins un dimanche matin), c'est ce qui rend un REX authentique.

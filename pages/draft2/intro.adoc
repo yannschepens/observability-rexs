@@ -1,0 +1,67 @@
+= Intro
+:imagesdir: assets/default/images
+
+== !
+
+[NOTE.speaker]
+====
+Bonjour à toutes et tous.
+
+45 minutes, 3 retours d'expérience concrets sur l'observabilité.
+Pas de théorie pure — du vécu, des erreurs, des patterns qui marchent.
+
+Transition : On commence par une image.
+====
+
+// ─── ACCROCHE ────────────────────────────────────────────────────────────────
+
+[%notitle]
+== Le syndrome du panier de linge sale
+
+//TODO : illustration chaos / chambre d'étudiant
+
+[NOTE.speaker]
+====
+Arriver dans une entreprise où l'observabilité est négligée, c'est comme entrer dans une chambre d'étudiant après un mois d'examens.
+Il y en a partout. On ne retrouve plus ses chaussettes — ses métriques.
+Et ça commence à coûter cher en désodorisant — en disques durs.
+====
+
+[%notitle]
+== !
+
+"Tout le monde veut des dashboards qui brillent comme dans les pubs de lessive..."
+
+[%step]
+"...mais personne ne veut trier le linge sale."
+
+[NOTE.speaker]
+====
+* C'est le paradoxe qu'on retrouve dans tous les projets d'observabilité
+* On installe Grafana, on fait de beaux dashboards — mais les logs en dessous, personne n'y a touché depuis 2 ans
+* Aujourd'hui, on va voir comment passer du chaos à une infra qui sent le propre
+
+Transition : Et pour ça, 3 cas concrets.
+====
+
+// ─── PLAN ────────────────────────────────────────────────────────────────────
+
+== Au programme
+
+[%step]
+* 👕 *REX 1* — Forge logicielle : trier les couleurs (≈12')
+* 🧺 *REX 2* — Audit ELK : l'armoire qui déborde (≈12')
+* 🏭 *REX 3* — 350 VMs : la laverie industrielle (≈12')
+* ✨ *Synthèse* — La checklist lessive (≈5')
+
+[NOTE.speaker]
+====
+* REX 1 : on repart de zéro, on construit une architecture de logs pour une forge logicielle
+  → le défi : des logs de partout, dans tous les formats. On va les trier.
+* REX 2 : on arrive en audit, les disques débordent, les logs sont inutilisables
+  → le défi : faire le tri, jeter ce qui ne "provoque pas de joie opérationnelle"
+* REX 3 : 350 VMs, Windows, Linux, cloud, on-prem
+  → le défi : passer à l'échelle sans devenir sourd à cause des bips
+
+Transition : Commençons par le commencement — REX 1, la forge logicielle.
+====

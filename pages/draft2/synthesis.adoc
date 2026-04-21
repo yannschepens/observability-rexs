@@ -1,0 +1,121 @@
+= ✨ Synthèse & Q&A
+:imagesdir: assets/default/images
+
+== !
+
+[NOTE.speaker]
+====
+On a vu 3 contextes très différents.
+Une forge logicielle construite from scratch, un audit ELK, une infra de 350 VMs.
+
+Pourtant, la même question revient dans les 3 cas.
+Et c'est toujours la même réponse.
+
+Transition : L'observabilité, c'est pas compliqué. C'est juste de l'hygiène.
+====
+
+// ─── CHECKLIST LESSIVE ───────────────────────────────────────────────────────
+
+[%notitle]
+== La checklist lessive
+
+[%step]
+* 👕 *Trier* — Parsing, métadonnées, schéma de log
+* 🧺 *Dégraisser* — Nettoyage, rétention, ILM
+* 🏭 *Automatiser* — Alerting intelligent, runbooks, labels
+
+[NOTE.speaker]
+====
+* Trier : c'est le REX 1. Séparer le coton du synthétique. Un log non étiqueté est une chaussette orpheline.
+* Dégraisser : c'est le REX 2. La meilleure donnée, c'est celle qu'on n'a pas besoin de stocker.
+* Automatiser : c'est le REX 3. L'alerte doit dire "voici ce que tu dois faire", pas "il y a un problème".
+
+Ces 3 étapes sont dans cet ordre. On ne peut pas automatiser ce qu'on n'a pas trié. On ne peut pas dégraisser ce qu'on n'a pas catégorisé.
+====
+
+// ─── DO / DON'T ──────────────────────────────────────────────────────────────
+
+[%notitle]
+== Ce qu'on fait
+
+[%step]
+* Définir un schéma de log *dès le départ*
+* ILM et rétention *dès J1*
+* Une alerte = un runbook (même minimal)
+* Mesurer le MTTR, pas le nombre de métriques
+* Surveiller le système de monitoring lui-même
+
+[NOTE.speaker]
+====
+* Ces points reviennent dans les 3 REXs sous des formes différentes
+* Le schéma de log : fondation de tout — sans ça, impossible de corréler les 3 REXs ensemble
+* ILM dès J1 : le remédier plus tard coûte 10x plus cher
+* MTTR — Mean Time To Repair — c'est la seule métrique que le business comprend
+
+====
+
+[%notitle]
+== Ce qu'on évite
+
+[%step]
+* Logger en DEBUG en production
+* Alerter sur tout — c'est alerter sur rien
+* Faire confiance aux estimations de volumétrie — mesurez
+* Monitorer sans inventaire — vous ne savez pas ce que vous ne monitorez pas
+
+[NOTE.speaker]
+====
+* DEBUG en prod : 60 Go/jour pour un seul outil. Vu dans le REX 1.
+* Alerter sur tout : les équipes ops ont coupé les notifications dans le REX 3. C'est l'échec du monitoring.
+* Estimations de volumétrie : toujours fausses. Dans le REX 2, on est passé de "quelques Go" à 782 Go réels.
+====
+
+// ─── CHECKLIST ───────────────────────────────────────────────────────────────
+
+[%notitle]
+== Avant de partir
+
+[%step]
+* [ ] Inventaire des sources de logs et métriques
+* [ ] Schéma de log défini (champs obligatoires, typage)
+* [ ] Politique de rétention par type de donnée
+* [ ] Profils de VM / service définis (roles)
+* [ ] Runbook pour chaque alerte P1/P2
+
+[NOTE.speaker]
+====
+* Cette checklist ne garantit pas un monitoring parfait
+* Elle garantit qu'on ne part pas de zéro dans 6 mois
+* Chaque item est issu d'une douleur concrète dans l'un des 3 REXs
+
+Transition : Le mot de la fin.
+====
+
+// ─── MOT DE LA FIN ───────────────────────────────────────────────────────────
+
+[%notitle]
+== !
+
+"L'observabilité, ce n'est pas un luxe. +
+C'est *l'hygiène de base* de votre production."
+
+[NOTE.speaker]
+====
+* Ce n'est pas pour faire de jolis graphes pour le management
+* C'est pour que les Ops dorment mieux la nuit
+* Et pour qu'une fois pour toutes, on arrête d'acheter des disques durs en urgence un dimanche matin
+
+Transition : Des questions ?
+====
+
+// ─── Q&A ─────────────────────────────────────────────────────────────────────
+
+[%notitle]
+== Q&A
+
+[NOTE.speaker]
+====
+* Ouvrir les questions
+* Slides disponibles sur ... (à compléter)
+* Me retrouver sur ... (à compléter)
+====

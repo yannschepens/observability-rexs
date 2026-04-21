@@ -1,0 +1,356 @@
+= 🏭 REX 3 : 350 VMs — La laverie industrielle
+:imagesdir: assets/default/images
+
+== !
+
+[NOTE.speaker]
+====
+REX 3 — La mission la plus complexe en termes d'échelle.
+350 VMs. Windows, Linux. Cloud, on-prem. Gérées en code et à la main.
+
+L'image de ce REX : la laverie industrielle.
+On ne gère pas 350 VMs comme on lave son pull préféré à la main.
+Il faut de l'automatisation et une stratégie qui évite la "fatigue d'alerte".
+
+Transition : Le contexte d'abord.
+====
+
+// ─── HOOK STORYTELLING ───────────────────────────────────────────────────────
+
+[%notitle]
+== L'enfer sonore
+
+//TODO : illustration bips / alertes qui s'accumulent
+
+[NOTE.speaker]
+====
+350 VMs. Si chaque machine bippe pour un CPU à 80%, c'est l'enfer sonore.
+
+La fatigue d'alerte, c'est le moment où les équipes ops coupent les notifications.
+Parce qu'il y en a trop, elles ne veulent plus rien dire.
+
+Ce REX, c'est comment passer d'un système qui crie tout le temps à un système qui parle quand c'est important.
+
+Transition : Voyons l'infrastructure en question.
+====
+
+// ─── CONTEXTE & CHALLENGES ───────────────────────────────────────────────────
+
+[%notitle]
+== Contexte
+
+Mission d'uniformisation du monitoring chez un client grand compte
+
+[%step]
+* ~350 VMs — Debian, CentOS, Windows
+* Deux hébergeurs : AWS + on-premise VMWare
+* ~200 applications, pilotées par 50 personnes
+* AWS géré en code (Terraform + Puppet) — le reste, à la main
+
+[NOTE.speaker]
+====
+* Le client est un groupe important avec une DSI structurée
+* AWS : provisionnement as code, Terraform + Puppet — infra propre côté cloud
+* On-prem : géré manuellement, hétérogène
+* Pas de lien réseau direct entre AWS et l'on-prem — deux mondes qui coexistent
+
+Transition : Et avant notre arrivée, il y avait déjà du monitoring en place.
+====
+
+[%notitle]
+== L'existant : deux systèmes qui coexistent
+
+[%step]
+* *Prometheus + Grafana* — AWS + on-prem Debian +
+  chaque équipe gère ses dashboards et alertes séparément
+* *PRTG* — on-prem uniquement +
+  configuré à la main, alertes "au besoin"
+* Zéro couverture des services extérieurs (RDS, load balancers, SaaS...)
+
+[NOTE.speaker]
+====
+* Prometheus est déjà en place sur AWS — c'est une bonne base
+* Mais chaque équipe gère ses dashboards de son côté → pas d'uniformité, pas de vision globale
+* PRTG couvre un datacenter seulement — et personne ne sait vraiment qui répond à ses alertes
+* Résultat : deux systèmes qui ne se parlent pas, des alertes qui partent dans tous les sens — le bruit
+
+Transition : Avant de proposer quoi que ce soit, on a posé nos convictions.
+====
+
+// ─── CONVICTIONS & APPROCHE ──────────────────────────────────────────────────
+
+[%notitle]
+== Nos convictions
+
+[%step]
+* *Monitorer tout le SI avec les mêmes règles : pas réaliste*
+* La criticité dépend du rôle, du contexte, de l'impact
+* La labélisation est la clé — technique *et* fonctionnelle
+* Simplicité d'abord — un système de monitoring complexe ne sera pas maintenu
+
+[NOTE.speaker]
+====
+* Une alerte CPU à 80% sur un batch de nuit et sur une base de données de production — ce n'est pas la même chose
+* Le monitoring ne sert à rien si personne ne le lit — simplifier avant d'enrichir
+* C'est la même logique qu'une laverie industrielle : des programmes différents selon le type de tissu
+
+Transition : L'approche qu'on a proposée.
+====
+
+[%notitle]
+== L'approche : pas de révolution
+
+[%step]
+* On garde les technos en place — Prometheus + Grafana
+* On garde les métriques existantes — elles suffisent
+* On *uniformise la labélisation* — en ajoutant une dimension métier
+* On définit une *matrice de criticité*
+* On s'appuie sur l'existant pour déployer les nouveaux labels
+
+[NOTE.speaker]
+====
+* Pas de révolution technologique — les équipes connaissent Prometheus et Grafana
+* Le vrai travail est dans la labélisation et la stratégie d'alerting — pas dans le remplacement d'outils
+* On ajoute : blackbox_exporter pour les sondes HTTP, prtg_exporter pour intégrer PRTG dans Prometheus
+
+Transition : La stack cible.
+====
+
+// ─── ARCHITECTURE MONITORING ─────────────────────────────────────────────────
+
+== Architecture monitoring
+
+[%notitle]
+== Stack retenue
+
+[%step]
+* *Collecte* : node_exporter (Linux), windows_exporter, blackbox_exporter (HTTP), prtg_exporter
+* *Stockage* : Prometheus
+* *Alerting* : Alertmanager → Teams + SMS (critiques)
+* *Visualisation* : Grafana
+
+//TODO : schéma d'architecture de collecte
+
+[NOTE.speaker]
+====
+* node_exporter déjà déployé sur Debian par Puppet — on étend sur CentOS et Windows
+* blackbox_exporter : sonde les URLs HTTP/HTTPS — code réponse + temps de réponse
+* prtg_exporter : fait le pont entre PRTG et Prometheus — tout au même endroit
+* Alertmanager : remplace les alertes Slack bricolées par équipe — centralise et orchestre
+
+Transition : Métriques à collecter.
+====
+
+[%notitle]
+== Métriques clés à collecter
+
+Le moins possible, mais les bonnes
+
+[%step]
+* CPU / RAM / Disque / Réseau — pour les VMs
+* Code HTTP + temps de réponse — pour les services
+* Métriques spécifiques — pour les services extérieurs (RDS, stockage...)
+
+[NOTE.speaker]
+====
+* On ne change pas les métriques système — elles sont suffisantes
+* On ajoute les sondes HTTP sur tous les services internes et externes
+* Piège : ne pas tout collecter — ça coûte en stockage et noie le signal
+* C'est la même règle qu'en lessive : on ne met pas tout à 90°C
+
+Transition : La vraie valeur ajoutée — la labélisation.
+====
+
+// ─── LABÉLISATION ────────────────────────────────────────────────────────────
+
+[%notitle]
+== La clé : la labélisation
+
+Sans labels métier, pas d'alerting intelligent
+
+[%step]
+* `environment` — prod / preprod / dev
+* `role` — db, frontend, backend, api, batch, tool, IAM...
+* `domain` — équipe/domaine fonctionnel propriétaire
+* `project` — application concernée
+* `hosting` — aws, on-prem, cloud tiers
+* `os` — debian, centos, windows
+
+[NOTE.speaker]
+====
+* Ces 6 labels répondent à : qui est impacté ? quelle équipe prévenir ? quelle est la criticité ?
+* Le label `role` est le plus structurant — c'est lui qui calibre les seuils d'alerte
+* Valeur par défaut à `unknown` — permet de repérer les trous de couverture
+* C'est l'étiquette sur la chemise de la machine à laver — sans elle, on lave tout ensemble et on abîme tout
+
+Transition : Avec ces labels, on peut définir une stratégie d'alerting différenciée.
+====
+
+// ─── STRATÉGIE D'ALERTING ────────────────────────────────────────────────────
+
+== Stratégie d'alerting
+
+[%notitle]
+== Éviter la fatigue d'alerte
+
+Le problème n°1 : trop d'alertes = plus d'alertes
+
+[%step]
+* Une notification *uniquement pour une intervention immédiate*
+* Les autres alertes : un dashboard de suivi, check chaque matin
+* Sévérité : *critical* (action immédiate) / *warning* (traitement dans la journée)
+* Zone tampon : 5 minutes avant de déclencher une notification
+
+[NOTE.speaker]
+====
+* La règle d'or : une alerte qui se déclenche doit appeler une action. Sinon, c'est du bruit.
+* Les warnings ne se notifient pas en temps réel — un dashboard suffit
+* La zone tampon de 5 minutes élimine les faux positifs liés aux pics courts (batch, démarrage d'appli...)
+* Si les équipes coupent les notifications — c'est que le monitoring a échoué avant même d'avoir été utile
+
+Transition : Des seuils par rôle, pas des seuils universels.
+====
+
+[%notitle]
+== Seuils par rôle (production)
+
+//TODO : tableau seuils
+
+[%step]
+* *Bases de données* — CPU 50/70%, RAM 50/80%, Swap > 0 = alerte immédiate
+* *Frontend/API* — CPU 80/90%, temps de réponse HTTP > 500ms/1000ms
+* *Batch* — CPU 80/90%, Swap > 50% (tolérance plus haute)
+* *IAM/Auth* — CPU 60/80%, temps de réponse > 300ms/800ms
+
+[NOTE.speaker]
+====
+* Une DB et un batch n'ont pas les mêmes profils de consommation
+* Le swap à 0 sur une DB c'est critique — sur un batch c'est normal
+* Pour le disque : attention aux volumes alloués — 10% de 2 To = 200 Go, ce n'est pas forcément urgent
+* Ces seuils ont été définis avec les équipes — faits pour être affinés à l'usage
+
+Transition : Et une fois l'alerte déclenchée, qui reçoit quoi ?
+====
+
+[%notitle]
+== Canaux d'alerting
+
+La bonne alerte, à la bonne équipe, au bon moment
+
+[%step]
+* *Par projet* — canal Teams de l'équipe projet
+* *Par domaine* — responsable de domaine (critique uniquement)
+* *Par hébergeur* — équipe hébergement concernée
+* *Hypercritiques* — SMS en plus (ne pas banaliser)
+
+[NOTE.speaker]
+====
+* L'organisation des canaux correspond à l'organisation des équipes — c'est intentionnel
+* Canal SMS réservé aux services hypercritiques — banaliser le SMS, c'est s'assurer que les gens le coupent
+* Power Automate en intermédiaire : route vers Teams ou SMS selon la criticité
+
+Transition : Gérer les faux positifs.
+====
+
+// ─── FAUX POSITIFS, RUNBOOK & ESCALADE ──────────────────────────────────────
+
+[%notitle]
+== Gérer les faux positifs
+
+[%step]
+* Labels `unknown` → dashboard dédié — quelles VMs ne sont pas encore couvertes ?
+* Maintenance windows — silences Alertmanager pendant les interventions
+* Affiner les seuils à l'usage — les premiers réglages ne seront pas parfaits
+
+[NOTE.speaker]
+====
+* Le dashboard des "unknown" est un outil de qualité de données
+* Les silences Alertmanager doivent être posés AVANT l'intervention, pas après
+* Les seuils initiaux sont un point de départ — ils se calibrent sur la durée
+
+Transition : Et quand l'alerte est réelle, encore faut-il savoir quoi faire.
+====
+
+[%notitle]
+== Runbook & escalade
+
+"Si l'alarme sonne, on doit savoir quelle lessive utiliser sans réfléchir."
+
+[%step]
+* Chaque alerte P1/P2 → un runbook (même minimal)
+* Escalade explicite : L1 projet → L2 domaine → L3 hébergement + SMS
+* Challenger les alertes régulièrement — si aucune action en 3 mois, la supprimer
+
+[NOTE.speaker]
+====
+* Le runbook n'a pas besoin d'être exhaustif — "regarder ce dashboard en premier" suffit
+* L'escalade sans règle écrite : chacun improvise. On a défini 3 niveaux :
+  ** L1 : équipe projet — warning → canal Teams
+  ** L2 : responsable domaine — critical → Teams + autre canal
+  ** L3 : hébergement + DSI — service hypercritique → SMS
+* Challenger les alertes : si une alerte ne déclenche jamais d'action, c'est un seuil trop bas ou une alerte inutile
+
+Transition : Les dashboards pour la vision d'ensemble.
+====
+
+[%notitle]
+== 3 niveaux de dashboards
+
+[%step]
+* *Map* — vue cartographique des services (heartbeat HTTP), lisible par les non-techs
+* *Vue globale instances* — état de toutes les VMs, groupées par env et projet
+* *Détail instance* — drilldown : quelle métrique est en difficulté ?
+
+[NOTE.speaker]
+====
+* La map : vue SVG interactive avec indicateurs de couleur (Grafana Flow Panel)
+* La vue globale : code couleur OK/Warning/Critical — "est-ce que tout va bien ?" en un coup d'œil
+* Le drilldown : un clic depuis la vue globale → métriques CPU/RAM/Disk de la VM concernée
+
+Transition : Le bilan.
+====
+
+// ─── RÉSULTATS ───────────────────────────────────────────────────────────────
+
+[%notitle]
+== Ce qu'on a livré
+
+[%step]
+* Collecte uniformisée — couverture étendue à l'ensemble de l'infra
+* Plan de labélisation à 6 dimensions déployé
+* Matrice de seuils par rôle définie
+* Stack d'alerting (Alertmanager + Teams) configurée
+* 4 dashboards Grafana opérationnels
+
+[NOTE.speaker]
+====
+* Livré en ~27 j/h sur 40 budgetés
+* Ce qui reste : déploiement des collecteurs sur les parties non automatisées, affinage des canaux Teams, intégration PRTG complète
+* La base est solide et extensible — les équipes peuvent continuer sans nous
+
+Transition : Le take-away.
+====
+
+// ─── TAKE-AWAY ────────────────────────────────────────────────────────────────
+
+[%notitle]
+== 🏭 Take-away REX 3
+
+"L'alerte ne doit pas dire 'Il y a un problème'. +
+Elle doit dire 'Voici ce que tu dois faire'."
+
+[%step]
+* Inventaire d'abord — on ne monitore pas ce qu'on ne connaît pas
+* Labélisation = fondation — sans elle, pas d'alerting différencié
+* Moins d'alertes, mieux ciblées — la qualité prime sur la quantité
+* Chaque alerte P1/P2 a un runbook — même minimal
+* Monitorer le système de monitoring — qui surveille le surveillant ?
+
+[NOTE.speaker]
+====
+* La fatigue d'alerte n'est pas une fatalité — c'est le symptôme d'un système mal calibré
+* L'alerte qui dit "voici ce que tu dois faire" — c'est ça l'objectif d'un runbook
+* Monitorer le monitoring : si Prometheus tombe, plus personne ne voit rien — c'est la première alerte à mettre en place
+
+Transition : On a fait les 3 REXs. La synthèse.
+====
