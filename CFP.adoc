@@ -1,0 +1,37 @@
+= L'observabilité en vrai : logs, lessive et 350 VMs
+
+== Abstract :
+
+"Les logs, l'observabilité, la viz', sur le papier ça se fait bien. Mais la réalité, c'est une autre paire de manches.
+
+En 45 minutes, je vous propose trois retours d’expérience concrets pour transformer des logs et métriques bruts en décisions opérationnelles. Un exemple de bout en bout pour le monitoring d'une forge logicielle, la collecte, le parsing et l'exploitation avec Grafana. Une réorganisation et nettoyage complet des logs dans une stack ELK pour éviter d'avoir à acheter des disques tous les 6 mois. Et enfin, la mise en place d'une stratégie d'alerting et d'uniformation de collecte des métriques sur une infra de 350VMs.
+
+Avec ces trois rex, tu repartiras avec des patterns immédiats à appliquer (collecte, nettoyage, indexation), quelques pièges à éviter et des règles pragmatiques d’alerting pour faire de l’observabilité une habitude opérationnelle."
+
+== Plan
+
+Intro rapide (objectifs, public, plan de la session)
+
+REX 1 : Forge logicielle (≈12')
+* Contexte & enjeux
+* Collecte des logs : architecture d’ingestion
+* Nettoyage/parse & enrichment
+* Exploitation avec Grafana : exemples de dashboards et workflows
+* Recommandations rapides
+
+REX 2 : Audit + réorganisation logs avec ELK (≈12')
+* Contexte & constat initial
+* Méthode d’audit : quoi regarder (formats, champs, volumétrie, retention)
+* Actions réalisées : normalisation, pipeline, indexation, policies
+* Gains observés & recommandations
+
+REX 3 : Monitoring & alerting d’une infra 350 VMs (≈12’)
+* Contexte & challenges (scale, coûts, bruit)
+* Architecture monitoring ≠ métriques clés à collecter
+* Stratégie d’alerting : priorisation, thresholds dynamiques, agrégation
+* Gestion des faux positifs, runbook & escalade
+* Résultats & conseils pratiques (2’)
+
+Synthèse & Q&A (≈5’)
+* “Do / Don’t / Checklist”
+* Q&A
