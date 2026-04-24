@@ -5,10 +5,10 @@
 
 [NOTE.speaker]
 ====
-REX 2 — Une mission d'audit chez un client grand compte.
-La situation de départ : les disques débordent, les coûts de run augmentent, et les logs sont difficilement exploitables.
+* REX 2 — Une mission d'audit chez un client grand compte.
+* La situation de départ : les disques débordent, les coûts de run augmentent, et les logs sont difficilement exploitables.
 
-L'image de ce REX : le syndrome de l'armoire pleine. La solution du client ? "On va racheter du stockage."
+* L'image de ce REX : le syndrome de l'armoire pleine. La solution du client ? "On va racheter du stockage."
 
 Transition : Spoiler : ce n'est pas la bonne solution.
 ====
@@ -22,13 +22,13 @@ Transition : Spoiler : ce n'est pas la bonne solution.
 
 [NOTE.speaker]
 ====
-L'armoire déborde. La tentation naturelle : acheter une nouvelle armoire.
+* L'armoire déborde. La tentation naturelle : acheter une nouvelle armoire.
 
-Mais si on ne trie jamais, la nouvelle armoire sera pleine dans 6 mois aussi.
+* Mais si on ne trie jamais, la nouvelle armoire sera pleine dans 6 mois aussi.
 
-Ce REX, c'est la méthode Marie Kondo appliquée aux logs.
-La question à se poser pour chaque log : est-ce que ce log provoque une décision opérationnelle ?
-Si non — on le jette.
+* Ce REX, c'est la méthode Marie Kondo appliquée aux logs.
+* La question à se poser pour chaque log : est-ce que ce log provoque une décision opérationnelle ?
+* Si non — on le jette.
 
 Transition : Le contexte d'abord.
 ====
@@ -66,9 +66,12 @@ Transition : On commence par des interviews.
 
 [NOTE.speaker]
 ====
-* L'infra n'est pas sous-dimensionnée — inutile de tout changer
-* Le filtrage des logs n'ayant jamais été fait de manière globale, les leviers sont nombreux
-* Certaines données ont des restrictions d'accès et des durées de conservation légales
+Ce qu'on a trouvé en entrant dans la chambre
+
+* Step : L'infra n'est pas sous-dimensionnée — inutile de tout changer
+* Step : Le connaissance est centralisé
+* Step : Le filtrage des logs n'ayant jamais été fait de manière globale, les leviers sont nombreux
+* Step : Certaines données ont des restrictions d'accès et des durées de conservation légales
 
 Transition : L'objectif est donc clair.
 ====
@@ -76,7 +79,6 @@ Transition : L'objectif est donc clair.
 [%notitle]
 == Objectifs
 
-[%step]
 * Diminuer l'espace disque de la stack ELK
 * Simplifier et automatiser le nettoyage des données
 
@@ -87,30 +89,6 @@ Transition : L'objectif est donc clair.
 * Simplifier et automatiser : pour que ça ne retombe pas dans le même état dans 6 mois — ne pas racheter une armoire tous les 6 mois
 
 Transition : Voici la méthode pour auditer une stack ELK.
-====
-
-// ─── MÉTHODE D'AUDIT ─────────────────────────────────────────────────────────
-
-[%notitle]
-== Méthode d'audit : quoi regarder en premier ?
-
-[%step]
-* *Formats* — JSON ? syslog ? multilignes ? propriétaires ?
-* *Champs* — quels champs sont effectivement présents et utiles ?
-* *Volumétrie* — qui produit quoi, en quelle quantité ?
-* *Rétention* — combien de temps garder quoi, et pourquoi ?
-
-[NOTE.speaker]
-====
-* Commencer par un inventaire des sources — pas ce que la doc dit, ce qui arrive vraiment dans Elasticsearch
-* Mesurer la volumétrie réelle par source, pas les estimations
-* Confronter la rétention existante aux besoins réels : a-t-on vraiment besoin de 90 jours de logs nginx ?
-* Outils : `_cat/indices`, Kibana Index Management, quelques agrégations Elasticsearch — pas besoin d'outils exotiques
-
-C'est le moment de se poser la question Marie Kondo pour chaque source :
-"Est-ce que ce flux de logs provoque une décision opérationnelle ?"
-
-Transition : Sur ce projet, voici le plan qui en a découlé.
 ====
 
 // ─── PLAN DE BATAILLE ────────────────────────────────────────────────────────
@@ -128,8 +106,8 @@ Transition : Sur ce projet, voici le plan qui en a découlé.
 
 [NOTE.speaker]
 ====
-* Approche itérative, cadencée par des réunions de 2h
-* Théorie + état de l'art côté Onepoint, mise en œuvre côté client
+* Approche itérative, cadencée par des réunions de 2h en fonction des avancements
+* Théorie + état de l'art de mon côté, mise en œuvre côté responsable
 * On avance étape par étape — on ne vide pas l'armoire en une seule fois
 
 Transition : Commençons par le grand tri.
@@ -150,16 +128,12 @@ Explorer, lister, mesurer
 
 [NOTE.speaker]
 ====
-* On liste tout — l'équivalent de sortir tous les vêtements de l'armoire sur le lit
-* Pour chaque index : taille, nombre de docs, pertinence, qui l'utilise
-* On ne supprime que ce qui est clairement inutile — pas de prise de risque à ce stade
+* Step : On liste tout — l'équivalent de sortir tous les vêtements de l'armoire sur le lit
+* Step : Pour chaque index : taille, nombre de docs
+* Step : challenge de la pertinence, qui l'utilise
+* Step : On ne supprime que ce qui est clairement inutile — pas de prise de risque à ce stade
 
-Résultats :
-* 782 Go → 638 Go après suppression des logs inutiles, sur 9 index
-* Logs firewall : 80 Go → 60 Go (−25%)
-* VMWare : 140 Go → 80 Go (−43%)
-
-Transition : Le résultat parle de lui-même.
+Transition : Déjà sur cette étape le résultat parle de lui-même.
 ====
 
 [%notitle]
@@ -168,13 +142,14 @@ Transition : Le résultat parle de lui-même.
 [.big-number]
 782 Go → 638 Go
 
-[%step]
 * Firewall : 80 Go → 60 Go (−25%)
 * VMWare : 140 Go → 80 Go (−43%)
 * *Rien qu'en supprimant ce qui ne devrait pas être là*
 
 [NOTE.speaker]
 ====
+Lire les valeurs
+
 * Ces gains sont obtenus avant de toucher à la configuration
 * Juste en ouvrant l'armoire et en jetant ce qui est clairement inutile
 * Ça illustre bien l'état des lieux initial — des logs de DEBUG vieux de plusieurs mois, personne ne les lisait
@@ -182,6 +157,8 @@ Transition : Le résultat parle de lui-même.
 Transition : Étape 2, catégoriser ce qu'on garde.
 ====
 
+
+====>  YYYANNNn ICICIICICICI
 // ─── ÉTAPE 2 : CATÉGORISATION ────────────────────────────────────────────────
 
 [%notitle]
