@@ -5,9 +5,8 @@
 [NOTE.speaker]
 ====
 
- ... 3 retours d'expérience concrets sur l'observabilité
-
-Pas de théorie pure — du vécu, des erreurs, des patterns qui marchent.
+* ... 3 retours d'expérience concrets sur l'observabilité
+* Pas de théorie pure — du vécu, des erreurs, des patterns qui marchent.
 
 Transition : On commence par une image.
 ====
@@ -65,23 +64,16 @@ Transition : Et pour ça, 3 cas concrets.
 
 [NOTE.speaker]
 ====
-* REX 1 : on repart de zéro, on construit une architecture de logs pour une forge logicielle
+* Step : REX 1 : on repart de zéro, on construit une architecture de logs pour une forge logicielle
 ** le défi : des logs de partout, dans tous les formats. On va les trier.
 
-=> Step
-
-* REX 2 : on arrive en audit, les disques débordent, les logs sont inutilisables, ce qui arrive au bout de quelques années
+* Step : REX 2 : on arrive en audit, les disques débordent, les logs sont inutilisables, ce qui arrive au bout de quelques années
 ** le défi : faire le tri, jeter ce qui ne "provoque pas de joie opérationnelle"
 
-=> Step
-
-* REX 3 : 350 VMs, Windows, Linux, cloud, on-prem
+* Step : REX 3 : 350 VMs, Windows, Linux, cloud, on-prem
 ** le défi : passer à l'échelle sans devenir sourd à cause des bips
 
-
-=> Step
-
-* Et on terminera par une petite synthèse lessive, un peu comme l'étiquette d'instruction pour le nettoyage des vetements
+* Step : Et on terminera par une petite synthèse lessive, un peu comme l'étiquette d'instruction pour le nettoyage des vetements
 
 Transition : Commençons par le commencement — REX 1, la forge logicielle.
 ====

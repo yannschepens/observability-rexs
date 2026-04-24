@@ -5,10 +5,9 @@
 
 [NOTE.speaker]
 ====
-REX 1 — Ma mission principale depuis plusieurs années : la création et le maintien d'une forge logicielle pour un ministère.
-On part de zéro — on construit tout.
-
-L'image de ce REX : trier les couleurs. Parce qu'une forge logicielle c'est une usine H24 — les logs sont là, en quantité, mais mélangés.
+* REX 1 — Ma mission principale depuis plusieurs années : la création et le maintien d'une forge logicielle pour un ministère.
+* On part de zéro — on construit tout.
+* L'image de ce REX : trier les couleurs. Parce qu'une forge logicielle c'est une usine H24 — les logs sont là, en quantité, mais mélangés.
 
 Transition : Voyons concrètement notre use case.
 ====
@@ -20,11 +19,11 @@ Transition : Voyons concrètement notre use case.
 
 [NOTE.speaker]
 ====
-On a souvent tendance à tout jeter dans la machine à laver — Grafana, ELK — en espérant qu'un dashboard magique en ressorte.
+* On a souvent tendance à tout jeter dans la machine à laver — Grafana, ELK — en espérant qu'un dashboard magique en ressorte.
+* Ça ne marche pas.
+** Si tu ne sais pas qui a généré le log et pourquoi, ta donnée est une chaussette orpheline.
 
-Ça ne marche pas. Si tu ne sais pas qui a généré le log et pourquoi, ta donnée est une chaussette orpheline.
-
-Ce REX, c'est l'histoire de comment on sépare le coton du synthétique.
+* Ce REX, c'est l'histoire de comment on sépare le coton du synthétique.
 
 Transition : Mais d'abord, le contexte.
 ====
@@ -112,14 +111,15 @@ Déjà, quand on parle de logs, on parle de quoi précisément ?
 
 [NOTE.speaker]
 ====
-120 types de log, des gigas par jour, des formats différents selon chaque outil.
-C'est le panier de linge en vrac.
+* 120 types de log, des gigas par jour, des formats différents selon chaque outil.
+* C'est le panier de linge en vrac.
 
-* Certains logs doivent être conservés — les logs d'accès par exemple
-* D'autres sont à anonymiser — RGPD
-* Certains sont inutiles à garder au-delà d'un mois
+** Certains logs doivent être conservés — les logs d'accès par exemple
+** D'autres sont à anonymiser — RGPD
+** Certains sont inutiles à garder au-delà d'un mois
 
-Bref, la première question n'est pas "comment les stocker" — c'est "lesquels méritent d'exister".
+* Bref, la première question n'est pas "comment les stocker" — c'est "lesquels méritent d'exister".
+* Les chaussettes troués, hein ....
 
 Transition : Pour gérer tout ça, on a fait le tour du marché.
 ====
@@ -131,11 +131,11 @@ image::rex1-tools-options.png[1, 60%]
 
 [NOTE.speaker]
 ====
-Des solutions complètes ou en briques, on-premise ou SaaS, gratuites ou payantes.
 
-On est partis sur une solution on-premise, gratuite et open source.
+* Des solutions complètes ou en briques, on-premise ou SaaS, gratuites ou payantes.
+* On est partis sur une solution on-premise, gratuite et open source.
 
-Transition : On part des logs eux-mêmes. Il faut d'abord les collecter.
+Transition : Maintenant le type de solution choisi. Ben les logs, il faut d'abord les collecter.
 ====
 
 // ─── COLLECTE : ARCHITECTURE D'INGESTION ────────────────────────────────────
@@ -144,7 +144,11 @@ Transition : On part des logs eux-mêmes. Il faut d'abord les collecter.
 
 [NOTE.speaker]
 ====
-Deux problèmes de collecte à résoudre simultanément : les fichiers et les containers Docker.
+* Sur notre infra, deux problèmes de collecte à résoudre simultanément
+** les fichiers
+** les containers Docker.
+
+Transition : prenons les uns par uns
 ====
 
 [%notitle]
@@ -154,14 +158,14 @@ image::rex1-filebeat.png[1, 60%]
 
 [NOTE.speaker]
 ====
-Problématique : lire le contenu des fichiers pour les stocker.
+* Problématique : lire le contenu des fichiers pour les stocker.
 
-Solution : Filebeat
+* Solution : Filebeat
 
-* Service externe à Docker
-* Beaucoup d'extensions
-* Parse le JSON nativement
-* Renvoie les logs vers beaucoup d'outils différents
+** Service externe à Docker
+** Beaucoup d'extensions
+** Parse le JSON nativement
+** Renvoie les logs vers beaucoup d'outils différents
 
 Transition : Et pour les containers — la sortie standard Docker.
 ====
@@ -173,13 +177,13 @@ image::rex1-docker-driver.png[1, 60%]
 
 [NOTE.speaker]
 ====
-Problématique : récupérer les logs stdout/stderr Docker.
+* Problématique : récupérer les logs stdout/stderr Docker.
 
-Solution : Docker GELF log driver
+* Solution : Docker GELF log driver
 
-* Natif Docker, configuration dans les docker-compose
-* Renvoie les logs au format JSON vers Logstash
-* Possibilité d'ajouter du contenu
+** Natif Docker, configuration dans les docker-compose
+** Renvoie les logs au format JSON vers Logstash
+** Possibilité d'ajouter du contenu
 
 Transition : On a collecté nos logs — maintenant on les trie.
 ====
@@ -192,8 +196,10 @@ Transition : On a collecté nos logs — maintenant on les trie.
 
 [NOTE.speaker]
 ====
-C'est l'étape la plus importante — et la plus négligée.
-Si tu envoies tout brut dans Elasticsearch, tu as stocké du bruit, pas de la donnée.
+* C'est l'étape la plus importante — et souvent la plus négligée.
+* Si tu envoies tout brut dans Elasticsearch, tu as stocké du bruit, pas de la donnée.
+
+Transition : et pour ça, on va utilisé un ....
 ====
 
 [%notitle]
@@ -203,11 +209,11 @@ image::rex1-logstash.png[1, 50%]
 
 [NOTE.speaker]
 ====
-Problématique : pour normaliser les logs, il faut d'abord les centraliser.
+* Problématique : pour normaliser les logs, il faut d'abord les centraliser.
 
-Solution : Logstash — input / filter / output.
+* Solution : Logstash — input / filter / output.
 
-Laisser les logs tels quels, en mode "log sink", c'est comme mettre tout le linge dans un seul tiroir : introuvable.
+* Laisser les logs tels quels, en mode "log sink", c'est comme mettre tout le linge dans un seul tiroir : introuvable.
 
 Transition : Donc on normalise.
 ====
@@ -217,23 +223,23 @@ Transition : Donc on normalise.
 
 [%step]
 * Découpe des logs textes en JSON
-* Taggage des types de logs
-* Taggage de l'origine des logs
+* Taggage des types et origine de logs
 * Ajout d'informations (localisation via GeoIP)
 * Normalisation des logs d'accès HTTP
 * Organisation par mois et année
-* Anonymisation RGPD
 
 [NOTE.speaker]
 ====
 C'est ici qu'on sépare le coton du synthétique.
 
+Lis les steppers, puis
+
 * On étiquette chaque log : type, origine, environnement
 * Un log sans étiquette, c'est une chaussette orpheline — inutilisable
 * Le GeoIP enrichit chaque accès avec la localisation → utile pour détecter des accès anormaux
-* L'anonymisation RGPD est appliquée à ce niveau — une fois en entrée, pas à chaque requête
+* L'idéal qu'on a pas pu faire : l'anonymisation RGPD est appliquée à ce niveau — une fois en entrée, pas à chaque requête
 
-Transition : Et on les stocke où ?
+Transition : C'est bien on a nos logs, mais on les stocke où ?
 ====
 
 [%notitle]
@@ -243,7 +249,9 @@ image::rex1-es.png[1, 75%]
 
 [NOTE.speaker]
 ====
-Elasticsearch — reconnu dans le domaine, gère très bien le JSON.
+* On a choisi Elasticsearch — reconnu dans le domaine, gère très bien le JSON.
+
+Transition : mais ça ne se fait pas tout seul non plus, il faut réfléchir à la stratégie de stockage
 ====
 
 [%notitle]
@@ -272,10 +280,10 @@ Transition : La dernière brique — la visualisation.
 
 [NOTE.speaker]
 ====
-Kibana pour naviguer dans les logs — c'est l'outil de filtrage fin.
-Grafana comme tableau de bord opérationnel central — avec auth, avec alerting, avec intégrations.
+* Kibana pour naviguer dans les logs — c'est l'outil de filtrage fin.
+* Grafana comme tableau de bord opérationnel central — avec auth, avec alerting, avec intégrations.
 
-Grafana agrège tout : ELK, Zabbix, Prometheus GitLab — un seul endroit pour surveiller.
+Transition : concernant kibana, on s'est simplifié la vie
 ====
 
 [%notitle]
@@ -346,19 +354,14 @@ Transition : Le take-away de ce REX.
 
 "Un dashboard sans parsing propre, c'est juste du bruit en couleur."
 
-[%step]
-* *60 Go/jour* pour un XRay en debug — désactiver le debug en prod
-* Logs ≠ Métriques — ne pas faire des graphiques avec des logs quand une métrique existe
-* Étiqueter chaque log dès la collecte — type, origine, env
-* Rétention par type dès J1 — sinon tout s'accumule
-* Surveiller le gestionnaire de logs — si Logstash tombe en silence, on ne le sait pas
-
 [NOTE.speaker]
 ====
 * L'image à retenir : séparer le coton du synthétique — sans tri, la machine à laver ne fait qu'homogénéiser le chaos
-* Le debug en prod : 60 Go/jour pour UN seul outil. Ça semble anodin, ça ruine le stockage.
-* Logs ≠ métriques : compter des lignes de log pour mesurer le trafic c'est fragile — Prometheus le fait mieux
-* Timezones, Docker+GELF, auth Kibana : petits détails, grands problèmes
+* Le debug en prod : 60 Go/jour pour UN seul outil (XRAY). Ça semble anodin, ça ruine le stockage.
+* Logs ≠ Métriques : ne pas faire des graphiques avec des logs quand une métrique existe
+* Étiqueter chaque log dès la collecte — type, origine, env
+* Définir la Rétention par type dès J1 — sinon tout s'accumule
+* Surveiller le gestionnaire de logs — si Logstash tombe en silence, on ne le sait pas
 
 Transition : Place au REX 2 — l'armoire qui déborde.
 ====

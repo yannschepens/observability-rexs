@@ -25,6 +25,15 @@ L'observabilité en vrai : logs, lessive et 350 VMs
 Yann Day : 9 juin 1987
 |===
 
+[NOTE.speaker]
+====
+* Bonjour,
+
+* MBienvenue chez NettoieLogs2000 "Expert en observabilité", entreprise de nettoyage et stockage de logs en tout genre
+
+* Transition : Mais avant de commencer, qui suis-je ?
+====
+
 include::pages/start.adoc[leveloffset=+1]
 include::pages/intro.adoc[leveloffset=+1]
 include::pages/rex1-general-monitoring.adoc[leveloffset=+1]

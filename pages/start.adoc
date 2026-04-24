@@ -1,22 +1,21 @@
 = Intro
-
 :imagesdir: assets/default/images
-
-== !
 
 image::yann.png[]
 
 [NOTE.speaker]
 ====
-* Tech lead Onepoint depuis 3 ans
-* 15 ans de carrière dans le web d'abord puis dans le devops
-* Utilisé beaucoup d'usine logicielle pour plusieurs typologie de techno
+* Tech lead Onepoint depuis 6 ans
+* 15 ans de carrière dans l'IT puis j'ai découvert le monde du nettoyage industrielle de logs et métriques
+* Donc evidement, j'ai fait une reconversion, mais avant ça
+* Utilisé beaucoup d'usine logicielle pour plusieurs typologies de techno
 * Ai fini par en développer et gérer une et en géré une
 * Et qui dit infra, outil, dis logs
 ** que je me suis retrouvé à gérer les logs
 * Via cette experience, j'ai été catalogué "Gestionnaire de logs", donc d'autres missions pour d'autres entreprise
 * Je suis devenu "Expert en stockage, nettoyage et gestion de logs" en gros "Blanchisseur de logs"
+* D'où mon changement de metier
 
-Transition : Donc aujourd'hui, je vous propose de découvrir ce métier et les bonnes pratiques associés au travers de ...
+Transition : Donc aujourd'hui, je vous propose de découvrir mon quotidien et les bonnes pratiques associés au travers de ...
 
 ====
