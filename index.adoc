@@ -26,22 +26,10 @@ Yann Day : 9 juin 1987
 |===
 
 include::pages/start.adoc[leveloffset=+1]
-//include::pages/rexs.adoc[leveloffset=+1]
-//include::pages/rex1-general-monitoring.adoc[leveloffset=+1]
-//include::pages/rex2-elk.adoc[leveloffset=+1]
-//include::pages/rex3-uniformation-control-center.adoc[leveloffset=+1]
-//include::pages/synthesis.adoc[leveloffset=+1]
-
-include::pages/draft/intro.adoc[leveloffset=+1]
-include::pages/draft/rex1-general-monitoring.adoc[leveloffset=+1]
-include::pages/draft/rex2-elk.adoc[leveloffset=+1]
-include::pages/draft/rex3-350vms.adoc[leveloffset=+1]
-include::pages/draft/synthesis.adoc[leveloffset=+1]
-
-include::pages/draft2/intro.adoc[leveloffset=+1]
-include::pages/draft2/rex1-general-monitoring.adoc[leveloffset=+1]
-include::pages/draft2/rex2-elk.adoc[leveloffset=+1]
-include::pages/draft2/rex3-350vms.adoc[leveloffset=+1]
-include::pages/draft2/synthesis.adoc[leveloffset=+1]
+include::pages/intro.adoc[leveloffset=+1]
+include::pages/rex1-general-monitoring.adoc[leveloffset=+1]
+include::pages/rex2-elk.adoc[leveloffset=+1]
+include::pages/rex3-350vms.adoc[leveloffset=+1]
+include::pages/synthesis.adoc[leveloffset=+1]
 
 include::pages/end.adoc[leveloffset=+1]

@@ -1,1 +1,331 @@
-= REX 2 : Audit + réorganisation logs avec ELK
+= 🧺 REX 2 : Audit ELK — Le syndrome de l'armoire pleine
+:imagesdir: assets/default/images
+
+== !
+
+[NOTE.speaker]
+====
+REX 2 — Une mission d'audit chez un client grand compte.
+La situation de départ : les disques débordent, les coûts de run augmentent, et les logs sont difficilement exploitables.
+
+L'image de ce REX : le syndrome de l'armoire pleine. La solution du client ? "On va racheter du stockage."
+
+Transition : Spoiler : ce n'est pas la bonne solution.
+====
+
+// ─── HOOK STORYTELLING ───────────────────────────────────────────────────────
+
+[%notitle]
+== Le syndrome de l'armoire pleine
+
+//TODO : illustration armoire qui déborde / disques empilés
+
+[NOTE.speaker]
+====
+L'armoire déborde. La tentation naturelle : acheter une nouvelle armoire.
+
+Mais si on ne trie jamais, la nouvelle armoire sera pleine dans 6 mois aussi.
+
+Ce REX, c'est la méthode Marie Kondo appliquée aux logs.
+La question à se poser pour chaque log : est-ce que ce log provoque une décision opérationnelle ?
+Si non — on le jette.
+
+Transition : Le contexte d'abord.
+====
+
+// ─── CONTEXTE ────────────────────────────────────────────────────────────────
+
+[%notitle]
+== Contexte
+
+Mission d'audit ELK chez un client grand compte
+
+[%step]
+* Stack ELK en production pour les logs applicatifs, métiers, systèmes et réseaux
+* Diversité d'usages + volumes croissants = coût de run élevé
+* Nombreuses interventions manuelles sur la stack
+* Avant de changer quoi que ce soit : *un audit*
+
+[NOTE.speaker]
+====
+* ELK utilisé pour tout : logs appli, métier, système, réseau — tout dans le même panier
+* Le problème : chronophage à maintenir, de plus en plus cher en infra
+* Décision sage : ne pas foncer dans des changements sans comprendre l'existant
+
+Transition : On commence par des interviews.
+====
+
+[%notitle]
+== Ce qu'on a trouvé en entrant
+
+[%step]
+* Infra bien dimensionnée — pas le sujet
+* Une seule personne maîtrise tout — le référent technique
+* Ce travail d'analyse n'avait *jamais été fait globalement*
+* Des contraintes légales de conservation à respecter
+
+[NOTE.speaker]
+====
+* L'infra n'est pas sous-dimensionnée — inutile de tout changer
+* Le filtrage des logs n'ayant jamais été fait de manière globale, les leviers sont nombreux
+* Certaines données ont des restrictions d'accès et des durées de conservation légales
+
+Transition : L'objectif est donc clair.
+====
+
+[%notitle]
+== Objectifs
+
+[%step]
+* Diminuer l'espace disque de la stack ELK
+* Simplifier et automatiser le nettoyage des données
+
+[NOTE.speaker]
+====
+* Deux objectifs, pas trente
+* Diminuer l'empreinte disque : c'est mesurable
+* Simplifier et automatiser : pour que ça ne retombe pas dans le même état dans 6 mois — ne pas racheter une armoire tous les 6 mois
+
+Transition : Voici la méthode pour auditer une stack ELK.
+====
+
+// ─── MÉTHODE D'AUDIT ─────────────────────────────────────────────────────────
+
+[%notitle]
+== Méthode d'audit : quoi regarder en premier ?
+
+[%step]
+* *Formats* — JSON ? syslog ? multilignes ? propriétaires ?
+* *Champs* — quels champs sont effectivement présents et utiles ?
+* *Volumétrie* — qui produit quoi, en quelle quantité ?
+* *Rétention* — combien de temps garder quoi, et pourquoi ?
+
+[NOTE.speaker]
+====
+* Commencer par un inventaire des sources — pas ce que la doc dit, ce qui arrive vraiment dans Elasticsearch
+* Mesurer la volumétrie réelle par source, pas les estimations
+* Confronter la rétention existante aux besoins réels : a-t-on vraiment besoin de 90 jours de logs nginx ?
+* Outils : `_cat/indices`, Kibana Index Management, quelques agrégations Elasticsearch — pas besoin d'outils exotiques
+
+C'est le moment de se poser la question Marie Kondo pour chaque source :
+"Est-ce que ce flux de logs provoque une décision opérationnelle ?"
+
+Transition : Sur ce projet, voici le plan qui en a découlé.
+====
+
+// ─── PLAN DE BATAILLE ────────────────────────────────────────────────────────
+
+[%notitle]
+== Le plan de bataille
+
+[%step]
+. Analyse — inventaire et volumétrie
+. Catégorisation — type, niveau, rétention, débit
+. Stratégie de stockage — datastreams + ILM
+. Configuration Logstash — variabilisation
+. Stratégie d'agrégation — downsampling
+. Stratégie d'archivage — conservation légale
+
+[NOTE.speaker]
+====
+* Approche itérative, cadencée par des réunions de 2h
+* Théorie + état de l'art côté Onepoint, mise en œuvre côté client
+* On avance étape par étape — on ne vide pas l'armoire en une seule fois
+
+Transition : Commençons par le grand tri.
+====
+
+// ─── ÉTAPE 1 : ANALYSE ───────────────────────────────────────────────────────
+
+[%notitle]
+== Étape 1 — Le grand tri
+
+Explorer, lister, mesurer
+
+[%step]
+* Inventaire complet dans un fichier Excel
+* Volumétrie réelle par index
+* Pertinence, catégorie, durée de conservation
+* Suppression des logs inutiles
+
+[NOTE.speaker]
+====
+* On liste tout — l'équivalent de sortir tous les vêtements de l'armoire sur le lit
+* Pour chaque index : taille, nombre de docs, pertinence, qui l'utilise
+* On ne supprime que ce qui est clairement inutile — pas de prise de risque à ce stade
+
+Résultats :
+* 782 Go → 638 Go après suppression des logs inutiles, sur 9 index
+* Logs firewall : 80 Go → 60 Go (−25%)
+* VMWare : 140 Go → 80 Go (−43%)
+
+Transition : Le résultat parle de lui-même.
+====
+
+[%notitle]
+== Résultat du grand tri
+
+[.big-number]
+782 Go → 638 Go
+
+[%step]
+* Firewall : 80 Go → 60 Go (−25%)
+* VMWare : 140 Go → 80 Go (−43%)
+* *Rien qu'en supprimant ce qui ne devrait pas être là*
+
+[NOTE.speaker]
+====
+* Ces gains sont obtenus avant de toucher à la configuration
+* Juste en ouvrant l'armoire et en jetant ce qui est clairement inutile
+* Ça illustre bien l'état des lieux initial — des logs de DEBUG vieux de plusieurs mois, personne ne les lisait
+
+Transition : Étape 2, catégoriser ce qu'on garde.
+====
+
+// ─── ÉTAPE 2 : CATÉGORISATION ────────────────────────────────────────────────
+
+[%notitle]
+== Étape 2 — Catégorisation
+
+Chaque log à sa place, chaque place à son log
+
+[%step]
+* Découper chaque index selon :
+** *Type* — system, appli, réseau, métier...
+** *Niveau* — error, warn, info, debug
+** *Conservation* — légale, opérationnelle, aucune
+** *Débit* — volumétrie par unité de temps
+
+[NOTE.speaker]
+====
+* On trie par catégories — comme les vêtements par couleur et par matière
+* Résultat concret : l'index des logs système éclate en 5 datastreams
+* On ne traite que les logs qui ne demandent pas d'intervention externe en premier
+
+Transition : La catégorisation permet de définir une vraie stratégie de stockage.
+====
+
+// ─── ÉTAPE 3 : STOCKAGE ──────────────────────────────────────────────────────
+
+[%notitle]
+== Étape 3 — Ranger intelligemment
+
+Les logs froids à la cave
+
+[%step]
+* Ajout de *métadonnées* sur les logs (ECS Elasticsearch)
+* *Datastreams* par catégorie
+* *ILM* (Index Lifecycle Management) par datastream
+* hot → warm → cold → delete
+
+[NOTE.speaker]
+====
+* ILM = ranger les vêtements d'hiver à la cave
+* Les logs chauds restent accessibles rapidement (hot), les logs froids sont compressés sur des nœuds moins chers (warm/cold), et expirés automatiquement (delete)
+* Chaque datastream a sa politique de cycle de vie — les logs d'accès restent 1 an, les logs d'erreur 1 mois
+* Résultat inattendu : meilleure compression grâce au mapping structuré
+  * Logs proxy : 30M entrées pour 60 Go → 45M entrées pour moins d'espace
+  * Hypothèse : meilleure compression liée à la cohérence des champs
+
+Transition : Une fois les datastreams en place, on améliore la config Logstash.
+====
+
+// ─── ÉTAPE 4 : LOGSTASH ──────────────────────────────────────────────────────
+
+[%notitle]
+== Étape 4 — Logstash : la config statique, c'est une dette
+
+[%step]
+* Analyse de la configuration existante
+* Ajout des métadonnées dans les filtres
+* *Variabilisation* des outputs basée sur les métas
+* Sécurisation des mots de passe
+
+[NOTE.speaker]
+====
+* La configuration Logstash était statique : un output codé en dur par destination
+* En variabilisant les outputs sur les métadonnées, on dirige les logs vers le bon datastream automatiquement
+* C'est comme étiqueter les rayons de l'armoire — plus besoin de chercher
+
+Transition : Deux autres sujets étudiés mais pas encore déployés.
+====
+
+// ─── ÉTAPES 5 & 6 ────────────────────────────────────────────────────────────
+
+[%notitle]
+== Étapes 5 & 6 — Agrégation & archivage
+
+Étudiés, pas encore déployés
+
+[%step]
+* *Agrégation* : downsampling, rollup ou transformation +
+→ non mis en place, contrainte de ne pas perdre de données
+* *Archivage* : snapshot Elasticsearch ou export manuel +
+→ présenté, budgété pour une prochaine phase
+
+[NOTE.speaker]
+====
+* Agrégation : l'étape suivante — stocker des résumés au lieu du détail pour les logs anciens
+* Archivage : les logs à conservation légale doivent pouvoir être retrouvés facilement — ils vont au fond du placard mais pas à la poubelle
+
+Transition : Les résultats globaux.
+====
+
+// ─── RÉSULTATS ───────────────────────────────────────────────────────────────
+
+[%notitle]
+== Résultats
+
+[%step]
+* Volumétrie maîtrisée — même espace disque, données plus pertinentes
+* Diminution du débit d'ingestion
+* Stabilité de l'espace disque — plus de croissance non contrôlée
+
+[NOTE.speaker]
+====
+* La vraie victoire : les données qui restent sont utiles. Le bruit est éliminé.
+* On n'a pas forcément moins de données — on a de meilleures données
+
+Transition : Et des bénéfices inattendus.
+====
+
+[%notitle]
+== Conséquences induites
+
+[%step]
+. *Automatisation* — le travail sur Logstash a poussé l'équipe à automatiser le déploiement des configs
+. *Vision plus claire* — sur les données manipulées par la stack
+. *Meilleure maîtrise des outils* — fonctionnalités méconnues découvertes
+. *De nouveaux usages* — partage d'infos inter-équipes, observabilité métier
+. *Gestion simplifiée* — le redécoupage permet des actions plus fines
+
+[NOTE.speaker]
+====
+* Ces 5 points n'étaient pas dans les objectifs initiaux — ils sont apparus en cours de route
+* On commence par le disque, on finit par l'organisation. C'est souvent comme ça dans les missions d'audit.
+
+Transition : Le take-away.
+====
+
+// ─── TAKE-AWAY ────────────────────────────────────────────────────────────────
+
+[%notitle]
+== 🧺 Take-away REX 2
+
+"La meilleure donnée, c'est celle qu'on n'a pas besoin de stocker."
+
+[%step]
+* Faire l'inventaire *avant* de toucher à quoi que ce soit
+* Se poser la question Marie Kondo pour chaque flux : décision opérationnelle ou non ?
+* ILM dès le départ — les logs froids à la cave, pas dans le même tiroir que les chauds
+* Variabiliser Logstash — finir les outputs codés en dur
+* La sobriété, c'est la survie de votre stack ELK
+
+[NOTE.speaker]
+====
+* L'inventaire Excel est peu glamour — mais c'est la base de tout le reste
+* ILM : sur ce projet, on avait des index sans aucune politique de suppression depuis des années
+* La sobriété des logs n'est pas une contrainte technique — c'est une discipline d'équipe
+
+Transition : On passe au REX 3 — la laverie industrielle.
+====

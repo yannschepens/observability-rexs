@@ -1,27 +1,48 @@
-= REX 1 : Forge logicielle
+= 👕 REX 1 : Forge logicielle — Trier les couleurs
 :imagesdir: assets/default/images
+
+== !
 
 [NOTE.speaker]
 ====
-* Ma mission principale depuis 6 ans maintenant, la creation et maintien d'une forge logicielle
+REX 1 — Ma mission principale depuis plusieurs années : la création et le maintien d'une forge logicielle pour un ministère.
+On part de zéro — on construit tout.
 
-Transition : mais voyons un peu concrètement notre use case
+L'image de ce REX : trier les couleurs. Parce qu'une forge logicielle c'est une usine H24 — les logs sont là, en quantité, mais mélangés.
+
+Transition : Voyons concrètement notre use case.
 ====
+
+// ─── HOOK STORYTELLING ───────────────────────────────────────────────────────
+
+[%notitle]
+== La tentation de la machine à laver
+
+[NOTE.speaker]
+====
+On a souvent tendance à tout jeter dans la machine à laver — Grafana, ELK — en espérant qu'un dashboard magique en ressorte.
+
+Ça ne marche pas. Si tu ne sais pas qui a généré le log et pourquoi, ta donnée est une chaussette orpheline.
+
+Ce REX, c'est l'histoire de comment on sépare le coton du synthétique.
+
+Transition : Mais d'abord, le contexte.
+====
+
+// ─── CONTEXTE ────────────────────────────────────────────────────────────────
 
 [%notitle]
 == Le contexte
 
-//TODO : mettre une illustration
-
 [NOTE.speaker]
 ====
-Les outils de la PIC:
+Les outils de la PIC (Plateforme d'Intégration Continue) :
 
-* 2 Gitlab, 1 VM Gitlab runner
-* 2 Artifactory, XRay
-* Sonarqube, Vault, Zabbix, etc.
+* 2 GitLab, 1 VM GitLab runner
+* 2 Artifactory + XRay
+* SonarQube, Vault, Zabbix, etc.
 
-Transition : et chacun de ces outils est déployé sur 1 VM
+Transition : Et chacun de ces outils est déployé sur 1 VM.
 ====
 
 [%notitle]
@@ -31,234 +52,164 @@ image::rex1-forge.png[1, 75%]
 
 [NOTE.speaker]
 ====
-Une VM
+Pour chaque outil :
 
+* Une VM
 * Un docker-compose avec tous les services dedans
 * Une base de données
 * Généralement un reverse proxy (nginx) devant
+
+Transition : Alors, pourquoi monitorer tout ça ?
 ====
+
+// ─── POURQUOI MONITORER ───────────────────────────────────────────────────────
 
 == Pourquoi monitorer ?
 
 [%step]
-* Tracabilité
+* Traçabilité
 * Disponibilité
-* Sécurité/Légalité
+* Sécurité / Légalité
 
 [NOTE.speaker]
 ====
-Déroule les steps
+* Traçabilité : suivre ce qui se passe sur la plateforme — Qui ? Quand ? Où ?
+* Disponibilité : s'assurer que les plateformes et les outils fonctionnent correctement
+* Sécurité : le monitoring protège l'infra. Et il y a un aspect légal — certains logs doivent être conservés.
 
-* Tracabilité :
-** Suivre ce qui se passe sur la plateforme : Qui ? Quand ? Où ?
-
-* Dispo :
-** S'assurer que les plateformes et les outils fonctionnent correctement.
-
-* Au dela de l'aspect niveau de service, le monitoring permet surtout de sécuriser l'infra et les outils.
-De plus, le monitoring a un aspect légal.
-
-Transition : OK, on sait pourquoi, mais en fait, on doit suivre quoi ?
+Transition : On doit surveiller quoi concrètement ?
 ====
 
-== Quoi monitorer là-dedans ?
-
-//TODO : illustration
+== Quoi monitorer ?
 
 [NOTE.speaker]
 ====
-Les stats serveurs :
-* CPU, RAM, Espace disque Etc.
-* => Via Zabbix
+* Stats serveurs : CPU, RAM, disque → via Zabbix
+* Indicateurs "métiers" : spécifiques à chaque outil
+* Logs d'accès : les reverse proxy
+* Logs d'outils : erreurs, logs métiers
 
-Les indicateurs "métiers" :
-* Spécifiques à chaque outil
-
-Les logs d'access :
-* Les reverses proxy/serveur
-
-Les logs d'outils:
-* Messages d'erreurs
-* Logs métiers
-
-Transition : Ok, donc Zabbix s'occupe des métriques, et pour les logs on fait quoi ?
+Transition : Et ces logs, c'est quoi exactement ?
 ====
+
+// ─── LES LOGS ────────────────────────────────────────────────────────────────
 
 == Les logs de l'infra
 
 [NOTE.speaker]
 ====
-Déjà, quand on parle de logs, on parle de quoi précisement.
+Déjà, quand on parle de logs, on parle de quoi précisément ?
 ====
 
 [%notitle]
-== Quantité
+== Le tas de linge
 
-* 120 Type de log
-* Quelques gigas/jour
+* 120 types de log
+* Quelques gigas par jour
+* JSON, Combined Apache, Pipe separator...
+* Fichiers et sortie standard Docker
+* RGPD, légalité, rétention variable
 
 [NOTE.speaker]
 ====
-* 120 type de log ~= qlq gigas par jour
+120 types de log, des gigas par jour, des formats différents selon chaque outil.
+C'est le panier de linge en vrac.
 
-Transition : niveau format
+* Certains logs doivent être conservés — les logs d'accès par exemple
+* D'autres sont à anonymiser — RGPD
+* Certains sont inutiles à garder au-delà d'un mois
+
+Bref, la première question n'est pas "comment les stocker" — c'est "lesquels méritent d'exister".
+
+Transition : Pour gérer tout ça, on a fait le tour du marché.
 ====
 
 [%notitle]
-== Format
-
-* JSON
-* Combined Apache
-* Pipe séparator
-* etc.
-
-[NOTE.speaker]
-====
-Niveau format, chaque système son propre format, même si on retrouve des communs
-
-Transition : et ça parle de quoi ?
-====
-
-[%notitle]
-== Informations portées
-
-* Logs systèmes
-* Logs d'accès
-* Erreurs
-* Monitoring
-* etc.
-
-[NOTE.speaker]
-====
-Les logs portent tous des informations différentes. Que ce soit des logs systèmes, d'accès, d'erreur, de monitoring, etc.
-
-Transition : Où sont-il ?
-====
-
-[%notitle]
-== Logs access
-
-* Fichiers
-* Sortie standard
-
-[NOTE.speaker]
-====
-Chez nous, c'est soit du fichier soit de la sortie standard docker
-
-Transition : est-ce qu'on a des contraintes spécifiques legales ou de sécurité autour de ces sujets ?
-====
-
-[%notitle]
-== Légalité
-
-* RGPD
-* Sécurité
-
-[NOTE.speaker]
-====
-Oui, les logs d'accès par exemple, l'anonymisation d'informations, etc
-
-Transition : et pour finir, est-ce qu'on doit tout garder ?
-====
-
-[%notitle]
-== Pertinence
-
-* Nécessité de tout garder ?
-* Meilleur moyen d'avoir une info ?
-
-[NOTE.speaker]
-====
-Même si certains logs sont intéressants par curiosité, est-ce qu'il est intéressant de les conserver ? Est-ce le meilleur moyen d’acquérir une information ?
-
-Bref, ça fait une sacrée combinatoire et clairement, on ne va tout traiter en une fois,
-
-Transition : Et maintenant comment on gère tout ça techniquement
-====
-
-[%notitle]
-== Outils dispo
+== Outils disponibles
 
 image::rex1-tools-options.png[1, 60%]
 
 [NOTE.speaker]
 ====
-On a regarder un peu le marché de l'époque, et on avait le choix il y avait des solutions :
+Des solutions complètes ou en briques, on-premise ou SaaS, gratuites ou payantes.
 
-* Complètes/en brique
-* On Premise/Saas
-* Gratuite/payante
-* Diverse en termes de fonctionnalités
-* Avec des connecteurs différents
+On est partis sur une solution on-premise, gratuite et open source.
 
-Et du coup, on a regardé ce dont on avait besoin d'un point en partant des logs en eux mèmes
+Transition : On part des logs eux-mêmes. Il faut d'abord les collecter.
+====
 
-Transition : Et pour commencer, ces logs, il faut bien les récupérer
+// ─── COLLECTE : ARCHITECTURE D'INGESTION ────────────────────────────────────
+
+== Collecte : architecture d'ingestion
+
+[NOTE.speaker]
+====
+Deux problèmes de collecte à résoudre simultanément : les fichiers et les containers Docker.
 ====
 
 [%notitle]
-== Collecteur : files
+== Collecteur : fichiers
 
 image::rex1-filebeat.png[1, 60%]
 
 [NOTE.speaker]
 ====
-Problématique : il faut lire le contenu des fichiers pour les stocker
+Problématique : lire le contenu des fichiers pour les stocker.
 
-Pour les fichiers, on est parti sur filebeat :
+Solution : Filebeat
 
-* Service externe à docker
+* Service externe à Docker
 * Beaucoup d'extensions
-* Parse le JSON
-* Possibilité d'ajouter/modifier les logs
+* Parse le JSON nativement
 * Renvoie les logs vers beaucoup d'outils différents
 
-Transition : et pour notre second point de collecte, la sortie standard de docker
+Transition : Et pour les containers — la sortie standard Docker.
 ====
 
 [%notitle]
-== Collecteur : docker
+== Collecteur : Docker
 
 image::rex1-docker-driver.png[1, 60%]
 
 [NOTE.speaker]
 ====
-Problématique : Récuperer les logs stdout/stderr docker
+Problématique : récupérer les logs stdout/stderr Docker.
 
-Ben docker lui-même, docker propose plusieurs drivers pour envoyer les logs ailleurs que la sortie standard.
+Solution : Docker GELF log driver
 
-Dont : none, json-file, local, syslog, fluentd, awslogs, splunk, gcplogs, etwlogs, etc.....
-
-Docker : Gelf log driver
-
-* Natif docker
-* Configuration dans les docker-compose
-* Renvoie des logs vers un autre outil
-* Au format JSON
+* Natif Docker, configuration dans les docker-compose
+* Renvoie les logs au format JSON vers Logstash
 * Possibilité d'ajouter du contenu
 
-Transition : très bien, on a récupérer nos lofs, mais on les envoie où maintenant ?
+Transition : On a collecté nos logs — maintenant on les trie.
+====
+
+// ─── NETTOYAGE / PARSE & ENRICHMENT ─────────────────────────────────────────
+
+== Nettoyage, parse & enrichment
+
+"Séparer le coton du synthétique"
+
+[NOTE.speaker]
+====
+C'est l'étape la plus importante — et la plus négligée.
+Si tu envoies tout brut dans Elasticsearch, tu as stocké du bruit, pas de la donnée.
 ====
 
 [%notitle]
-== Agregateur : Logstash
+== Agrégateur : Logstash
 
 image::rex1-logstash.png[1, 50%]
 
 [NOTE.speaker]
 ====
-Problématique : pour normaliser les logs, il faut déjà les centraliser
+Problématique : pour normaliser les logs, il faut d'abord les centraliser.
 
-On a choisi logstash
+Solution : Logstash — input / filter / output.
 
-* Plusieurs connecteurs d'input
-* Connu sur le marché
-* Fonctionnement simple (input / filter / output)
-* Permet de recevoir les logs des différents collecteurs
+Laisser les logs tels quels, en mode "log sink", c'est comme mettre tout le linge dans un seul tiroir : introuvable.
 
-Mais laissez les logs tel quel, en mode logs sink, c'est pas très malin car pas forcement utilisable tel quel
-
-Transition : Dont on utilise aussi Logstash pour normaliser nos logs
+Transition : Donc on normalise.
 ====
 
 [%notitle]
@@ -268,20 +219,21 @@ Transition : Dont on utilise aussi Logstash pour normaliser nos logs
 * Découpe des logs textes en JSON
 * Taggage des types de logs
 * Taggage de l'origine des logs
-* Ajout d'information (localisation via GeoIp)
-* Normalisation des logs d'access HTTP et des index de stockage
+* Ajout d'informations (localisation via GeoIP)
+* Normalisation des logs d'accès HTTP
 * Organisation par mois et année
-* Modification des logs
+* Anonymisation RGPD
 
 [NOTE.speaker]
 ====
-Problématique : Comment organiser/normaliser les logs ?
+C'est ici qu'on sépare le coton du synthétique.
 
-Via tout un tas de règles maison, on applique des règles d'organisation sur logs.
+* On étiquette chaque log : type, origine, environnement
+* Un log sans étiquette, c'est une chaussette orpheline — inutilisable
+* Le GeoIP enrichit chaque accès avec la localisation → utile pour détecter des accès anormaux
+* L'anonymisation RGPD est appliquée à ce niveau — une fois en entrée, pas à chaque requête
 
-=> Déroule les steps
-
-Transition : très tout ça, mais on les stocke où ?
+Transition : Et on les stocke où ?
 ====
 
 [%notitle]
@@ -291,38 +243,39 @@ image::rex1-es.png[1, 75%]
 
 [NOTE.speaker]
 ====
-Problématique : il faut pouvoir stocker les logs rapidement et pouvoir interagir avec.
-
-Solution : ElasticSearch
-
-* Reconnu dans le domaine
-* Interrogeable facilement par les visualisateurs
-* Stockage en index
-* Gère très bien le JSON et les données plates
+Elasticsearch — reconnu dans le domaine, gère très bien le JSON.
 ====
 
 [%notitle]
-== Stockage : organisation
+== Organisation des index
 
 image::rex1-indexes.png[1, 75%]
 
 [NOTE.speaker]
 ====
-Problématique : Comment organiser le stockage des logs pour simplifier leur accès et leur maintenance ?
+Format des noms d'index : `<service>_<env>-<log_file>-YYYY-MM`
 
-Solution : Des index par types et origines des logs
-
-* Découpage par mois et années
-* Format des noms d'index : <service>_<env>-<log_file>-YYYY-MM
 * Une centaine d'index par mois
-* Nettoyage des logs via un script en fonction du type de log
-** 1 an pour les logs access par ex.
-** 1 <mois pour les logs d'erreurs
-** 1 mois pour les logs applicatifs
+* Rétention via script selon le type :
+  ** 1 an pour les logs d'accès
+  ** 1 mois pour les logs d'erreurs
+  ** 1 mois pour les logs applicatifs
 
-Maintenant il y a les ILM et les datastream avec la stack ELK, mais c'était pas le cas à l'éqoque.
+Note : aujourd'hui il y a les ILM et les datastreams ELK — ce n'était pas le cas à l'époque.
 
-Transition : et la dernière brique, la vis'
+Transition : La dernière brique — la visualisation.
+====
+
+// ─── EXPLOITATION AVEC GRAFANA ───────────────────────────────────────────────
+
+== Exploitation avec Grafana
+
+[NOTE.speaker]
+====
+Kibana pour naviguer dans les logs — c'est l'outil de filtrage fin.
+Grafana comme tableau de bord opérationnel central — avec auth, avec alerting, avec intégrations.
+
+Grafana agrège tout : ELK, Zabbix, Prometheus GitLab — un seul endroit pour surveiller.
 ====
 
 [%notitle]
@@ -332,18 +285,11 @@ image::rex1-kibana.png[1, 45%]
 
 [NOTE.speaker]
 ====
-Problématique : ce sont des logs, il faut pouvoir naviguer dedans
-Solution : Kibana
+* Recherches sauvegardées : access logs par outil, par IP, codes 500 ; logs d'erreur par outil et par env
+* Lien direct Grafana → Kibana : une alerte Grafana pointe vers la recherche correspondante
+* Pas d'auth → usage interne uniquement
 
-* S'interface très bien avec elasticsearch
-* Pas d'authentification (no go internet)
-* Permet de filter/trier/visualiser les logs
-* Permet de sauvegarder des recherches de logs
-* Permet de visualiser plusieurs types de logs en même
-** Tous les access logs
-** Tous les logs d'erreur d'un service
-
-Transition : Mais ce ne sera pas suffisant
+Transition : Mais Grafana est le vrai point central.
 ====
 
 [%notitle]
@@ -353,30 +299,66 @@ image::rex1-grafana.png[1, 45%]
 
 [NOTE.speaker]
 ====
-Problématique : Comment exploiter un peu plus les logs
-Solution : Grafana
+* Graphiques : erreurs 500, nombre de requêtes (avec/sans bots), volume de logs d'erreur
+* Alerting : sur les 500, et sur l'absence de logs (si un service s'arrête d'écrire → alerte)
+* Cartographie des services avec les plugins Grafana
+* Carte des accès étrangers via GeoIP + worldMap
+* Couplage avec Zabbix : Grafana surveille Zabbix qui surveille Grafana
 
-* Faire des graphiques à partir des logs
-* Système d'alerting
-* Authentification possible, donc ouverture sur internet possible
-* Permet d'avoir une vision globale sur la plateforme
-* Peut se brancher avec d'autres outils :
-** Zabbix
-** Gitlab Prometheus
-** PFSense (en cours d'étude)
-** ...
-
-Transition : Et du coup, au global
+Transition : La stack complète.
 ====
 
 [%notitle]
-== Stack
+== La stack
 
-image:rex1-global-stack.png[1]
+image::rex1-global-stack.png[1]
 
 [NOTE.speaker]
 ====
-Donc on est sur une archi relativement standard mais qui clairement répond à notre besoin.
+Architecture standard mais efficace. Branchable sur tous les outils de la forge.
 
-Transition : mais maintenant, ça donne quoi à l'exploit'
+Transition : Et un usage avancé qui a bien servi — le tracking utilisateurs.
+====
+
+[%notitle]
+== Tracking des utilisateurs
+
+Qui va où et quand ?
+
+[%step]
+* GitLab = IAM de fait — tout le monde passe par là
+* Logs GitLab : nom d'utilisateur + adresse IP
+* Croisement avec les access logs → parcours utilisateur reconstitué
+
+[NOTE.speaker]
+====
+* Sur une PIC, savoir qui fait quoi est important — traçabilité et sécurité
+* En croisant les logs GitLab et les access logs des autres outils, on reconstitue le parcours
+* Usage pratique : détecter un accès anormal, retrouver l'auteur d'une action
+
+Transition : Le take-away de ce REX.
+====
+
+// ─── TAKE-AWAY ────────────────────────────────────────────────────────────────
+
+[%notitle]
+== 👕 Take-away REX 1
+
+"Un dashboard sans parsing propre, c'est juste du bruit en couleur."
+
+[%step]
+* *60 Go/jour* pour un XRay en debug — désactiver le debug en prod
+* Logs ≠ Métriques — ne pas faire des graphiques avec des logs quand une métrique existe
+* Étiqueter chaque log dès la collecte — type, origine, env
+* Rétention par type dès J1 — sinon tout s'accumule
+* Surveiller le gestionnaire de logs — si Logstash tombe en silence, on ne le sait pas
+
+[NOTE.speaker]
+====
+* L'image à retenir : séparer le coton du synthétique — sans tri, la machine à laver ne fait qu'homogénéiser le chaos
+* Le debug en prod : 60 Go/jour pour UN seul outil. Ça semble anodin, ça ruine le stockage.
+* Logs ≠ métriques : compter des lignes de log pour mesurer le trafic c'est fragile — Prometheus le fait mieux
+* Timezones, Docker+GELF, auth Kibana : petits détails, grands problèmes
+
+Transition : Place au REX 2 — l'armoire qui déborde.
 ====

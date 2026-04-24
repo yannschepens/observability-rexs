@@ -1,1 +1,0 @@
-= REX 3 : REX 3 : Monitoring & alerting d’une infra 350 VMs
