@@ -158,7 +158,7 @@ Transition : Étape 2, catégoriser ce qu'on garde.
 ====
 
 
-====>  YYYANNNn ICICIICICICI
+
 // ─── ÉTAPE 2 : CATÉGORISATION ────────────────────────────────────────────────
 
 [%notitle]
@@ -175,9 +175,12 @@ Chaque log à sa place, chaque place à son log
 
 [NOTE.speaker]
 ====
+Le but de cette étape est d'y voir plus clair et surtout de pouvoir, par la suite, définir des règles par "catégorie"
+
 * On trie par catégories — comme les vêtements par couleur et par matière
+* Faire passer les steps en lisant
+
 * Résultat concret : l'index des logs système éclate en 5 datastreams
-* On ne traite que les logs qui ne demandent pas d'intervention externe en premier
 
 Transition : La catégorisation permet de définir une vraie stratégie de stockage.
 ====
@@ -197,14 +200,19 @@ Les logs froids à la cave
 
 [NOTE.speaker]
 ====
-* ILM = ranger les vêtements d'hiver à la cave
-* Les logs chauds restent accessibles rapidement (hot), les logs froids sont compressés sur des nœuds moins chers (warm/cold), et expirés automatiquement (delete)
-* Chaque datastream a sa politique de cycle de vie — les logs d'accès restent 1 an, les logs d'erreur 1 mois
+Ici, on va réflechir à ranger les logs selon deux dimensions : où et quand
+
+* Step : On va déjà ajouté les méta données basée sur nos catégories en suivant le standard ECS
+** Dans logstash
+* Step : Ensuite on utiliser la technologie des datastreams : index virtuelle au dessus de plusieurs index physique. Ce qui débloque les
+* Step : ILM = Index Lifecycle Management. On peut définir des règles de gestions des indexs dans Kibana, par exempke
+** Step : Les logs chauds restent accessibles rapidement (hot), les logs froids sont compressés sur des nœuds moins chers (warm/cold), et expirés automatiquement (delete)
+* Et donc, chaque datastream a sa politique de cycle de vie — les logs d'accès restent 1 an, les logs d'erreur 1 mois
 * Résultat inattendu : meilleure compression grâce au mapping structuré
   * Logs proxy : 30M entrées pour 60 Go → 45M entrées pour moins d'espace
   * Hypothèse : meilleure compression liée à la cohérence des champs
 
-Transition : Une fois les datastreams en place, on améliore la config Logstash.
+Transition : Une fois les datastreams et les règles en place, on améliore la config Logstash.
 ====
 
 // ─── ÉTAPE 4 : LOGSTASH ──────────────────────────────────────────────────────
@@ -220,11 +228,14 @@ Transition : Une fois les datastreams en place, on améliore la config Logstash.
 
 [NOTE.speaker]
 ====
+Ici, on est surtout sur une histoire de flexibilité et de faciliter de maintenance de code.
+
+* On passe les steppers
 * La configuration Logstash était statique : un output codé en dur par destination
 * En variabilisant les outputs sur les métadonnées, on dirige les logs vers le bon datastream automatiquement
 * C'est comme étiqueter les rayons de l'armoire — plus besoin de chercher
 
-Transition : Deux autres sujets étudiés mais pas encore déployés.
+Transition : Et pour finir, deux autres sujets étudiés mais pas encore déployés.
 ====
 
 // ─── ÉTAPES 5 & 6 ────────────────────────────────────────────────────────────
@@ -242,8 +253,10 @@ Transition : Deux autres sujets étudiés mais pas encore déployés.
 
 [NOTE.speaker]
 ====
-* Agrégation : l'étape suivante — stocker des résumés au lieu du détail pour les logs anciens
-* Archivage : les logs à conservation légale doivent pouvoir être retrouvés facilement — ils vont au fond du placard mais pas à la poubelle
+Deux sujets qu'on a vu, mais que je n'ai pas déployé à l'époque, je pense que c'est fait aujourd'hui.
+
+* Step : Agrégation : l'étape suivante — stocker des résumés au lieu du détail pour les logs anciens
+* Step : Archivae : les logs à conservation légale doivent pouvoir être retrouvés facilement — ils vont au fond du placard mais pas à la poubelle
 
 Transition : Les résultats globaux.
 ====
@@ -260,6 +273,10 @@ Transition : Les résultats globaux.
 
 [NOTE.speaker]
 ====
+Et donc, sur ce travail de nettoyage et de tri :
+
+* Stepper
+
 * La vraie victoire : les données qui restent sont utiles. Le bruit est éliminé.
 * On n'a pas forcément moins de données — on a de meilleures données
 
@@ -278,6 +295,8 @@ Transition : Et des bénéfices inattendus.
 
 [NOTE.speaker]
 ====
+On déroule les steps
+
 * Ces 5 points n'étaient pas dans les objectifs initiaux — ils sont apparus en cours de route
 * On commence par le disque, on finit par l'organisation. C'est souvent comme ça dans les missions d'audit.
 
@@ -300,6 +319,10 @@ Transition : Le take-away.
 
 [NOTE.speaker]
 ====
+Donc, la conclusion à emporter
+
+* On passe les steps
+
 * L'inventaire Excel est peu glamour — mais c'est la base de tout le reste
 * ILM : sur ce projet, on avait des index sans aucune politique de suppression depuis des années
 * La sobriété des logs n'est pas une contrainte technique — c'est une discipline d'équipe
