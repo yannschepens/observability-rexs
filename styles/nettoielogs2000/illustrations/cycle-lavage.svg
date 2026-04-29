@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 200" width="560" height="200">
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#1a3a5c"/>
+    </marker>
+  </defs>
+
+  <!-- Step 1: INGEST -->
+  <g transform="translate(10,20)">
+    <!-- Machine casing -->
+    <rect x="0" y="0" width="100" height="120" rx="8" fill="#1a3a5c" stroke="#FAF6EE" stroke-width="2"/>
+    <rect x="6" y="6" width="88" height="108" rx="6" fill="none" stroke="#c0392b" stroke-width="1.5"/>
+    <!-- Porthole -->
+    <circle cx="50" cy="58" r="32" fill="#F2E8D5" stroke="#1a3a5c" stroke-width="3"/>
+    <circle cx="50" cy="58" r="24" fill="none" stroke="#c0392b" stroke-width="2"/>
+    <circle cx="50" cy="58" r="18" fill="#1a3a5c" opacity="0.7"/>
+    <!-- Swirl -->
+    <path d="M40,54 Q46,46 52,54 Q58,62 64,54" stroke="#7ab3d4" stroke-width="2" fill="none" stroke-linecap="round"/>
+    <!-- Label -->
+    <text x="50" y="108" font-family="Courier New, monospace" font-size="8" fill="#FAF6EE" text-anchor="middle" font-weight="700">INGEST</text>
+    <!-- Control knob -->
+    <circle cx="50" cy="16" r="5" fill="#c0392b"/>
+    <line x1="50" y1="11" x2="50" y2="16" stroke="#FAF6EE" stroke-width="1.5"/>
+  </g>
+
+  <!-- Arrow 1→2 -->
+  <line x1="118" y1="80" x2="148" y2="80" stroke="#1a3a5c" stroke-width="2.5" marker-end="url(#arrow)"/>
+  <text x="133" y="72" font-family="Courier New, monospace" font-size="7" fill="#1a3a5c" text-anchor="middle" opacity="0.7">→</text>
+
+  <!-- Step 2: FILTER -->
+  <g transform="translate(150,20)">
+    <rect x="0" y="0" width="100" height="120" rx="8" fill="#1a3a5c" stroke="#FAF6EE" stroke-width="2"/>
+    <rect x="6" y="6" width="88" height="108" rx="6" fill="none" stroke="#c0392b" stroke-width="1.5"/>
+    <circle cx="50" cy="58" r="32" fill="#F2E8D5" stroke="#1a3a5c" stroke-width="3"/>
+    <circle cx="50" cy="58" r="24" fill="none" stroke="#c0392b" stroke-width="2"/>
+    <circle cx="50" cy="58" r="18" fill="#1a3a5c" opacity="0.7"/>
+    <!-- Filter mesh lines -->
+    <line x1="38" y1="52" x2="62" y2="52" stroke="#7ab3d4" stroke-width="1.5" opacity="0.8"/>
+    <line x1="36" y1="58" x2="64" y2="58" stroke="#7ab3d4" stroke-width="1.5" opacity="0.8"/>
+    <line x1="38" y1="64" x2="62" y2="64" stroke="#7ab3d4" stroke-width="1.5" opacity="0.8"/>
+    <line x1="50" y1="46" x2="50" y2="70" stroke="#c0392b" stroke-width="1.5" opacity="0.6"/>
+    <text x="50" y="108" font-family="Courier New, monospace" font-size="8" fill="#FAF6EE" text-anchor="middle" font-weight="700">FILTER</text>
+    <circle cx="50" cy="16" r="5" fill="#c0392b"/>
+    <line x1="50" y1="11" x2="53" y2="15" stroke="#FAF6EE" stroke-width="1.5"/>
+  </g>
+
+  <!-- Arrow 2→3 -->
+  <line x1="258" y1="80" x2="288" y2="80" stroke="#1a3a5c" stroke-width="2.5" marker-end="url(#arrow)"/>
+
+  <!-- Step 3: NORMALIZE -->
+  <g transform="translate(290,20)">
+    <rect x="0" y="0" width="100" height="120" rx="8" fill="#1a3a5c" stroke="#FAF6EE" stroke-width="2"/>
+    <rect x="6" y="6" width="88" height="108" rx="6" fill="none" stroke="#c0392b" stroke-width="1.5"/>
+    <circle cx="50" cy="58" r="32" fill="#F2E8D5" stroke="#1a3a5c" stroke-width="3"/>
+    <circle cx="50" cy="58" r="24" fill="none" stroke="#c0392b" stroke-width="2"/>
+    <circle cx="50" cy="58" r="18" fill="#1a3a5c" opacity="0.7"/>
+    <!-- Normalize bars (equalizer) -->
+    <rect x="39" y="57" width="5" height="8" rx="1" fill="#7ab3d4"/>
+    <rect x="46" y="53" width="5" height="12" rx="1" fill="#FAF6EE" opacity="0.9"/>
+    <rect x="53" y="55" width="5" height="10" rx="1" fill="#7ab3d4"/>
+    <rect x="60" y="50" width="5" height="15" rx="1" fill="#c0392b" opacity="0.8"/>
+    <text x="50" y="108" font-family="Courier New, monospace" font-size="7" fill="#FAF6EE" text-anchor="middle" font-weight="700">NORMALIZE</text>
+    <circle cx="50" cy="16" r="5" fill="#c0392b"/>
+    <line x1="50" y1="11" x2="46" y2="15" stroke="#FAF6EE" stroke-width="1.5"/>
+  </g>
+
+  <!-- Arrow 3→4 -->
+  <line x1="398" y1="80" x2="428" y2="80" stroke="#1a3a5c" stroke-width="2.5" marker-end="url(#arrow)"/>
+
+  <!-- Step 4: OUTPUT -->
+  <g transform="translate(430,20)">
+    <rect x="0" y="0" width="100" height="120" rx="8" fill="#c0392b" stroke="#FAF6EE" stroke-width="2"/>
+    <rect x="6" y="6" width="88" height="108" rx="6" fill="none" stroke="#FAF6EE" stroke-width="1.5"/>
+    <circle cx="50" cy="58" r="32" fill="#F2E8D5" stroke="#c0392b" stroke-width="3"/>
+    <circle cx="50" cy="58" r="24" fill="none" stroke="#1a3a5c" stroke-width="2"/>
+    <circle cx="50" cy="58" r="18" fill="#1a3a5c" opacity="0.7"/>
+    <!-- Clean check -->
+    <path d="M40,58 L47,65 L62,50" stroke="#7ab3d4" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="50" y="108" font-family="Courier New, monospace" font-size="8" fill="#FAF6EE" text-anchor="middle" font-weight="700">OUTPUT</text>
+    <circle cx="50" cy="16" r="5" fill="#FAF6EE"/>
+    <line x1="50" y1="11" x2="50" y2="16" stroke="#c0392b" stroke-width="1.5"/>
+  </g>
+
+  <!-- Title bottom -->
+  <text x="280" y="185" font-family="Courier New, monospace" font-size="10" fill="#1a3a5c" text-anchor="middle" font-weight="700" letter-spacing="2">CYCLE DE LAVAGE — NettoieLogs2000</text>
+</svg>

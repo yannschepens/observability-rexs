@@ -1,12 +1,12 @@
 [.entrypoint]
 = !
 :source-highlighter: highlightjs
-:revealjs_theme: black
 :revealjs_progress: true
 :revealjs_history: true
-:customcss: ./styles/yannschepens/stylesheets/style.css
+:customcss: ./styles/nettoielogs2000/NettoieLogs2000.css
 :revealjsdir: ./node_modules/reveal.js
 :revealjs_defaultTiming: 40
+
 
 [.intro-block]
 [cols="1,2",frame=none,grid=none]

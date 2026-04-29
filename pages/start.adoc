@@ -1,3 +1,4 @@
+[%notitle]
 = Intro
 :imagesdir: assets/default/images
 
@@ -19,14 +20,16 @@ Transition :
 
 ====
 
-== Mon métier d'expert en nettoyage de logs et métriques
-
-"NettoieLogs2000"
+[%notitle]
+== NettoieLogs2000
+image::logo-NettoieLogs2000.svg[]
 
 Expert en observabilité, entreprise de nettoyage et stockage de logs en tout genre
 
 [NOTE.speaker]
 ====
+Mon métier d'expert en nettoyage de logs et métriques
+
 * Donc aujourd'hui, je vous propose de découvrir mon quotidien,
 ** les missions d'un expert en nettoyage de logs
 ** les bonnes pratiques associés, etc.

@@ -1,0 +1,93 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 260" width="600" height="260">
+  <defs>
+    <marker id="arr" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#1a3a5c"/>
+    </marker>
+    <marker id="arr-red" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#c0392b"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="600" height="260" rx="8" fill="#F2E8D5" stroke="#1a3a5c" stroke-width="2"/>
+
+  <!-- ── SOURCES (left column) ── -->
+  <!-- Source 1: App logs -->
+  <rect x="12" y="28" width="90" height="38" rx="5" fill="#1a3a5c" stroke="#7ab3d4" stroke-width="1.5"/>
+  <text x="57" y="44" font-family="Courier New, monospace" font-size="8" fill="#FAF6EE" text-anchor="middle" font-weight="700">APP LOGS</text>
+  <text x="57" y="57" font-family="Courier New, monospace" font-size="7" fill="#7ab3d4" text-anchor="middle">/var/log/*.log</text>
+
+  <!-- Source 2: Syslog -->
+  <rect x="12" y="80" width="90" height="38" rx="5" fill="#1a3a5c" stroke="#7ab3d4" stroke-width="1.5"/>
+  <text x="57" y="96" font-family="Courier New, monospace" font-size="8" fill="#FAF6EE" text-anchor="middle" font-weight="700">SYSLOG</text>
+  <text x="57" y="109" font-family="Courier New, monospace" font-size="7" fill="#7ab3d4" text-anchor="middle">UDP :514</text>
+
+  <!-- Source 3: Metrics -->
+  <rect x="12" y="132" width="90" height="38" rx="5" fill="#1a3a5c" stroke="#7ab3d4" stroke-width="1.5"/>
+  <text x="57" y="148" font-family="Courier New, monospace" font-size="8" fill="#FAF6EE" text-anchor="middle" font-weight="700">METRICS</text>
+  <text x="57" y="161" font-family="Courier New, monospace" font-size="7" fill="#7ab3d4" text-anchor="middle">Prometheus</text>
+
+  <!-- Source 4: Docker -->
+  <rect x="12" y="184" width="90" height="38" rx="5" fill="#1a3a5c" stroke="#7ab3d4" stroke-width="1.5"/>
+  <text x="57" y="200" font-family="Courier New, monospace" font-size="8" fill="#FAF6EE" text-anchor="middle" font-weight="700">DOCKER</text>
+  <text x="57" y="213" font-family="Courier New, monospace" font-size="7" fill="#7ab3d4" text-anchor="middle">GELF/JSON</text>
+
+  <!-- Arrows sources → engine -->
+  <line x1="104" y1="47" x2="168" y2="100" stroke="#1a3a5c" stroke-width="1.5" marker-end="url(#arr)" stroke-dasharray="5,3"/>
+  <line x1="104" y1="99" x2="168" y2="110" stroke="#1a3a5c" stroke-width="1.5" marker-end="url(#arr)" stroke-dasharray="5,3"/>
+  <line x1="104" y1="151" x2="168" y2="120" stroke="#1a3a5c" stroke-width="1.5" marker-end="url(#arr)" stroke-dasharray="5,3"/>
+  <line x1="104" y1="203" x2="168" y2="128" stroke="#1a3a5c" stroke-width="1.5" marker-end="url(#arr)" stroke-dasharray="5,3"/>
+
+  <!-- ── NL2000 ENGINE (center) ── -->
+  <rect x="168" y="60" width="130" height="120" rx="10" fill="#1a3a5c" stroke="#c0392b" stroke-width="3"/>
+  <rect x="176" y="68" width="114" height="104" rx="7" fill="none" stroke="#FAF6EE" stroke-width="1" opacity="0.4"/>
+  <!-- Porthole -->
+  <circle cx="233" cy="105" r="36" fill="#F2E8D5" stroke="#1a3a5c" stroke-width="3"/>
+  <circle cx="233" cy="105" r="28" fill="none" stroke="#c0392b" stroke-width="2"/>
+  <circle cx="233" cy="105" r="21" fill="#1a3a5c" opacity="0.8"/>
+  <!-- Swirl in engine -->
+  <path d="M222,100 Q229,92 236,100 Q243,108 250,100" stroke="#7ab3d4" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+  <path d="M220,107 Q227,99 234,107 Q241,115 248,107" stroke="#FAF6EE" stroke-width="1.8" fill="none" stroke-linecap="round" opacity="0.6"/>
+  <!-- Engine label -->
+  <text x="233" y="152" font-family="Courier New, monospace" font-size="8" fill="#FAF6EE" text-anchor="middle" font-weight="700">NL2000</text>
+  <text x="233" y="165" font-family="Courier New, monospace" font-size="7" fill="#c0392b" text-anchor="middle">ENGINE</text>
+  <!-- Knobs -->
+  <circle cx="185" cy="75" r="5" fill="#c0392b"/>
+  <circle cx="200" cy="75" r="5" fill="#7ab3d4" opacity="0.7"/>
+  <circle cx="215" cy="75" r="5" fill="#FAF6EE" opacity="0.5"/>
+
+  <!-- Arrows engine → outputs -->
+  <line x1="300" y1="95" x2="364" y2="58" stroke="#c0392b" stroke-width="2" marker-end="url(#arr-red)"/>
+  <line x1="300" y1="110" x2="364" y2="110" stroke="#c0392b" stroke-width="2" marker-end="url(#arr-red)"/>
+  <line x1="300" y1="125" x2="364" y2="162" stroke="#c0392b" stroke-width="2" marker-end="url(#arr-red)"/>
+  <line x1="300" y1="135" x2="364" y2="205" stroke="#c0392b" stroke-width="2" marker-end="url(#arr-red)"/>
+
+  <!-- ── OUTPUTS (right column) ── -->
+  <!-- Output 1: Elasticsearch -->
+  <rect x="366" y="28" width="110" height="38" rx="5" fill="#c0392b" stroke="#FAF6EE" stroke-width="1.5"/>
+  <text x="421" y="44" font-family="Courier New, monospace" font-size="8" fill="#FAF6EE" text-anchor="middle" font-weight="700">ELASTICSEARCH</text>
+  <text x="421" y="57" font-family="Courier New, monospace" font-size="7" fill="#FAF6EE" text-anchor="middle" opacity="0.8">clean index</text>
+
+  <!-- Output 2: Grafana -->
+  <rect x="366" y="90" width="110" height="38" rx="5" fill="#c0392b" stroke="#FAF6EE" stroke-width="1.5"/>
+  <text x="421" y="106" font-family="Courier New, monospace" font-size="8" fill="#FAF6EE" text-anchor="middle" font-weight="700">GRAFANA</text>
+  <text x="421" y="119" font-family="Courier New, monospace" font-size="7" fill="#FAF6EE" text-anchor="middle" opacity="0.8">dashboards</text>
+
+  <!-- Output 3: S3 Archive -->
+  <rect x="366" y="152" width="110" height="38" rx="5" fill="#c0392b" stroke="#FAF6EE" stroke-width="1.5"/>
+  <text x="421" y="168" font-family="Courier New, monospace" font-size="8" fill="#FAF6EE" text-anchor="middle" font-weight="700">S3 ARCHIVE</text>
+  <text x="421" y="181" font-family="Courier New, monospace" font-size="7" fill="#FAF6EE" text-anchor="middle" opacity="0.8">cold storage</text>
+
+  <!-- Output 4: Alerts -->
+  <rect x="366" y="195" width="110" height="38" rx="5" fill="#c0392b" stroke="#FAF6EE" stroke-width="1.5"/>
+  <text x="421" y="211" font-family="Courier New, monospace" font-size="8" fill="#FAF6EE" text-anchor="middle" font-weight="700">ALERTING</text>
+  <text x="421" y="224" font-family="Courier New, monospace" font-size="7" fill="#FAF6EE" text-anchor="middle" opacity="0.8">PagerDuty / Slack</text>
+
+  <!-- Section labels -->
+  <text x="57" y="14" font-family="Courier New, monospace" font-size="8" fill="#1a3a5c" text-anchor="middle" opacity="0.6" font-weight="700">SOURCES</text>
+  <text x="233" y="14" font-family="Courier New, monospace" font-size="8" fill="#1a3a5c" text-anchor="middle" opacity="0.6" font-weight="700">PROCESSING</text>
+  <text x="421" y="14" font-family="Courier New, monospace" font-size="8" fill="#1a3a5c" text-anchor="middle" opacity="0.6" font-weight="700">OUTPUTS PROPRES</text>
+
+  <!-- Bottom tagline -->
+  <text x="300" y="248" font-family="Courier New, monospace" font-size="9" fill="#1a3a5c" text-anchor="middle" font-weight="700" letter-spacing="1.5">CLEAN LOGS. FRESH METRICS. — NL2000</text>
+</svg>

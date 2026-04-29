@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 280" width="400" height="280">
+  <!-- Terminal frame -->
+  <rect x="0" y="0" width="400" height="280" rx="6" fill="#1a3a5c"/>
+  <!-- Title bar -->
+  <rect x="0" y="0" width="400" height="28" rx="6" fill="#0d2338"/>
+  <rect x="0" y="20" width="400" height="8" fill="#0d2338"/>
+  <!-- Terminal dots -->
+  <circle cx="16" cy="14" r="5" fill="#c0392b" opacity="0.9"/>
+  <circle cx="32" cy="14" r="5" fill="#F2E8D5" opacity="0.5"/>
+  <circle cx="48" cy="14" r="5" fill="#7ab3d4" opacity="0.6"/>
+  <text x="200" y="19" font-family="Courier New, monospace" font-size="9" fill="#7ab3d4" text-anchor="middle" opacity="0.7">METRICS DASHBOARD v1.0 — NL2000</text>
+
+  <!-- Y axis -->
+  <line x1="56" y1="48" x2="56" y2="228" stroke="#7ab3d4" stroke-width="1.5" opacity="0.6"/>
+  <!-- X axis -->
+  <line x1="56" y1="228" x2="376" y2="228" stroke="#7ab3d4" stroke-width="1.5" opacity="0.6"/>
+
+  <!-- Y labels -->
+  <text x="48" y="52" font-family="Courier New, monospace" font-size="8" fill="#7ab3d4" text-anchor="end" opacity="0.7">100</text>
+  <text x="48" y="102" font-family="Courier New, monospace" font-size="8" fill="#7ab3d4" text-anchor="end" opacity="0.7">75</text>
+  <text x="48" y="152" font-family="Courier New, monospace" font-size="8" fill="#7ab3d4" text-anchor="end" opacity="0.7">50</text>
+  <text x="48" y="202" font-family="Courier New, monospace" font-size="8" fill="#7ab3d4" text-anchor="end" opacity="0.7">25</text>
+  <!-- Grid lines -->
+  <line x1="56" y1="52" x2="376" y2="52" stroke="#7ab3d4" stroke-width="0.5" stroke-dasharray="4,4" opacity="0.25"/>
+  <line x1="56" y1="102" x2="376" y2="102" stroke="#7ab3d4" stroke-width="0.5" stroke-dasharray="4,4" opacity="0.25"/>
+  <line x1="56" y1="152" x2="376" y2="152" stroke="#7ab3d4" stroke-width="0.5" stroke-dasharray="4,4" opacity="0.25"/>
+  <line x1="56" y1="202" x2="376" y2="202" stroke="#7ab3d4" stroke-width="0.5" stroke-dasharray="4,4" opacity="0.25"/>
+
+  <!-- Bars: dirty metrics (low, pale) -->
+  <rect x="68" y="168" width="32" height="60" fill="#7ab3d4" opacity="0.3"/>
+  <rect x="116" y="180" width="32" height="48" fill="#7ab3d4" opacity="0.3"/>
+  <rect x="164" y="172" width="32" height="56" fill="#7ab3d4" opacity="0.3"/>
+  <rect x="212" y="185" width="32" height="43" fill="#7ab3d4" opacity="0.3"/>
+  <!-- Clean bar (highlighted red) -->
+  <rect x="260" y="68" width="32" height="160" fill="#c0392b" opacity="0.9"/>
+  <!-- Glow effect on clean bar -->
+  <rect x="258" y="66" width="36" height="164" rx="2" fill="none" stroke="#c0392b" stroke-width="2" opacity="0.5"/>
+  <!-- Star/badge on clean bar -->
+  <circle cx="276" cy="58" r="10" fill="#c0392b"/>
+  <text x="276" y="62" font-family="Courier New, monospace" font-size="10" fill="#FAF6EE" text-anchor="middle" font-weight="700">✓</text>
+
+  <rect x="308" y="145" width="32" height="83" fill="#7ab3d4" opacity="0.3"/>
+
+  <!-- X labels -->
+  <text x="84" y="244" font-family="Courier New, monospace" font-size="7" fill="#7ab3d4" text-anchor="middle" opacity="0.6">JAN</text>
+  <text x="132" y="244" font-family="Courier New, monospace" font-size="7" fill="#7ab3d4" text-anchor="middle" opacity="0.6">FEB</text>
+  <text x="180" y="244" font-family="Courier New, monospace" font-size="7" fill="#7ab3d4" text-anchor="middle" opacity="0.6">MAR</text>
+  <text x="228" y="244" font-family="Courier New, monospace" font-size="7" fill="#7ab3d4" text-anchor="middle" opacity="0.6">APR</text>
+  <text x="276" y="244" font-family="Courier New, monospace" font-size="8" fill="#c0392b" text-anchor="middle" font-weight="700">MAY</text>
+  <text x="324" y="244" font-family="Courier New, monospace" font-size="7" fill="#7ab3d4" text-anchor="middle" opacity="0.6">JUN</text>
+
+  <!-- Bottom status line -->
+  <rect x="0" y="258" width="400" height="22" fill="#0d2338"/>
+  <text x="16" y="272" font-family="Courier New, monospace" font-size="8" fill="#7ab3d4" opacity="0.8">STATUS: CLEAN</text>
+  <circle cx="110" cy="268" r="4" fill="#7ab3d4" opacity="0.9"/>
+  <text x="200" y="272" font-family="Courier New, monospace" font-size="8" fill="#FAF6EE" text-anchor="middle" opacity="0.6">METRIQUES PROPRES — NL2000</text>
+</svg>

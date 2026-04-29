@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120">
+  <!-- Outer casing -->
+  <rect x="4" y="4" width="112" height="112" rx="14" ry="14" fill="#1a3a5c" stroke="#FAF6EE" stroke-width="3"/>
+  <!-- Inner border ring -->
+  <rect x="12" y="12" width="96" height="96" rx="10" ry="10" fill="none" stroke="#c0392b" stroke-width="2.5"/>
+  <!-- Porthole outer ring -->
+  <circle cx="60" cy="60" r="38" fill="#F2E8D5" stroke="#1a3a5c" stroke-width="4"/>
+  <!-- Porthole mid ring -->
+  <circle cx="60" cy="60" r="30" fill="none" stroke="#c0392b" stroke-width="2.5"/>
+  <!-- Porthole glass -->
+  <circle cx="60" cy="60" r="25" fill="#1a3a5c" opacity="0.85"/>
+  <!-- Water swirl / logs -->
+  <path d="M48,54 Q55,46 62,54 Q69,62 76,54" stroke="#7ab3d4" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+  <path d="M46,61 Q53,53 60,61 Q67,69 74,61" stroke="#FAF6EE" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.7"/>
+  <path d="M50,68 Q57,60 64,68 Q71,76 78,68" stroke="#7ab3d4" stroke-width="1.8" fill="none" stroke-linecap="round" opacity="0.5"/>
+  <!-- Bolt screws at corners of porthole -->
+  <circle cx="60" cy="26" r="3.5" fill="#c0392b"/>
+  <circle cx="60" cy="94" r="3.5" fill="#c0392b"/>
+  <circle cx="26" cy="60" r="3.5" fill="#c0392b"/>
+  <circle cx="94" cy="60" r="3.5" fill="#c0392b"/>
+  <!-- Text label -->
+  <text x="60" y="115" font-family="Courier New, monospace" font-size="7.5" font-weight="700" fill="#FAF6EE" text-anchor="middle" letter-spacing="1.5">NL2000</text>
+</svg>
