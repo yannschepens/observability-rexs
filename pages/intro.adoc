@@ -2,6 +2,10 @@
 = Intro
 :imagesdir: assets/default/images
 
+[.nl-badge]#NettoieLogs2000#
+
+[.nl-badge.founded]#Des experiences terrains#
+
 [NOTE.speaker]
 ====
 

@@ -1,0 +1,191 @@
+// ─── DÉMO THÈME NettoieLogs2000 ──────────────────────────────────────────────
+// Décommenter dans index.adoc pour tester :
+//   include::pages/demo-theme.adoc[leveloffset=+1]
+
+= Démo — Thème NettoieLogs2000
+:imagesdir: styles/nettoielogs2000
+
+// ════════════════════════════════════════════════════════════════════════════
+// 1. INTERCALAIRE — classe [.nl-dark]
+// ════════════════════════════════════════════════════════════════════════════
+
+[.nl-dark]
+== Slides standards
+
+Chrome auto sur chaque section
+
+// ════════════════════════════════════════════════════════════════════════════
+// 2. SLIDE STANDARD — aucune classe requise
+// ════════════════════════════════════════════════════════════════════════════
+
+== Slide standard
+
+Le chrome (header, bande rouge, footer) s'applique *automatiquement* sur toutes les sections.
+
+* Pas de classe à ajouter
+* Pas de HTML dans le `.adoc`
+* Logo miniature dans le header via `::before`
+* Tagline dans le footer via `::after`
+
+[NOTE.speaker]
+====
+Le sélecteur .reveal.slide porte le background multi-couches.
+Rien à faire dans l'asciidoc pour avoir le chrome.
+====
+
+// ════════════════════════════════════════════════════════════════════════════
+// 3. SLIDE AVEC TITRE H2 — double soulignement auto
+// ════════════════════════════════════════════════════════════════════════════
+
+== Titre avec double soulignement
+
+Le `h2` reçoit automatiquement un double trait : rouge + bleu marine via `::after`.
+
+=== Sous-titre h3
+
+Typographie Georgia serif pour les titres, Courier New pour les éléments techniques.
+
+[NOTE.speaker]
+====
+Pas de classe à ajouter — le double underline est sur tous les h2 via CSS.
+====
+
+// ════════════════════════════════════════════════════════════════════════════
+// 4. CODE BLOCKS — auto sur pre/code
+// ════════════════════════════════════════════════════════════════════════════
+
+== Blocs de code
+
+Les blocs `source` sont automatiquement stylisés : fond marine, texte bleu clair, bordure rouge.
+
+[source,text]
+----
+ERROR 2024-01-12 ▒▒▓ NUL unexpected token
+WARN  malformed timestamp: -9999-99-99
+----
+
+Inline : `{"level":"error","code":401}` — même style en inline.
+
+[source,json]
+----
+{"level": "info", "ts": "2024-01-12T14:32:01Z",
+ "msg": "pipeline clean", "svc": "nl-engine"}
+----
+
+// ════════════════════════════════════════════════════════════════════════════
+// 5. BADGES — classes [.nl-badge] et [.nl-badge.founded]
+// ════════════════════════════════════════════════════════════════════════════
+
+[.nl-dark]
+== Composants inline
+
+Classes `.nl-badge` et `.nl-log-lines`
+
+== Badges rétro
+
+Utilisation inline avec la syntaxe de rôle AsciiDoc `[.classe]#texte#` :
+
+[.nl-badge]#ISO LOG-9001# [.nl-badge]#Niveau 3 PROPRETÉ# [.nl-badge]#CLEAN METRICS#
+
+{nbsp}
+
+[.nl-badge.founded]#Fondée en 1987# [.nl-badge.founded]#SINCE 87# [.nl-badge.founded]#EST. 1987#
+
+[NOTE.speaker]
+====
+[.nl-badge]#texte# → double bordure marine, fond crème, Courier New.
+[.nl-badge.founded]#texte# → variante rouge.
+Utilisable en inline directement dans une phrase.
+====
+
+// ════════════════════════════════════════════════════════════════════════════
+// 6. LOG LINES — classe .nl-log-lines (passthrough minimal)
+// ════════════════════════════════════════════════════════════════════════════
+
+== Lignes de log décoratives
+
+Séparateur visuel avec la classe `.nl-log-lines` :
+
+++++
+<div class="nl-log-lines">
+  <span style="width:100%"></span>
+  <span></span><span></span><span></span><span></span>
+</div>
+++++
+
+Utilisable comme fond d'ambiance ou séparateur de section.
+
+// ════════════════════════════════════════════════════════════════════════════
+// 7. ILLUSTRATIONS SVG
+// ════════════════════════════════════════════════════════════════════════════
+
+[.nl-dark]
+== Illustrations
+
+4 SVG standalone dans `styles/nettoielogs2000/illustrations/`
+
+// ─── log-corrompu ────────────────────────────────────────────────────────────
+
+== Log corrompu
+
+[cols="55%,45%",frame=none,grid=none]
+|===
+a|
+* Caractères parasites `▒▓░`
+* Timestamps malformés
+* Tokens `NUL` / `0x00`
+* Encodage mixte UTF-8 / Latin-1
+
+[.nl-badge.founded]#CORROMPU# → [.nl-badge]#À LAVER#
+
+a|
+image::illustrations/log-corrompu.svg[log corrompu,100%]
+|===
+
+// ─── cycle-lavage ────────────────────────────────────────────────────────────
+
+[%notitle]
+== Cycle de lavage
+
+image::illustrations/cycle-lavage.svg[cycle de lavage,88%]
+
+[%step]
+[.nl-badge]#Ingest# → [.nl-badge]#Filter# → [.nl-badge]#Normalize# → [.nl-badge.founded]#Output#
+
+// ─── metriques-propres ───────────────────────────────────────────────────────
+
+== Métriques propres
+
+[cols="1,1",frame=none,grid=none]
+|===
+a|
+[%step]
+* Cardinalité maîtrisée
+* Rétention configurée
+* Dashboards lisibles
+* Alertes utiles
+
+a|
+image::illustrations/metriques-propres.svg[métriques propres,100%]
+|===
+
+// ─── pipeline-realtime ───────────────────────────────────────────────────────
+
+[%notitle]
+== Pipeline realtime
+
+image::illustrations/pipeline-realtime.svg[pipeline realtime,92%]
+
+// ════════════════════════════════════════════════════════════════════════════
+// 8. QUOTE
+// ════════════════════════════════════════════════════════════════════════════
+
+[%notitle]
+== Quote
+
+[quote]
+____
+"Un log non lu est un danger qui sommeille."
+
+— Manuel NettoieLogs2000, édition 1987
+____

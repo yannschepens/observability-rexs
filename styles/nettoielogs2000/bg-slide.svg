@@ -7,6 +7,15 @@
       <circle cx="16" cy="16" r="1.2" fill="#1a3a5c"/>
     </pattern>
   </defs>
-  <rect width="1280" height="720" fill="url(#grid)" opacity="0.12"/>
-  <rect width="1280" height="720" fill="url(#dots)" opacity="0.08"/>
+  <!-- Grid + dots texture -->
+  <rect width="1280" height="720" fill="url(#grid)" opacity="0.5"/>
+  <rect width="1280" height="720" fill="url(#dots)" opacity="0.4"/>
+  <!-- Corner L — top left (below header+stripe: y=62) -->
+  <path d="M12,84 L12,62 L34,62" fill="none" stroke="#1a3a5c" stroke-width="2.5" opacity="0.5"/>
+  <!-- Corner L — top right -->
+  <path d="M1246,84 L1246,62 L1268,62 L1268,84" fill="none" stroke="#1a3a5c" stroke-width="2.5" opacity="0.5"/>
+  <!-- Corner L — bottom left (above footer: y=684) -->
+  <path d="M12,660 L12,684 L34,684" fill="none" stroke="#1a3a5c" stroke-width="2.5" opacity="0.5"/>
+  <!-- Corner L — bottom right -->
+  <path d="M1246,660 L1246,684 L1268,684" fill="none" stroke="#1a3a5c" stroke-width="2.5" opacity="0.5"/>
 </svg>

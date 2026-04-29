@@ -12,6 +12,7 @@
   --nl-blue-light: #7ab3d4;
 }
 
+
 /* ── Base ── */
 .reveal-viewport {
   background: var(--nl-cream);
@@ -23,61 +24,9 @@
   color: var(--nl-marine);
 }
 
-/*.reveal .slides section {
-  position: relative;
+.reveal .slides section {
   box-sizing: border-box;
-}*/
-
-/* ── Slides standard : chrome complet via CSS, zéro HTML ── */
-/* header marine + stripe rouge + footer marine en background-image multi-couches */
-/* ::before = logo dans le header  |  ::after = tagline dans le footer           */
-.reveal.slide {
-
-  background-color: var(--nl-cream);
-  background-image:
-    /*url("bg-slide.svg"),*/
-    url("logo-NettoieLogs2000.svg"),
-    url("onepoint-white.png"),
-    linear-gradient(var(--nl-red), var(--nl-red)),
-    linear-gradient(var(--nl-marine), var(--nl-marine)),
-    linear-gradient(var(--nl-marine), var(--nl-marine));
-  background-size:
-    /*cover,*/
-    80px 80px,
-    180px,
-    100% 8px,
-    100% 80px,
-    100% 80px;
-  background-position:
-    /*center center,*/
-    left 20px bottom 35px,
-    right top,
-    top 80px left 0,
-    top left,
-    bottom left;
-  background-repeat: no-repeat;
 }
-
-/* Tagline dans le footer */
-.reveal.slide:not(.title-slide):not(.entrypoint)::after {
-  content: "CLEAN LOGS. FRESH METRICS. — NettoieLogs2000";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 36px;
-  line-height: 36px;
-  text-align: center;
-  font-family: "Courier New", Courier, monospace;
-  font-size: 0.38em;
-  color: var(--nl-cream);
-  text-transform: uppercase;
-  letter-spacing: 0.18em;
-  opacity: 0.8;
-  pointer-events: none;
-  z-index: 20;
-}
-
 /* ── Title slide ── */
 .reveal .slides section.title-slide {
   background: var(--nl-marine) !important;
@@ -109,6 +58,97 @@
   display: flex;
   justify-content: center;
   margin-bottom: 1.2em;
+}
+
+/* ── Standard slide header band ── */
+.reveal .slides section:not(.title-slide) .slide-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 52px;
+  background: var(--nl-marine);
+  display: flex;
+  align-items: center;
+  padding: 0 1em;
+  z-index: 10;
+}
+
+.reveal .slides section:not(.title-slide) .slide-header::after {
+  content: "";
+  position: absolute;
+  top: 52px;
+  left: 0;
+  right: 0;
+  height: 8px;
+  background: var(--nl-red);
+}
+
+.reveal .slides section:not(.title-slide) .slide-header img {
+  height: 34px;
+  width: auto;
+  filter: brightness(0) invert(1);
+}
+
+/* ── Footer band ── */
+.reveal .slides section:not(.title-slide) .slide-footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 36px;
+  background: var(--nl-marine);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+
+.reveal .slides section:not(.title-slide) .slide-footer .tagline {
+  font-family: "Courier New", Courier, monospace;
+  font-size: 0.5em;
+  color: var(--nl-cream);
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  opacity: 0.8;
+}
+
+/* ── Decorative L-corners ── */
+.reveal .slides section:not(.title-slide) .corner-tl,
+.reveal .slides section:not(.title-slide) .corner-tr,
+.reveal .slides section:not(.title-slide) .corner-bl,
+.reveal .slides section:not(.title-slide) .corner-br {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-color: var(--nl-marine);
+  border-style: solid;
+  opacity: 0.5;
+  z-index: 5;
+}
+
+.reveal .slides section:not(.title-slide) .corner-tl {
+  top: 68px;
+  left: 12px;
+  border-width: 2px 0 0 2px;
+}
+
+.reveal .slides section:not(.title-slide) .corner-tr {
+  top: 68px;
+  right: 12px;
+  border-width: 2px 2px 0 0;
+}
+
+.reveal .slides section:not(.title-slide) .corner-bl {
+  bottom: 44px;
+  left: 12px;
+  border-width: 0 0 2px 2px;
+}
+
+.reveal .slides section:not(.title-slide) .corner-br {
+  bottom: 44px;
+  right: 12px;
+  border-width: 0 2px 2px 0;
 }
 
 /* ── Headings ── */
@@ -212,8 +252,7 @@
 
 /* ── Controls ── */
 .reveal .controls {
-  bottom: 5px;
-  color: var(--nl-cream-warm);
+  color: var(--nl-marine);
 }
 
 /* ── Links ── */
@@ -228,9 +267,23 @@
   box-shadow: none;
 }
 
-/* padding géré dans la règle chrome ci-dessus */
+/* ── Slide content padding (below header) ── */
+.reveal .slides section:not(.title-slide) {
+  padding-top: 72px;
+  padding-bottom: 48px;
+  padding-left: 3%;
+  padding-right: 3%;
+}
 
+/*
+*/
 
+.reveal.slide {
+  background-image: url("../nettoielogs2000/illustrations/onepoint_black.png"), url("../nettoielogs2000/logo-NettoieLogs2000.svg");
+  background-size: 200px, 100px;
+  background-position:  bottom center, top left;
+  background-repeat: no-repeat, no-repeat;
+}
 
 /* First page design */
 
