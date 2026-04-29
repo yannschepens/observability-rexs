@@ -1,7 +1,5 @@
-= 👕 REX 1 : Forge logicielle — Trier les couleurs
+= 👕 Forge logicielle — Trier les couleurs
 :imagesdir: assets/default/images
-
-== !
 
 [NOTE.speaker]
 ====
@@ -16,6 +14,8 @@ Transition : Voyons concrètement notre use case.
 
 [%notitle]
 == La tentation de la machine à laver
+
+image::rex1-trier.svg[trier le coton du synthétique, 80%]
 
 [NOTE.speaker]
 ====
@@ -33,6 +33,8 @@ Transition : Mais d'abord, le contexte.
 [%notitle]
 == Le contexte
 
+image::rex1-forge.png[1, 75%]
+
 [NOTE.speaker]
 ====
 Les outils de la PIC (Plateforme d'Intégration Continue) :
@@ -41,16 +43,6 @@ Les outils de la PIC (Plateforme d'Intégration Continue) :
 * 2 Artifactory + XRay
 * SonarQube, Vault, Zabbix, etc.
 
-Transition : Et chacun de ces outils est déployé sur 1 VM.
-====
-
-[%notitle]
-== Le contexte
-
-image::rex1-forge.png[1, 75%]
-
-[NOTE.speaker]
-====
 Pour chaque outil :
 
 * Une VM
@@ -63,15 +55,16 @@ Transition : Alors, pourquoi monitorer tout ça ?
 
 // ─── POURQUOI MONITORER ───────────────────────────────────────────────────────
 
+[%notitle]
 == Pourquoi monitorer ?
 
-[%step]
-* Traçabilité
-* Disponibilité
-* Sécurité / Légalité
+[.nl-badge]#Traçabilité# [.nl-badge]#Disponibilité#
+[.nl-badge]#Sécurité / Légalité#
 
 [NOTE.speaker]
 ====
+Car on a des contraintes de
+
 * Traçabilité : suivre ce qui se passe sur la plateforme — Qui ? Quand ? Où ?
 * Disponibilité : s'assurer que les plateformes et les outils fonctionnent correctement
 * Sécurité : le monitoring protège l'infra. Et il y a un aspect légal — certains logs doivent être conservés.

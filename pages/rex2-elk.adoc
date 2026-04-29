@@ -1,4 +1,4 @@
-= 🧺 REX 2 : Audit ELK — Le syndrome de l'armoire pleine
+= 🧺 Audit ELK — Le syndrome de l'armoire pleine
 :imagesdir: assets/default/images
 
 == !
@@ -20,7 +20,7 @@ Transition : Spoiler : ce n'est pas la bonne solution.
 [%notitle]
 == Le syndrome de l'armoire pleine
 
-//TODO : illustration armoire qui déborde / disques empilés
+image::rex2-armoire.svg[armoire qui déborde, 75%]
 
 [NOTE.speaker]
 ====

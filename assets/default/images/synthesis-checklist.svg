@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 440 360" width="440" height="360">
+  <rect width="440" height="360" fill="#F2E8D5" rx="8"/>
+
+  <!-- Label shadow -->
+  <rect x="58" y="38" width="334" height="300" rx="10" fill="#1a3a5c" opacity="0.12"/>
+
+  <!-- Main label body — clothing care tag style -->
+  <rect x="50" y="30" width="334" height="300" rx="10" fill="#FAF6EE" stroke="#1a3a5c" stroke-width="3"/>
+  <!-- Inner border (retro double border) -->
+  <rect x="58" y="38" width="318" height="284" rx="7" fill="none" stroke="#1a3a5c" stroke-width="1.5"/>
+
+  <!-- Punch hole at top (like a clothing tag) -->
+  <circle cx="217" cy="30" r="8" fill="#F2E8D5" stroke="#1a3a5c" stroke-width="2.5"/>
+  <!-- Stitching at top -->
+  <line x1="50" y1="62" x2="384" y2="62" stroke="#1a3a5c" stroke-width="1" stroke-dasharray="5,4" opacity="0.4"/>
+
+  <!-- Header -->
+  <text x="217" y="54" font-family="Courier New, monospace" font-size="10" fill="#1a3a5c" text-anchor="middle" letter-spacing="3" opacity="0.5">⬡ ⬡ ⬡</text>
+  <text x="217" y="88" font-family="Georgia, serif" font-size="18" fill="#1a3a5c" text-anchor="middle" font-weight="900" letter-spacing="-0.5">LA CHECKLIST LESSIVE</text>
+  <text x="217" y="104" font-family="Courier New, monospace" font-size="9" fill="#c0392b" text-anchor="middle" letter-spacing="2" text-transform="uppercase">NettoieLogs2000 · EST. 1987</text>
+
+  <!-- Divider -->
+  <line x1="70" y1="112" x2="364" y2="112" stroke="#c0392b" stroke-width="2"/>
+  <line x1="70" y1="115" x2="364" y2="115" stroke="#1a3a5c" stroke-width="1"/>
+
+  <!-- Washing symbols row — retro icons -->
+  <!-- 30° wash -->
+  <circle cx="95" cy="138" r="16" fill="none" stroke="#1a3a5c" stroke-width="2"/>
+  <text x="95" y="143" font-family="Courier New, monospace" font-size="9" fill="#1a3a5c" text-anchor="middle">30°</text>
+
+  <!-- Do not bleach (triangle with X) -->
+  <polygon points="138,122 158,122 148,142" fill="none" stroke="#1a3a5c" stroke-width="2"/>
+  <line x1="140" y1="138" x2="156" y2="126" stroke="#c0392b" stroke-width="2"/>
+  <line x1="140" y1="126" x2="156" y2="138" stroke="#c0392b" stroke-width="2"/>
+
+  <!-- Tumble dry — circle -->
+  <circle cx="197" cy="133" r="16" fill="none" stroke="#1a3a5c" stroke-width="2"/>
+  <circle cx="197" cy="133" r="10" fill="none" stroke="#1a3a5c" stroke-width="1.5"/>
+  <text x="197" y="137" font-family="Courier New, monospace" font-size="7" fill="#1a3a5c" text-anchor="middle">ILM</text>
+
+  <!-- Iron — trapezoid -->
+  <path d="M228,148 L228,122 Q248,120 258,130 L258,148 Z" fill="none" stroke="#1a3a5c" stroke-width="2"/>
+  <text x="243" y="140" font-family="Courier New, monospace" font-size="7" fill="#7ab3d4" text-anchor="middle">✓</text>
+
+  <!-- Dry clean circle -->
+  <circle cx="296" cy="133" r="16" fill="none" stroke="#1a3a5c" stroke-width="2"/>
+  <text x="296" y="137" font-family="Courier New, monospace" font-size="9" fill="#1a3a5c" text-anchor="middle">ECS</text>
+
+  <!-- Divider -->
+  <line x1="70" y1="158" x2="364" y2="158" stroke="#1a3a5c" stroke-width="1" opacity="0.3"/>
+
+  <!-- Checklist items -->
+  <!-- Item 1 -->
+  <rect x="76" y="168" width="16" height="16" rx="3" fill="none" stroke="#1a3a5c" stroke-width="2"/>
+  <path d="M79,176 L83,180 L90,172" stroke="#1a3a5c" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <text x="104" y="180" font-family="Courier New, monospace" font-size="10" fill="#1a3a5c">Inventaire des sources</text>
+
+  <!-- Item 2 -->
+  <rect x="76" y="192" width="16" height="16" rx="3" fill="none" stroke="#1a3a5c" stroke-width="2"/>
+  <path d="M79,200 L83,204 L90,196" stroke="#1a3a5c" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <text x="104" y="204" font-family="Courier New, monospace" font-size="10" fill="#1a3a5c">Schéma de log défini</text>
+
+  <!-- Item 3 -->
+  <rect x="76" y="216" width="16" height="16" rx="3" fill="none" stroke="#1a3a5c" stroke-width="2"/>
+  <path d="M79,224 L83,228 L90,220" stroke="#1a3a5c" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <text x="104" y="228" font-family="Courier New, monospace" font-size="10" fill="#1a3a5c">Politique de rétention</text>
+
+  <!-- Item 4 -->
+  <rect x="76" y="240" width="16" height="16" rx="3" fill="none" stroke="#c0392b" stroke-width="2"/>
+  <text x="104" y="252" font-family="Courier New, monospace" font-size="10" fill="#1a3a5c">Profils de rôles VM</text>
+
+  <!-- Item 5 -->
+  <rect x="76" y="264" width="16" height="16" rx="3" fill="none" stroke="#c0392b" stroke-width="2"/>
+  <text x="104" y="276" font-family="Courier New, monospace" font-size="10" fill="#1a3a5c">Runbook P1/P2</text>
+
+  <!-- Bottom footer of tag -->
+  <line x1="70" y1="290" x2="364" y2="290" stroke="#1a3a5c" stroke-width="1" opacity="0.3"/>
+  <line x1="70" y1="293" x2="364" y2="293" stroke="#c0392b" stroke-width="1.5" opacity="0.7"/>
+
+  <!-- 3 step icons at bottom -->
+  <!-- Trier -->
+  <g transform="translate(90,310)">
+    <circle r="16" fill="#1a3a5c"/>
+    <text x="0" y="5" font-family="Courier New, monospace" font-size="9" fill="#FAF6EE" text-anchor="middle">👕</text>
+    <text x="0" y="24" font-family="Courier New, monospace" font-size="7" fill="#1a3a5c" text-anchor="middle">TRIER</text>
+  </g>
+  <!-- Dégraisser -->
+  <g transform="translate(217,310)">
+    <circle r="16" fill="#1a3a5c"/>
+    <text x="0" y="5" font-family="Courier New, monospace" font-size="9" fill="#FAF6EE" text-anchor="middle">🧺</text>
+    <text x="0" y="24" font-family="Courier New, monospace" font-size="7" fill="#1a3a5c" text-anchor="middle">DÉGRAISSER</text>
+  </g>
+  <!-- Automatiser -->
+  <g transform="translate(344,310)">
+    <circle r="16" fill="#c0392b"/>
+    <text x="0" y="5" font-family="Courier New, monospace" font-size="9" fill="#FAF6EE" text-anchor="middle">🏭</text>
+    <text x="0" y="24" font-family="Courier New, monospace" font-size="7" fill="#c0392b" text-anchor="middle">AUTOMATISER</text>
+  </g>
+</svg>

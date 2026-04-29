@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 360" width="520" height="360">
+  <!-- Background hint -->
+  <rect width="520" height="360" fill="#F2E8D5" rx="8"/>
+
+  <!-- Floor line -->
+  <line x1="20" y1="320" x2="500" y2="320" stroke="#1a3a5c" stroke-width="2" opacity="0.3"/>
+
+  <!-- Laundry basket body -->
+  <path d="M160,320 L120,185 L360,185 L320,320 Z" fill="#FAF6EE" stroke="#1a3a5c" stroke-width="3"/>
+  <!-- Basket weave lines horizontal -->
+  <line x1="124" y1="215" x2="356" y2="215" stroke="#1a3a5c" stroke-width="1.5" opacity="0.4"/>
+  <line x1="128" y1="245" x2="352" y2="245" stroke="#1a3a5c" stroke-width="1.5" opacity="0.4"/>
+  <line x1="134" y1="275" x2="346" y2="275" stroke="#1a3a5c" stroke-width="1.5" opacity="0.4"/>
+  <line x1="140" y1="305" x2="340" y2="305" stroke="#1a3a5c" stroke-width="1.5" opacity="0.4"/>
+  <!-- Basket weave lines vertical -->
+  <line x1="170" y1="185" x2="155" y2="320" stroke="#1a3a5c" stroke-width="1" opacity="0.3"/>
+  <line x1="210" y1="185" x2="200" y2="320" stroke="#1a3a5c" stroke-width="1" opacity="0.3"/>
+  <line x1="250" y1="185" x2="245" y2="320" stroke="#1a3a5c" stroke-width="1" opacity="0.3"/>
+  <line x1="290" y1="185" x2="290" y2="320" stroke="#1a3a5c" stroke-width="1" opacity="0.3"/>
+  <line x1="330" y1="185" x2="335" y2="320" stroke="#1a3a5c" stroke-width="1" opacity="0.3"/>
+  <!-- Basket rim -->
+  <rect x="110" y="178" width="260" height="18" rx="4" fill="#1a3a5c"/>
+
+  <!-- Handles -->
+  <path d="M145,185 Q125,150 145,130 Q165,110 185,130" fill="none" stroke="#1a3a5c" stroke-width="4" stroke-linecap="round"/>
+  <path d="M335,185 Q355,150 335,130 Q315,110 295,130" fill="none" stroke="#1a3a5c" stroke-width="4" stroke-linecap="round"/>
+
+  <!-- Log files overflowing — stacked crumpled pages -->
+  <!-- File 1 — ERROR (leaning left) -->
+  <g transform="rotate(-15,200,155)">
+    <rect x="170" y="110" width="60" height="80" rx="3" fill="#FAF6EE" stroke="#1a3a5c" stroke-width="2"/>
+    <polygon points="210,110 230,110 230,128" fill="#F2E8D5" stroke="#1a3a5c" stroke-width="1"/>
+    <rect x="177" y="135" width="38" height="5" rx="1" fill="#c0392b" opacity="0.8"/>
+    <rect x="177" y="145" width="28" height="4" rx="1" fill="#1a3a5c" opacity="0.4"/>
+    <rect x="177" y="153" width="33" height="4" rx="1" fill="#1a3a5c" opacity="0.3"/>
+    <text x="200" y="128" font-family="Courier New, monospace" font-size="7" fill="#c0392b" text-anchor="middle" font-weight="700">ERROR</text>
+  </g>
+
+  <!-- File 2 — WARN (leaning right) -->
+  <g transform="rotate(12,295,145)">
+    <rect x="265" y="100" width="60" height="80" rx="3" fill="#FAF6EE" stroke="#1a3a5c" stroke-width="2"/>
+    <polygon points="305,100 325,100 325,118" fill="#F2E8D5" stroke="#1a3a5c" stroke-width="1"/>
+    <rect x="272" y="125" width="36" height="5" rx="1" fill="#c0392b" opacity="0.6"/>
+    <rect x="272" y="135" width="42" height="4" rx="1" fill="#1a3a5c" opacity="0.35"/>
+    <rect x="272" y="143" width="28" height="4" rx="1" fill="#1a3a5c" opacity="0.25"/>
+    <text x="295" y="118" font-family="Courier New, monospace" font-size="7" fill="#c0392b" text-anchor="middle" font-weight="700">WARN</text>
+  </g>
+
+  <!-- File 3 — DEBUG (sticking straight up) -->
+  <g transform="rotate(-4,240,100)">
+    <rect x="210" y="60" width="60" height="80" rx="3" fill="#FAF6EE" stroke="#1a3a5c" stroke-width="2"/>
+    <polygon points="250,60 270,60 270,78" fill="#F2E8D5" stroke="#1a3a5c" stroke-width="1"/>
+    <rect x="217" y="85" width="36" height="4" rx="1" fill="#1a3a5c" opacity="0.3"/>
+    <rect x="217" y="93" width="44" height="4" rx="1" fill="#1a3a5c" opacity="0.25"/>
+    <rect x="217" y="101" width="30" height="4" rx="1" fill="#1a3a5c" opacity="0.2"/>
+    <text x="240" y="78" font-family="Courier New, monospace" font-size="7" fill="#7ab3d4" text-anchor="middle" font-weight="700">DEBUG</text>
+  </g>
+
+  <!-- Floating sock (fun!) -->
+  <g transform="rotate(20,430,100)">
+    <path d="M420,80 Q415,60 418,45 Q422,30 430,32 Q438,34 436,50 Q434,62 440,75 Q448,90 442,100 Q436,110 426,108 Q418,106 416,95 Q414,87 420,80 Z" fill="#c0392b" stroke="#1a3a5c" stroke-width="1.5" opacity="0.85"/>
+    <text x="430" y="72" font-family="Courier New, monospace" font-size="8" fill="#FAF6EE" text-anchor="middle">🧦</text>
+  </g>
+
+  <!-- Floating underpants (fun!) labelled "LEGACY" -->
+  <g transform="rotate(-8,80,120)">
+    <path d="M55,110 Q60,95 80,98 Q100,95 105,110 L100,135 Q95,145 80,145 Q65,145 60,135 Z" fill="#7ab3d4" stroke="#1a3a5c" stroke-width="1.5" opacity="0.7"/>
+    <line x1="80" y1="98" x2="80" y2="135" stroke="#1a3a5c" stroke-width="1" opacity="0.4"/>
+    <text x="80" y="128" font-family="Courier New, monospace" font-size="6" fill="#1a3a5c" text-anchor="middle" font-weight="700">LEGACY</text>
+  </g>
+
+  <!-- Steam / stink lines -->
+  <path d="M230,55 Q225,42 232,30" stroke="#c0392b" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.5"/>
+  <path d="M250,48 Q248,35 255,24" stroke="#c0392b" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.4"/>
+  <path d="M270,52 Q267,38 274,28" stroke="#c0392b" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.3"/>
+
+  <!-- Label -->
+  <rect x="320" y="280" width="170" height="28" rx="4" fill="#1a3a5c"/>
+  <text x="405" y="299" font-family="Courier New, monospace" font-size="10" fill="#FAF6EE" text-anchor="middle" font-weight="700" letter-spacing="1">LINGE SALE</text>
+
+  <!-- Small badge -->
+  <rect x="335" y="310" width="140" height="20" rx="3" fill="#c0392b"/>
+  <text x="405" y="324" font-family="Courier New, monospace" font-size="8" fill="#FAF6EE" text-anchor="middle" letter-spacing="1">120 TYPES DE LOGS</text>
+</svg>

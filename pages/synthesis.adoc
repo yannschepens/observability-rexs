@@ -3,6 +3,8 @@
 
 == !
 
+image::synthesis-checklist.svg[checklist lessive, 60%]
+
 [NOTE.speaker]
 ====
 C'est grace à ces experiences que NettoieLogs2000 va bientôt rentré au CAC40, au NASDAQ et même au gouvernement.

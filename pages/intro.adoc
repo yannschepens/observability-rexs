@@ -22,7 +22,7 @@ Transition : Je vous propose de commencer par une image, une façon d'aborder le
 
 == Le syndrome du panier de linge sale
 
-//TODO : illustration chaos / chambre d'étudiant
+image::intro-linge-sale.svg[panier de linge sale, 70%]
 
 [NOTE.speaker]
 ====
@@ -37,10 +37,15 @@ Transition : Et malgré tout ça (sans parler de l'odeur)
 [%notitle]
 == !
 
+[quote]
+____
 "Tout le monde veut des dashboards qui brillent comme dans les pubs de lessive..."
 
 [%step]
 "...mais personne ne veut trier le linge sale."
+
+— Manuel NettoieLogs2000, édition 1987
+____
 
 [NOTE.speaker]
 ====
@@ -63,10 +68,10 @@ Transition : Et pour ça, 3 cas concrets.
 == Au programme
 
 [%step]
-* 👕 *REX 1* — Forge logicielle : trier les couleurs
-* 🧺 *REX 2* — Audit ELK : l'armoire qui déborde
-* 🏭 *REX 3* — 350 VMs : la laverie industrielle
-* ✨ *Synthèse* — La checklist lessive
+* 👕 Forge logicielle : **trier les couleurs**
+* 🧺 Audit ELK : **l'armoire qui déborde**
+* 🏭 350 VMs : **la laverie industrielle**
+* ✨  La checklist lessive
 
 [NOTE.speaker]
 ====

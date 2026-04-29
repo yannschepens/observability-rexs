@@ -1,4 +1,4 @@
-= 🏭 REX 3 : 350 VMs — La laverie industrielle
+= 🏭 350 VMs — La laverie industrielle
 :imagesdir: assets/default/images
 
 == !
@@ -22,7 +22,7 @@ Transition : Le contexte d'abord.
 [%notitle]
 == L'enfer sonore
 
-//TODO : illustration bips / alertes qui s'accumulent
+image::rex3-bips.svg[enfer des alertes, 80%]
 
 [NOTE.speaker]
 ====
