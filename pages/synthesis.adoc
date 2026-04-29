@@ -5,13 +5,15 @@
 
 [NOTE.speaker]
 ====
+C'est grace à ces experiences que NettoieLogs2000 va bientôt rentré au CAC40, au NASDAQ et même au gouvernement.
+
 On a vu 3 contextes très différents.
 Une forge logicielle construite from scratch, un audit ELK, une infra de 350 VMs.
 
 Pourtant, la même question revient dans les 3 cas.
 Et c'est toujours la même réponse.
 
-Transition : L'observabilité, c'est pas compliqué. C'est juste de l'hygiène.
+Transition : L'observabilité, ça peut être compliqué, mais l'hygiène permet de simplifier cette pratique, cet art !
 ====
 
 // ─── CHECKLIST LESSIVE ───────────────────────────────────────────────────────
@@ -26,9 +28,9 @@ Transition : L'observabilité, c'est pas compliqué. C'est juste de l'hygiène.
 
 [NOTE.speaker]
 ====
-* Trier : c'est le REX 1. Séparer le coton du synthétique. Un log non étiqueté est une chaussette orpheline.
-* Dégraisser : c'est le REX 2. La meilleure donnée, c'est celle qu'on n'a pas besoin de stocker.
-* Automatiser : c'est le REX 3. L'alerte doit dire "voici ce que tu dois faire", pas "il y a un problème".
+* Step : Trier : c'est le REX 1. Séparer le coton du synthétique. Un log non étiqueté est une chaussette orpheline.
+* Step : Dégraisser : c'est le REX 2. La meilleure donnée, c'est celle qu'on n'a pas besoin de stocker.
+* Step : Automatiser : c'est le REX 3. L'alerte doit dire "voici ce que tu dois faire", pas "il y a un problème".
 
 Ces 3 étapes sont dans cet ordre. On ne peut pas automatiser ce qu'on n'a pas trié. On ne peut pas dégraisser ce qu'on n'a pas catégorisé.
 ====
@@ -68,6 +70,8 @@ Ces 3 étapes sont dans cet ordre. On ne peut pas automatiser ce qu'on n'a pas t
 * DEBUG en prod : 60 Go/jour pour un seul outil. Vu dans le REX 1.
 * Alerter sur tout : les équipes ops ont coupé les notifications dans le REX 3. C'est l'échec du monitoring.
 * Estimations de volumétrie : toujours fausses. Dans le REX 2, on est passé de "quelques Go" à 782 Go réels.
+
+Transition : pour finir
 ====
 
 // ─── CHECKLIST ───────────────────────────────────────────────────────────────
@@ -84,6 +88,9 @@ Ces 3 étapes sont dans cet ordre. On ne peut pas automatiser ce qu'on n'a pas t
 
 [NOTE.speaker]
 ====
+On déroule la checklist
+
+
 * Cette checklist ne garantit pas un monitoring parfait
 * Elle garantit qu'on ne part pas de zéro dans 6 mois
 * Chaque item est issu d'une douleur concrète dans l'un des 3 REXs
