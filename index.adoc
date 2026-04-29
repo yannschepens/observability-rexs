@@ -29,7 +29,7 @@ Yann Day : 9 juin 1987
 ====
 * Bonjour,
 
-* MBienvenue chez NettoieLogs2000 "Expert en observabilité", entreprise de nettoyage et stockage de logs en tout genre
+* Bienvenue chez NettoieLogs2000 "Expert en observabilité", entreprise de nettoyage et stockage de logs en tout genre
 
 * Transition : Mais avant de commencer, qui suis-je ?
 ====

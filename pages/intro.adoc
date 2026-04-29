@@ -5,10 +5,12 @@
 [NOTE.speaker]
 ====
 
+Donc chez NettoieLogs2000, on a de l'experience :
+
 * ... 3 retours d'expérience concrets sur l'observabilité
 * Pas de théorie pure — du vécu, des erreurs, des patterns qui marchent.
 
-Transition : On commence par une image.
+Transition : Je vous propose de commencer par une image, une façon d'aborder le sujet chez "NettoieLogs2000".
 ====
 
 // ─── ACCROCHE ────────────────────────────────────────────────────────────────

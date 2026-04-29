@@ -5,7 +5,9 @@
 
 [NOTE.speaker]
 ====
-* REX 2 — Une mission d'audit chez un client grand compte.
+Après le succès de cette première mission NettoieLogs2000, on s'est tout de suite rendu compte de notre expertise en rangement :
+
+* Donc REX 2 — Une mission d'audit chez un client grand compte.
 * La situation de départ : les disques débordent, les coûts de run augmentent, et les logs sont difficilement exploitables.
 
 * L'image de ce REX : le syndrome de l'armoire pleine. La solution du client ? "On va racheter du stockage."
@@ -327,5 +329,5 @@ Donc, la conclusion à emporter
 * ILM : sur ce projet, on avait des index sans aucune politique de suppression depuis des années
 * La sobriété des logs n'est pas une contrainte technique — c'est une discipline d'équipe
 
-Transition : On passe au REX 3 — la laverie industrielle.
+Transition : Mais assez parler de logs, parlons de métriques à plus grandes échelles. On passe au REX 3 — la laverie industrielle.
 ====

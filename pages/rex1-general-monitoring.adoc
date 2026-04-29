@@ -5,7 +5,7 @@
 
 [NOTE.speaker]
 ====
-* REX 1 — Ma mission principale depuis plusieurs années : la création et le maintien d'une forge logicielle pour un ministère.
+* REX 1 — Ma mission principale depuis plusieurs années, dont pendant le lancement de NettoieLogs2000: la création et le maintien d'une forge logicielle pour un ministère.
 * On part de zéro — on construit tout.
 * L'image de ce REX : trier les couleurs. Parce qu'une forge logicielle c'est une usine H24 — les logs sont là, en quantité, mais mélangés.
 

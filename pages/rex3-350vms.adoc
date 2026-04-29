@@ -5,12 +5,14 @@
 
 [NOTE.speaker]
 ====
-REX 3 — La mission la plus complexe en termes d'échelle.
-350 VMs. Windows, Linux. Cloud, on-prem. Gérées en code et à la main.
+Qui dit laverie, dit machine à laver, et il était temps pour NettoieLogs2000 d'étendre ces activités avec une approche plus industrielles.
 
-L'image de ce REX : la laverie industrielle.
-On ne gère pas 350 VMs comme on lave son pull préféré à la main.
-Il faut de l'automatisation et une stratégie qui évite la "fatigue d'alerte".
+* REX 3 — La mission la plus complexe en termes d'échelle.
+* 350 VMs. Windows, Linux. Cloud, on-prem. Gérées en code et à la main.
+
+* L'image de ce REX : la laverie industrielle.
+* On ne gère pas 350 VMs comme on lave son pull préféré à la main.
+* Il faut de l'automatisation et une stratégie qui évite la "fatigue d'alerte".
 
 Transition : Le contexte d'abord.
 ====
@@ -24,12 +26,15 @@ Transition : Le contexte d'abord.
 
 [NOTE.speaker]
 ====
-350 VMs. Si chaque machine bippe pour un CPU à 80%, c'est l'enfer sonore.
+* 350 VMs. Si chaque machine bippe pour un CPU à 80%, c'est l'enfer sonore.
 
-La fatigue d'alerte, c'est le moment où les équipes ops coupent les notifications.
-Parce qu'il y en a trop, elles ne veulent plus rien dire.
+* La fatigue d'alerte, c'est le moment où les équipes ops coupent les notifications.
+* Parce qu'il y en a trop, elles ne veulent plus rien dire.
 
-Ce REX, c'est comment passer d'un système qui crie tout le temps à un système qui parle quand c'est important.
+* Ce REX, c'est comment passer d'un système qui crie :
+** dans différentes langues
+** et tout le temps
+** à un système qui parle quand c'est important.
 
 Transition : Voyons l'infrastructure en question.
 ====
@@ -43,13 +48,13 @@ Mission d'uniformisation du monitoring chez un client grand compte
 
 [%step]
 * ~350 VMs — Debian, CentOS, Windows
-* Deux hébergeurs : AWS + on-premise VMWare
+* Deux hébergeurs : AWS + on-premise
 * ~200 applications, pilotées par 50 personnes
 * AWS géré en code (Terraform + Puppet) — le reste, à la main
 
 [NOTE.speaker]
 ====
-* Le client est un groupe important avec une DSI structurée
+* Le client est un groupe important avec une DSI structurée, mais avec des rachats donc un SI hétérogène
 * AWS : provisionnement as code, Terraform + Puppet — infra propre côté cloud
 * On-prem : géré manuellement, hétérogène
 * Pas de lien réseau direct entre AWS et l'on-prem — deux mondes qui coexistent
@@ -63,7 +68,7 @@ Transition : Et avant notre arrivée, il y avait déjà du monitoring en place.
 [%step]
 * *Prometheus + Grafana* — AWS + on-prem Debian +
   chaque équipe gère ses dashboards et alertes séparément
-* *PRTG* — on-prem uniquement +
+* *Une solution proprietaire* — on-prem uniquement +
   configuré à la main, alertes "au besoin"
 * Zéro couverture des services extérieurs (RDS, load balancers, SaaS...)
 
@@ -71,7 +76,7 @@ Transition : Et avant notre arrivée, il y avait déjà du monitoring en place.
 ====
 * Prometheus est déjà en place sur AWS — c'est une bonne base
 * Mais chaque équipe gère ses dashboards de son côté → pas d'uniformité, pas de vision globale
-* PRTG couvre un datacenter seulement — et personne ne sait vraiment qui répond à ses alertes
+* La solution proprietaire couvre un datacenter seulement — et personne ne sait vraiment qui répond à ses alertes
 * Résultat : deux systèmes qui ne se parlent pas, des alertes qui partent dans tous les sens — le bruit
 
 Transition : Avant de proposer quoi que ce soit, on a posé nos convictions.
@@ -90,8 +95,10 @@ Transition : Avant de proposer quoi que ce soit, on a posé nos convictions.
 
 [NOTE.speaker]
 ====
-* Une alerte CPU à 80% sur un batch de nuit et sur une base de données de production — ce n'est pas la même chose
-* Le monitoring ne sert à rien si personne ne le lit — simplifier avant d'enrichir
+
+* Step : Monitorer tout le SI avec les mêmes règles : pas réaliste
+* Step : Une alerte CPU à 80% sur un batch de nuit et sur une base de données de production — ce n'est pas la même chose
+* Step : Le monitoring ne sert à rien si personne ne le lit — simplifier avant d'enrichir
 * C'est la même logique qu'une laverie industrielle : des programmes différents selon le type de tissu
 
 Transition : L'approche qu'on a proposée.
@@ -109,9 +116,9 @@ Transition : L'approche qu'on a proposée.
 
 [NOTE.speaker]
 ====
-* Pas de révolution technologique — les équipes connaissent Prometheus et Grafana
-* Le vrai travail est dans la labélisation et la stratégie d'alerting — pas dans le remplacement d'outils
-* On ajoute : blackbox_exporter pour les sondes HTTP, prtg_exporter pour intégrer PRTG dans Prometheus
+* Step x2 : Pas de révolution technologique — les équipes connaissent Prometheus et Grafana
+* Step x2 : Le vrai travail est dans la labélisation et la stratégie d'alerting — pas dans le remplacement d'outils
+* Step : On ajoute : blackbox_exporter pour les sondes HTTP, un exporter spécifuque pour intégrer la solution proprietaire dans Prometheus
 
 Transition : La stack cible.
 ====
@@ -124,7 +131,7 @@ Transition : La stack cible.
 == Stack retenue
 
 [%step]
-* *Collecte* : node_exporter (Linux), windows_exporter, blackbox_exporter (HTTP), prtg_exporter
+* *Collecte* : node_exporter (Linux), windows_exporter, blackbox_exporter (HTTP), specifique_exporter
 * *Stockage* : Prometheus
 * *Alerting* : Alertmanager → Teams + SMS (critiques)
 * *Visualisation* : Grafana
@@ -135,7 +142,7 @@ Transition : La stack cible.
 ====
 * node_exporter déjà déployé sur Debian par Puppet — on étend sur CentOS et Windows
 * blackbox_exporter : sonde les URLs HTTP/HTTPS — code réponse + temps de réponse
-* prtg_exporter : fait le pont entre PRTG et Prometheus — tout au même endroit
+* specifique_exporter : fait le pont entre La solution proprietaire et Prometheus — tout au même endroit
 * Alertmanager : remplace les alertes Slack bricolées par équipe — centralise et orchestre
 
 Transition : Métriques à collecter.
@@ -178,6 +185,8 @@ Sans labels métier, pas d'alerting intelligent
 
 [NOTE.speaker]
 ====
+=> Dérouler les steps en lisant
+
 * Ces 6 labels répondent à : qui est impacté ? quelle équipe prévenir ? quelle est la criticité ?
 * Le label `role` est le plus structurant — c'est lui qui calibre les seuils d'alerte
 * Valeur par défaut à `unknown` — permet de repérer les trous de couverture
@@ -188,23 +197,18 @@ Transition : Avec ces labels, on peut définir une stratégie d'alerting différ
 
 // ─── STRATÉGIE D'ALERTING ────────────────────────────────────────────────────
 
-== Stratégie d'alerting
-
 [%notitle]
 == Éviter la fatigue d'alerte
 
 Le problème n°1 : trop d'alertes = plus d'alertes
 
-[%step]
-* Une notification *uniquement pour une intervention immédiate*
-* Les autres alertes : un dashboard de suivi, check chaque matin
-* Sévérité : *critical* (action immédiate) / *warning* (traitement dans la journée)
-* Zone tampon : 5 minutes avant de déclencher une notification
-
 [NOTE.speaker]
 ====
+* On définit la sévérité : *critical* (action immédiate) / *warning* (traitement dans la journée)
+* Une notification *uniquement pour une intervention immédiate*
+* Les autres alertes, les warning par exemple: un dashboard de suivi, check chaque matin
+
 * La règle d'or : une alerte qui se déclenche doit appeler une action. Sinon, c'est du bruit.
-* Les warnings ne se notifient pas en temps réel — un dashboard suffit
 * La zone tampon de 5 minutes élimine les faux positifs liés aux pics courts (batch, démarrage d'appli...)
 * Si les équipes coupent les notifications — c'est que le monitoring a échoué avant même d'avoir été utile
 
@@ -216,11 +220,7 @@ Transition : Des seuils par rôle, pas des seuils universels.
 
 //TODO : tableau seuils
 
-[%step]
-* *Bases de données* — CPU 50/70%, RAM 50/80%, Swap > 0 = alerte immédiate
-* *Frontend/API* — CPU 80/90%, temps de réponse HTTP > 500ms/1000ms
-* *Batch* — CPU 80/90%, Swap > 50% (tolérance plus haute)
-* *IAM/Auth* — CPU 60/80%, temps de réponse > 300ms/800ms
+
 
 [NOTE.speaker]
 ====
@@ -228,6 +228,12 @@ Transition : Des seuils par rôle, pas des seuils universels.
 * Le swap à 0 sur une DB c'est critique — sur un batch c'est normal
 * Pour le disque : attention aux volumes alloués — 10% de 2 To = 200 Go, ce n'est pas forcément urgent
 * Ces seuils ont été définis avec les équipes — faits pour être affinés à l'usage
+
+* Exemple de seuil
+** *Bases de données* — CPU 50/70%, RAM 50/80%, Swap > 0 = alerte immédiate
+** *Frontend/API* — CPU 80/90%, temps de réponse HTTP > 500ms/1000ms
+** *Batch* — CPU 80/90%, Swap > 50% (tolérance plus haute)
+** *IAM/Auth* — CPU 60/80%, temps de réponse > 300ms/800ms
 
 Transition : Et une fois l'alerte déclenchée, qui reçoit quoi ?
 ====
@@ -245,11 +251,13 @@ La bonne alerte, à la bonne équipe, au bon moment
 
 [NOTE.speaker]
 ====
+=> Dérouler les steps en lisant
+
 * L'organisation des canaux correspond à l'organisation des équipes — c'est intentionnel
 * Canal SMS réservé aux services hypercritiques — banaliser le SMS, c'est s'assurer que les gens le coupent
 * Power Automate en intermédiaire : route vers Teams ou SMS selon la criticité
 
-Transition : Gérer les faux positifs.
+Transition : Maintenant, il faut gérer les faux positifs et les données inconnues
 ====
 
 // ─── FAUX POSITIFS, RUNBOOK & ESCALADE ──────────────────────────────────────
@@ -264,6 +272,8 @@ Transition : Gérer les faux positifs.
 
 [NOTE.speaker]
 ====
+=> Déroulé les steps
+
 * Le dashboard des "unknown" est un outil de qualité de données
 * Les silences Alertmanager doivent être posés AVANT l'intervention, pas après
 * Les seuils initiaux sont un point de départ — ils se calibrent sur la durée
@@ -276,13 +286,16 @@ Transition : Et quand l'alerte est réelle, encore faut-il savoir quoi faire.
 
 "Si l'alarme sonne, on doit savoir quelle lessive utiliser sans réfléchir."
 
-[%step]
+
+
+[NOTE.speaker]
+====
+On doit définir un runbook :
+
 * Chaque alerte P1/P2 → un runbook (même minimal)
 * Escalade explicite : L1 projet → L2 domaine → L3 hébergement + SMS
 * Challenger les alertes régulièrement — si aucune action en 3 mois, la supprimer
 
-[NOTE.speaker]
-====
 * Le runbook n'a pas besoin d'être exhaustif — "regarder ce dashboard en premier" suffit
 * L'escalade sans règle écrite : chacun improvise. On a défini 3 niveaux :
   ** L1 : équipe projet — warning → canal Teams
@@ -290,7 +303,7 @@ Transition : Et quand l'alerte est réelle, encore faut-il savoir quoi faire.
   ** L3 : hébergement + DSI — service hypercritique → SMS
 * Challenger les alertes : si une alerte ne déclenche jamais d'action, c'est un seuil trop bas ou une alerte inutile
 
-Transition : Les dashboards pour la vision d'ensemble.
+Transition : Les alertes c'est bien, mais pour avoir la santé générale de l'infra, on fait des dashboards
 ====
 
 [%notitle]
@@ -307,13 +320,13 @@ Transition : Les dashboards pour la vision d'ensemble.
 * La vue globale : code couleur OK/Warning/Critical — "est-ce que tout va bien ?" en un coup d'œil
 * Le drilldown : un clic depuis la vue globale → métriques CPU/RAM/Disk de la VM concernée
 
-Transition : Le bilan.
+Transition : Avec tout ça, on est pas mal, le bilan.
 ====
 
 // ─── RÉSULTATS ───────────────────────────────────────────────────────────────
 
 [%notitle]
-== Ce qu'on a livré
+== Au final
 
 [%step]
 * Collecte uniformisée — couverture étendue à l'ensemble de l'infra
@@ -324,8 +337,8 @@ Transition : Le bilan.
 
 [NOTE.speaker]
 ====
-* Livré en ~27 j/h sur 40 budgetés
-* Ce qui reste : déploiement des collecteurs sur les parties non automatisées, affinage des canaux Teams, intégration PRTG complète
+
+* Ce qui reste : déploiement des collecteurs sur les parties non automatisées, affinage des canaux Teams, intégration de la soltuion proprieraire complète
 * La base est solide et extensible — les équipes peuvent continuer sans nous
 
 Transition : Le take-away.
