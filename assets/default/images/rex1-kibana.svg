@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="44.185417mm"
+   height="30.956249mm"
+   viewBox="0 0 44.185417 30.956249"
+   version="1.1"
+   id="svg1"
+   inkscape:version="1.4.3 (fcd0343856, 2026-01-01)"
+   sodipodi:docname="rex1-kibana.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     inkscape:zoom="0.79196829"
+     inkscape:cx="198.8716"
+     inkscape:cy="405.95059"
+     inkscape:window-width="1878"
+     inkscape:window-height="1136"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs1" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     style="display:inline"
+     transform="translate(-52.173935,-41.068689)">
+    <g
+       id="g45"
+       style="display:inline"
+       transform="matrix(0.26458333,0,0,0.26458333,-74.56148,26.781189)">
+      <rect
+         x="480"
+         y="55"
+         width="165"
+         height="115"
+         rx="8"
+         fill="#1a3a5c"
+         stroke="#FAF6EE"
+         stroke-width="2"
+         style="color:#fbfbfe;font-weight:400;font-size:16px;font-family:'Anthropic Sans', '-apple-system', BlinkMacSystemFont, 'Segoe UI', sans-serif;dominant-baseline:auto;text-anchor:start;opacity:1;fill:#1a3a5c;stroke:#faf6ee;stroke-width:2px;stroke-linecap:butt;stroke-linejoin:miter"
+         id="rect37" />
+      <rect
+         x="487"
+         y="62"
+         width="151"
+         height="101"
+         rx="6"
+         fill="none"
+         stroke="#c0392b"
+         stroke-width="1.5"
+         style="color:#fbfbfe;font-weight:400;font-size:16px;font-family:'Anthropic Sans', '-apple-system', BlinkMacSystemFont, 'Segoe UI', sans-serif;dominant-baseline:auto;text-anchor:start;opacity:1;fill:none;stroke:#c0392b;stroke-width:1.5px;stroke-linecap:butt;stroke-linejoin:miter"
+         id="rect38" />
+      <circle
+         cx="501"
+         cy="72"
+         r="4"
+         fill="#c0392b"
+         style="color:#fbfbfe;font-weight:400;font-size:16px;font-family:'Anthropic Sans', '-apple-system', BlinkMacSystemFont, 'Segoe UI', sans-serif;dominant-baseline:auto;text-anchor:start;opacity:1;fill:#c0392b;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter"
+         id="circle38" />
+      <circle
+         cx="516"
+         cy="72"
+         r="4"
+         fill="#7ab3d4"
+         opacity="0.7"
+         style="color:#fbfbfe;font-weight:400;font-size:16px;font-family:'Anthropic Sans', '-apple-system', BlinkMacSystemFont, 'Segoe UI', sans-serif;dominant-baseline:auto;text-anchor:start;opacity:0.7;fill:#7ab3d4;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter"
+         id="circle39" />
+      <image
+         href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjggMTI4Ij4KICAgIDxwYXRoIGZpbGw9IiNmMDRlOTgiIGQ9Ik0xMTIgMEgxMnY0OGMxNy4zIDAgMzMuNTQgNC40NTMgNDcuNzMgMTIuMTg4Wm0wIDAiLz4KICAgIDxwYXRoIGZpbGw9IiMzNDM3NDEiIGQ9Ik0xMiA0OHY2Ny4xNTJsNDcuNzMtNTQuOTZBOTkuNDIyIDk5LjQyMiAwIDAgMCAxMiA0OCIvPgogICAgPHBhdGggZmlsbD0iIzAwYmZiMyIgZD0ibTcwLjA0IDY2LjYyMS00OC45NzQgNTYuNDA2TDE2LjczOCAxMjhoOTMuMjU4Yy01LjEyMS0yNS4yMS0xOS43NTgtNDYuOTQ1LTM5Ljk1Ny02MS4zNzkiLz4KPC9zdmc+Cg=="
+         x="500.96109"
+         y="73.175568"
+         width="122.96702"
+         height="73.832642"
+         preserveAspectRatio="xMidYMid"
+         style="color:#fbfbfe;font-weight:400;font-size:16px;font-family:'Anthropic Sans', '-apple-system', BlinkMacSystemFont, 'Segoe UI', sans-serif;dominant-baseline:auto;text-anchor:start;opacity:1;fill:#000000;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter"
+         id="image39" />
+      <text
+         x="561.78516"
+         y="159.26659"
+         font-family="Courier New, monospace"
+         font-size="9"
+         font-weight="700"
+         fill="#FAF6EE"
+         text-anchor="middle"
+         letter-spacing="1"
+         style="color:#fbfbfe;font-weight:700;font-size:9px;font-family:'Courier New', monospace;dominant-baseline:auto;text-anchor:middle;opacity:1;fill:#faf6ee;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter"
+         id="text39">KIBANA</text>
+    </g>
+  </g>
+</svg>

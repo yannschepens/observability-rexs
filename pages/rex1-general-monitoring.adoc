@@ -147,7 +147,7 @@ Transition : prenons les uns par uns
 [%notitle]
 == Collecteur : fichiers
 
-image::rex1-filebeat.png[1, 60%]
+image::rex1-filebeat.svg[1, 40%]
 
 [NOTE.speaker]
 ====
@@ -198,7 +198,7 @@ Transition : et pour ça, on va utilisé un ....
 [%notitle]
 == Agrégateur : Logstash
 
-image::rex1-logstash.png[1, 50%]
+image::rex1-logstash.svg[1, 45%]
 
 [NOTE.speaker]
 ====
@@ -238,7 +238,7 @@ Transition : C'est bien on a nos logs, mais on les stocke où ?
 [%notitle]
 == Stockage
 
-image::rex1-es.png[1, 75%]
+image::rex1-es.svg[1, 45%]
 
 [NOTE.speaker]
 ====
@@ -282,7 +282,7 @@ Transition : concernant kibana, on s'est simplifié la vie
 [%notitle]
 == Viz' : Kibana
 
-image::rex1-kibana.png[1, 45%]
+image::rex1-kibana.svg[1, 45%]
 
 [NOTE.speaker]
 ====
@@ -296,7 +296,7 @@ Transition : Mais Grafana est le vrai point central.
 [%notitle]
 == Viz' : Grafana
 
-image::rex1-grafana.png[1, 45%]
+image::rex1-grafana.svg[1, 45%]
 
 [NOTE.speaker]
 ====
@@ -312,7 +312,7 @@ Transition : La stack complète.
 [%notitle]
 == La stack
 
-image::rex1-global-stack.png[1]
+image::rex1-global-stack.svg[1, 75%]
 
 [NOTE.speaker]
 ====

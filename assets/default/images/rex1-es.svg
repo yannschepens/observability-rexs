@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="44.185417mm"
+   height="37.570831mm"
+   viewBox="0 0 44.185417 37.570831"
+   version="1.1"
+   id="svg1"
+   inkscape:version="1.4.3 (fcd0343856, 2026-01-01)"
+   sodipodi:docname="rex1-es.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     inkscape:zoom="0.79196829"
+     inkscape:cx="41.036996"
+     inkscape:cy="392.06115"
+     inkscape:window-width="1878"
+     inkscape:window-height="1136"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs1" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     style="display:inline"
+     transform="translate(-93.9781,-44.772855)">
+    <g
+       id="g46"
+       inkscape:label="elastic"
+       transform="matrix(0.26458333,0,0,0.26458333,-32.757315,-5.2333943)">
+      <rect
+         x="480"
+         y="190"
+         width="165"
+         height="140"
+         rx="8"
+         fill="#1a3a5c"
+         stroke="#FAF6EE"
+         stroke-width="2"
+         style="color:#fbfbfe;font-weight:400;font-size:16px;font-family:'Anthropic Sans', '-apple-system', BlinkMacSystemFont, 'Segoe UI', sans-serif;dominant-baseline:auto;text-anchor:start;opacity:1;fill:#1a3a5c;stroke:#faf6ee;stroke-width:2px;stroke-linecap:butt;stroke-linejoin:miter"
+         id="rect32" />
+      <rect
+         x="487"
+         y="197"
+         width="151"
+         height="126"
+         rx="6"
+         fill="none"
+         stroke="#c0392b"
+         stroke-width="1.5"
+         style="color:#fbfbfe;font-weight:400;font-size:16px;font-family:'Anthropic Sans', '-apple-system', BlinkMacSystemFont, 'Segoe UI', sans-serif;dominant-baseline:auto;text-anchor:start;opacity:1;fill:none;stroke:#c0392b;stroke-width:1.5px;stroke-linecap:butt;stroke-linejoin:miter"
+         id="rect33" />
+      <circle
+         cx="501"
+         cy="207"
+         r="4"
+         fill="#c0392b"
+         style="color:#fbfbfe;font-weight:400;font-size:16px;font-family:'Anthropic Sans', '-apple-system', BlinkMacSystemFont, 'Segoe UI', sans-serif;dominant-baseline:auto;text-anchor:start;opacity:1;fill:#c0392b;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter"
+         id="circle33" />
+      <circle
+         cx="516"
+         cy="207"
+         r="4"
+         fill="#7ab3d4"
+         opacity="0.7"
+         style="color:#fbfbfe;font-weight:400;font-size:16px;font-family:'Anthropic Sans', '-apple-system', BlinkMacSystemFont, 'Segoe UI', sans-serif;dominant-baseline:auto;text-anchor:start;opacity:0.7;fill:#7ab3d4;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter"
+         id="circle34" />
+      <circle
+         cx="531"
+         cy="207"
+         r="4"
+         fill="#FAF6EE"
+         opacity="0.5"
+         style="color:#fbfbfe;font-weight:400;font-size:16px;font-family:'Anthropic Sans', '-apple-system', BlinkMacSystemFont, 'Segoe UI', sans-serif;dominant-baseline:auto;text-anchor:start;opacity:0.5;fill:#faf6ee;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter"
+         id="circle35" />
+      <image
+         href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjggMTI4Ij4KICAgIDxwYXRoIGZpbGw9IiMzNDM3NDEiIGQ9Ik00IDY0YzAgNS41MzUuNzc3IDEwLjg3OSAyLjA5OCAxNkg4NGM4LjgzNiAwIDE2LTcuMTY0IDE2LTE2cy03LjE2NC0xNi0xNi0xNkg2LjA5OEE2My43MzggNjMuNzM4IDAgMCAwIDQgNjQiLz4KICAgIDxwYXRoIGZpbGw9IiNmZWM1MTQiIGQ9Ik0xMTEuNjk1IDMwLjY0OEE2MS40ODUgNjEuNDg1IDAgMCAwIDExNy45MjIgMjRDMTA2LjE4OCA5LjM3OSA4OC4xOTkgMCA2OCAwIDQyLjcxNSAwIDIwLjk1NyAxNC43MSAxMC41NzQgMzZIOTguMDRhMjAuMTIzIDIwLjEyMyAwIDAgMCAxMy42NTItNS4zNTIiLz4KICAgIDxwYXRoIGZpbGw9IiMwMGJmYjMiIGQ9Ik05OC4wNCA5MkgxMC41NzdDMjAuOTYxIDExMy4yOSA0Mi43MTUgMTI4IDY4IDEyOGMyMC4yIDAgMzguMTg4LTkuMzgzIDQ5LjkyMi0yNGE2MS4xIDYxLjEgMCAwIDAtNi4yMjctNi42NDhBMjAuMTMzIDIwLjEzMyAwIDAgMCA5OC4wNCA5MiIvPgo8L3N2Zz4K"
+         x="495"
+         y="218"
+         width="135"
+         height="90"
+         preserveAspectRatio="xMidYMid"
+         style="color:#fbfbfe;font-weight:400;font-size:16px;font-family:'Anthropic Sans', '-apple-system', BlinkMacSystemFont, 'Segoe UI', sans-serif;dominant-baseline:auto;text-anchor:start;opacity:1;fill:#000000;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter"
+         id="image35" />
+      <text
+         x="563"
+         y="318"
+         font-family="Courier New, monospace"
+         font-size="8"
+         font-weight="700"
+         fill="#FAF6EE"
+         text-anchor="middle"
+         letter-spacing="0.5"
+         style="color:#fbfbfe;font-weight:700;font-size:8px;font-family:'Courier New', monospace;dominant-baseline:auto;text-anchor:middle;opacity:1;fill:#faf6ee;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter"
+         id="text35">ELASTICSEARCH</text>
+    </g>
+  </g>
+</svg>
