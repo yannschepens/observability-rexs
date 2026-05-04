@@ -166,7 +166,13 @@ Transition : Et pour les containers — la sortie standard Docker.
 [%notitle]
 == Collecteur : Docker
 
-image::rex1-docker-driver.png[1, 60%]
+[cols="1,1",frame=none,grid=none]
+|===
+a|
+image::rex1-docker.svg[1,200%]
+a|
+image::rex1-docker-driver.png[1]
+|===
 
 [NOTE.speaker]
 ====
@@ -214,6 +220,8 @@ Transition : Donc on normalise.
 [%notitle]
 == Logstash : normalisation
 
+Normaliser
+
 [%step]
 * Découpe des logs textes en JSON
 * Taggage des types et origine de logs
@@ -238,29 +246,28 @@ Transition : C'est bien on a nos logs, mais on les stocke où ?
 [%notitle]
 == Stockage
 
-image::rex1-es.svg[1, 45%]
+[cols="1,1",frame=none,grid=none]
+|===
+a|
+image::rex1-es.svg[1, 200%]
+a|
+image::rex1-indexes.png[1]
+|===
+
 
 [NOTE.speaker]
 ====
 * On a choisi Elasticsearch — reconnu dans le domaine, gère très bien le JSON.
 
-Transition : mais ça ne se fait pas tout seul non plus, il faut réfléchir à la stratégie de stockage
-====
+* Mais ça ne se fait pas tout seul non plus, il faut réfléchir à la stratégie de stockage
 
-[%notitle]
-== Organisation des index
-
-image::rex1-indexes.png[1, 75%]
-
-[NOTE.speaker]
-====
 Format des noms d'index : `<service>_<env>-<log_file>-YYYY-MM`
 
 * Une centaine d'index par mois
 * Rétention via script selon le type :
-  ** 1 an pour les logs d'accès
-  ** 1 mois pour les logs d'erreurs
-  ** 1 mois pour les logs applicatifs
+** 1 an pour les logs d'accès
+** 1 mois pour les logs d'erreurs
+** 1 mois pour les logs applicatifs
 
 Note : aujourd'hui il y a les ILM et les datastreams ELK — ce n'était pas le cas à l'époque.
 
@@ -269,7 +276,7 @@ Transition : La dernière brique — la visualisation.
 
 // ─── EXPLOITATION AVEC GRAFANA ───────────────────────────────────────────────
 
-== Exploitation avec Grafana
+== Les outils de viz'
 
 [NOTE.speaker]
 ====
@@ -282,7 +289,13 @@ Transition : concernant kibana, on s'est simplifié la vie
 [%notitle]
 == Viz' : Kibana
 
-image::rex1-kibana.svg[1, 45%]
+[cols="1,1",frame=none,grid=none]
+|===
+a|
+image::rex1-kibana.svg[1, 200%]
+a|
+image::kibana.png[1]
+|===
 
 [NOTE.speaker]
 ====
@@ -296,7 +309,13 @@ Transition : Mais Grafana est le vrai point central.
 [%notitle]
 == Viz' : Grafana
 
-image::rex1-grafana.svg[1, 45%]
+[cols="1,1",frame=none,grid=none]
+|===
+a|
+image::rex1-grafana.svg[1, 200%]
+a|
+image::grafana.png[1]
+|===
 
 [NOTE.speaker]
 ====
@@ -324,16 +343,13 @@ Transition : Et un usage avancé qui a bien servi — le tracking utilisateurs.
 [%notitle]
 == Tracking des utilisateurs
 
-Qui va où et quand ?
-
-[%step]
-* GitLab = IAM de fait — tout le monde passe par là
-* Logs GitLab : nom d'utilisateur + adresse IP
-* Croisement avec les access logs → parcours utilisateur reconstitué
+image::tracking.png[1, 50%]
 
 [NOTE.speaker]
 ====
-* Sur une PIC, savoir qui fait quoi est important — traçabilité et sécurité
+
+Petit truc sympa sur cette stack : On avait un besoin de savoir qui fait quoi - traçabilité et sécurité
+
 * En croisant les logs GitLab et les access logs des autres outils, on reconstitue le parcours
 * Usage pratique : détecter un accès anormal, retrouver l'auteur d'une action
 
@@ -345,7 +361,12 @@ Transition : Le take-away de ce REX.
 [%notitle]
 == 👕 Take-away REX 1
 
+[quote]
+____
 "Un dashboard sans parsing propre, c'est juste du bruit en couleur."
+
+— Manuel NettoieLogs2000, édition 1987
+____
 
 [NOTE.speaker]
 ====
