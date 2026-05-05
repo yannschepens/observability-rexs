@@ -1,8 +1,6 @@
 = 🧺 Audit ELK — Le syndrome de l'armoire pleine
 :imagesdir: assets/default/images
 
-== !
-
 [NOTE.speaker]
 ====
 Après le succès de cette première mission NettoieLogs2000, on s'est tout de suite rendu compte de notre expertise en rangement :
@@ -53,24 +51,31 @@ image::rex2/elk_etat_des_lieux_nl2000.svg[]
 * Décision sage : ne pas foncer dans des changements sans comprendre l'existant
 ** Donc audit
 
-Transition : Et pour faire les choses correctement, on commence par des interviews
+Transition : Et pour faire les choses correctement, on commence par des interviews et analyse ce qu'on a
 ====
 
 [%notitle]
 == Ce qu'on a trouvé en entrant
 
-[%step]
-* Infra bien dimensionnée — pas le sujet
-* Une seule personne maîtrise tout — le référent technique
-* Ce travail d'analyse n'avait *jamais été fait globalement*
-* Des contraintes légales de conservation à respecter
+[cols="^.^,^.^",frame=none,grid=none]
+|===
+a|[%step]
+image::rex2/constats_contexte_infra_nl2000.svg[1,40%]
+a|[%step]
+image::rex2/constats_contexte_user_nl2000.svg[1,40%]
+
+a|[%step]
+image::rex2/constats_contexte_analyse_nl2000.svg[1,40%]
+a|[%step]
+image::rex2/constats_contexte_law_nl2000.svg[1,40%]
+|===
 
 [NOTE.speaker]
 ====
 Ce qu'on a trouvé en entrant dans la chambre
 
 * Step : L'infra n'est pas sous-dimensionnée — inutile de tout changer
-* Step : Le connaissance est centralisé
+* Step : La connaissance est centralisé
 * Step : Le filtrage des logs n'ayant jamais été fait de manière globale, les leviers sont nombreux
 * Step : Certaines données ont des restrictions d'accès et des durées de conservation légales
 
