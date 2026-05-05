@@ -20,7 +20,7 @@ Transition : Spoiler : ce n'est pas la bonne solution.
 [%notitle]
 == Le syndrome de l'armoire pleine
 
-image::rex2-armoire.svg[armoire qui déborde, 75%]
+image::rex2/rex2_armoire_nl2000.svg[armoire qui déborde, 75%]
 
 [NOTE.speaker]
 ====
@@ -40,21 +40,20 @@ Transition : Le contexte d'abord.
 [%notitle]
 == Contexte
 
-Mission d'audit ELK chez un client grand compte
-
-[%step]
-* Stack ELK en production pour les logs applicatifs, métiers, systèmes et réseaux
-* Diversité d'usages + volumes croissants = coût de run élevé
-* Nombreuses interventions manuelles sur la stack
-* Avant de changer quoi que ce soit : *un audit*
+image::rex2/elk_etat_des_lieux_nl2000.svg[]
 
 [NOTE.speaker]
 ====
-* ELK utilisé pour tout : logs appli, métier, système, réseau — tout dans le même panier
-* Le problème : chronophage à maintenir, de plus en plus cher en infra
-* Décision sage : ne pas foncer dans des changements sans comprendre l'existant
+* Mission d'audit ELK chez un client grand compte
 
-Transition : On commence par des interviews.
+* ELK utilisé pour tout : logs appli, métier, système, réseau — tout dans le même panier
+* Diversité d'usages + volumes croissants = coût de run élevé
+* Le problème : chronophage à maintenir, de plus en plus cher en infra
+** Nombreuses interventions manuelles sur la stack
+* Décision sage : ne pas foncer dans des changements sans comprendre l'existant
+** Donc audit
+
+Transition : Et pour faire les choses correctement, on commence par des interviews
 ====
 
 [%notitle]
@@ -81,8 +80,7 @@ Transition : L'objectif est donc clair.
 [%notitle]
 == Objectifs
 
-* Diminuer l'espace disque de la stack ELK
-* Simplifier et automatiser le nettoyage des données
+image::rex2/elk_objectifs_disque_stable.svg[]
 
 [NOTE.speaker]
 ====
