@@ -75,7 +75,7 @@ image::rex2/constats_contexte_law_nl2000.svg[1,40%]
 Ce qu'on a trouvé en entrant dans la chambre
 
 * Step : L'infra n'est pas sous-dimensionnée — inutile de tout changer
-* Step : La connaissance est centralisé
+* Step : La connaissance est centralisé, ce qui est un risque mais au moins, toutes les infos sont aux mains de la même persone
 * Step : Le filtrage des logs n'ayant jamais été fait de manière globale, les leviers sont nombreux
 * Step : Certaines données ont des restrictions d'accès et des durées de conservation légales
 
@@ -101,16 +101,18 @@ Transition : Voici la méthode pour auditer une stack ELK.
 [%notitle]
 == Le plan de bataille
 
-[%step]
-. Analyse — inventaire et volumétrie
-. Catégorisation — type, niveau, rétention, débit
-. Stratégie de stockage — datastreams + ILM
-. Configuration Logstash — variabilisation
-. Stratégie d'agrégation — downsampling
-. Stratégie d'archivage — conservation légale
+image::rex2/methodo_boucle_nl2000_v2.svg[1, 80%]
 
 [NOTE.speaker]
 ====
+* Notre plan de bataille en 6 étapes
+** Analyse — inventaire et volumétrie
+** Catégorisation — type, niveau, rétention, débit
+** Stratégie de stockage — datastreams + ILM
+** Configuration Logstash — variabilisation
+** Stratégie d'agrégation — downsampling
+** Stratégie d'archivage — conservation légale
+
 * Approche itérative, cadencée par des réunions de 2h en fonction des avancements
 * Théorie + état de l'art de mon côté, mise en œuvre côté responsable
 * On avance étape par étape — on ne vide pas l'armoire en une seule fois
@@ -123,16 +125,19 @@ Transition : Commençons par le grand tri.
 [%notitle]
 == Étape 1 — Le grand tri
 
-Explorer, lister, mesurer
+
+image::rex2/rex2-plan-step1.svg[1, 80%]
 
 [%step]
-* Inventaire complet dans un fichier Excel
-* Volumétrie réelle par index
-* Pertinence, catégorie, durée de conservation
-* Suppression des logs inutiles
+* *Inventaire complet* dans un fichier Excel
+* *Volumétrie réelle* par index
+* Pertinence, catégorie, *durée de conservation*
+* *Suppression* des logs inutiles
 
 [NOTE.speaker]
 ====
+Explorer, lister, mesurer
+
 * Step : On liste tout — l'équivalent de sortir tous les vêtements de l'armoire sur le lit
 * Step : Pour chaque index : taille, nombre de docs
 * Step : challenge de la pertinence, qui l'utilise
@@ -144,16 +149,17 @@ Transition : Déjà sur cette étape le résultat parle de lui-même.
 [%notitle]
 == Résultat du grand tri
 
-[.big-number]
-782 Go → 638 Go
-
-* Firewall : 80 Go → 60 Go (−25%)
-* VMWare : 140 Go → 80 Go (−43%)
-* *Rien qu'en supprimant ce qui ne devrait pas être là*
-
+image::rex2/rex2-reduction_logs_inutiles.svg[1, 110%]
 [NOTE.speaker]
 ====
 Lire les valeurs
+
+* *Rien qu'en supprimant ce qui ne devrait pas être là*
+
+Plus précisemsnet
+* Firewall : 80 Go → 60 Go (−25%)
+* VMWare : 140 Go → 80 Go (−43%)
+
 
 * Ces gains sont obtenus avant de toucher à la configuration
 * Juste en ouvrant l'armoire et en jetant ce qui est clairement inutile
@@ -169,17 +175,20 @@ Transition : Étape 2, catégoriser ce qu'on garde.
 [%notitle]
 == Étape 2 — Catégorisation
 
-Chaque log à sa place, chaque place à son log
+image::rex2/rex2-plan-step2.svg[1, 80%]
 
 [%step]
-* Découper chaque index selon :
-** *Type* — system, appli, réseau, métier...
-** *Niveau* — error, warn, info, debug
-** *Conservation* — légale, opérationnelle, aucune
-** *Débit* — volumétrie par unité de temps
+Découper chaque index selon :
+[%step]
+* *Type* — system, appli, réseau, métier...
+* *Niveau* — error, warn, info, debug
+* *Conservation* — légale, opérationnelle, aucune
+* *Débit* — volumétrie par unité de temps
 
 [NOTE.speaker]
 ====
+Chaque log à sa place, chaque place à son log
+
 Le but de cette étape est d'y voir plus clair et surtout de pouvoir, par la suite, définir des règles par "catégorie"
 
 * On trie par catégories — comme les vêtements par couleur et par matière
@@ -195,7 +204,7 @@ Transition : La catégorisation permet de définir une vraie stratégie de stock
 [%notitle]
 == Étape 3 — Ranger intelligemment
 
-Les logs froids à la cave
+image::rex2/rex2-plan-step3.svg[1, 80%]
 
 [%step]
 * Ajout de *métadonnées* sur les logs (ECS Elasticsearch)
@@ -205,6 +214,8 @@ Les logs froids à la cave
 
 [NOTE.speaker]
 ====
+Les logs froids à la cave
+
 Ici, on va réflechir à ranger les logs selon deux dimensions : où et quand
 
 * Step : On va déjà ajouté les méta données basée sur nos catégories en suivant le standard ECS
@@ -225,6 +236,8 @@ Transition : Une fois les datastreams et les règles en place, on améliore la c
 [%notitle]
 == Étape 4 — Logstash : la config statique, c'est une dette
 
+image::rex2/rex2-plan-step4.svg[1, 80%]
+
 [%step]
 * Analyse de la configuration existante
 * Ajout des métadonnées dans les filtres
@@ -234,6 +247,8 @@ Transition : Une fois les datastreams et les règles en place, on améliore la c
 [NOTE.speaker]
 ====
 Ici, on est surtout sur une histoire de flexibilité et de faciliter de maintenance de code.
+
+La config statique, c'est une dette
 
 * On passe les steppers
 * La configuration Logstash était statique : un output codé en dur par destination
@@ -248,13 +263,19 @@ Transition : Et pour finir, deux autres sujets étudiés mais pas encore déploy
 [%notitle]
 == Étapes 5 & 6 — Agrégation & archivage
 
+[cols="^.^,^.^",frame=none,grid=none]
+|===
+a|
+image::rex2/rex2-plan-step5.svg[1, 150%]
+a|
+image::rex2/rex2-plan-step6.svg[1, 150%]
+|===
+
 Étudiés, pas encore déployés
 
 [%step]
-* *Agrégation* : downsampling, rollup ou transformation +
-→ non mis en place, contrainte de ne pas perdre de données
-* *Archivage* : snapshot Elasticsearch ou export manuel +
-→ présenté, budgété pour une prochaine phase
+* [.nl-badge.founded]#Agrégation# : downsampling, rollup ou transformation
+* [.nl-badge.founded]#Archivage# : snapshot Elasticsearch ou export manuel
 
 [NOTE.speaker]
 ====
@@ -313,24 +334,23 @@ Transition : Le take-away.
 [%notitle]
 == 🧺 Take-away REX 2
 
+[quote]
+____
 "La meilleure donnée, c'est celle qu'on n'a pas besoin de stocker."
 
-[%step]
-* Faire l'inventaire *avant* de toucher à quoi que ce soit
-* Se poser la question Marie Kondo pour chaque flux : décision opérationnelle ou non ?
-* ILM dès le départ — les logs froids à la cave, pas dans le même tiroir que les chauds
-* Variabiliser Logstash — finir les outputs codés en dur
-* La sobriété, c'est la survie de votre stack ELK
+— Manuel NettoieLogs2000, édition 1987
+____
 
 [NOTE.speaker]
 ====
 Donc, la conclusion à emporter
 
-* On passe les steps
 
-* L'inventaire Excel est peu glamour — mais c'est la base de tout le reste
-* ILM : sur ce projet, on avait des index sans aucune politique de suppression depuis des années
-* La sobriété des logs n'est pas une contrainte technique — c'est une discipline d'équipe
+* Faire l'inventaire *avant* de toucher à quoi que ce soit, L'inventaire Excel est peu glamour — mais c'est la base de tout le reste
+* Se poser la question Marie Kondo pour chaque flux : décision opérationnelle ou non ?
+* ILM dès le départ — les logs froids à la cave, pas dans le même tiroir que les chauds, et surtout politique de suppression
+* Variabiliser Logstash — finir les outputs codés en dur
+* La sobriété, c'est la survie de votre stack ELK et ce n'est pas une contrainte technique — c'est une discipline d'équipe
 
 Transition : Mais assez parler de logs, parlons de métriques à plus grandes échelles. On passe au REX 3 — la laverie industrielle.
 ====

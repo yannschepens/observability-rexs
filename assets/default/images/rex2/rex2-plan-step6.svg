@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="95.779167mm"
+   height="16.933334mm"
+   viewBox="0 0 95.779167 16.933334"
+   version="1.1"
+   id="svg1"
+   sodipodi:docname="rex2-plan-step6.svg"
+   inkscape:version="1.4.3 (fcd0343856, 2026-01-01)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     inkscape:zoom="2.2400246"
+     inkscape:cx="137.05207"
+     inkscape:cy="0.6696355"
+     inkscape:window-width="1878"
+     inkscape:window-height="1136"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs1">
+    <marker
+       id="arr"
+       markerWidth="8"
+       markerHeight="8"
+       refX="6"
+       refY="3"
+       orient="auto">
+      <path
+         d="M 0,0 V 6 L 8,3 Z"
+         fill="#1a3a5c"
+         id="path1" />
+    </marker>
+    <marker
+       id="arr-1"
+       markerWidth="8"
+       markerHeight="8"
+       refX="6"
+       refY="3"
+       orient="auto">
+      <path
+         d="M 0,0 V 6 L 8,3 Z"
+         fill="#1a3a5c"
+         id="path1-9" />
+    </marker>
+  </defs>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-80.929272,-55.862263)">
+    <rect
+       x="81.193855"
+       y="56.126846"
+       width="95.25"
+       height="16.404167"
+       rx="1.8520833"
+       fill="#FAF6EE"
+       stroke="#1a3a5c"
+       stroke-width="2"
+       style="color:#fbfbfe;font-weight:400;font-size:16px;font-family:'Anthropic Sans', '-apple-system', BlinkMacSystemFont, 'Segoe UI', sans-serif;dominant-baseline:auto;text-anchor:start;fill:#faf6ee;stroke:#1a3a5c;stroke-width:0.529167px;stroke-linecap:butt;stroke-linejoin:miter"
+       id="rect85" />
+    <rect
+       x="82.781357"
+       y="57.714344"
+       width="92.074997"
+       height="13.229166"
+       rx="1.3229166"
+       fill="none"
+       stroke="#c0392b"
+       stroke-width="1.2"
+       style="color:#fbfbfe;font-weight:400;font-size:16px;font-family:'Anthropic Sans', '-apple-system', BlinkMacSystemFont, 'Segoe UI', sans-serif;dominant-baseline:auto;text-anchor:start;fill:none;stroke:#c0392b;stroke-width:0.3175px;stroke-linecap:butt;stroke-linejoin:miter"
+       id="rect86" />
+    <rect
+       x="81.193855"
+       y="56.126846"
+       width="9.5249996"
+       height="16.404167"
+       rx="1.8520833"
+       fill="#1a3a5c"
+       style="color:#fbfbfe;font-weight:400;font-size:16px;font-family:'Anthropic Sans', '-apple-system', BlinkMacSystemFont, 'Segoe UI', sans-serif;dominant-baseline:auto;text-anchor:start;fill:#1a3a5c;stroke:none;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter"
+       id="rect87" />
+    <text
+       x="85.956352"
+       y="65.122681"
+       font-family="Courier New, monospace"
+       font-size="11"
+       font-weight="700"
+       fill="#7ab3d4"
+       text-anchor="middle"
+       dominant-baseline="central"
+       style="color:#fbfbfe;font-weight:700;font-size:2.91042px;font-family:'Courier New', monospace;dominant-baseline:central;text-anchor:middle;fill:#7ab3d4;stroke:none;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter"
+       id="text87">6</text>
+    <text
+       x="131.46469"
+       y="62.476845"
+       font-family="Courier New, monospace"
+       font-size="9"
+       font-weight="700"
+       fill="#1a3a5c"
+       text-anchor="middle"
+       style="color:#fbfbfe;font-weight:700;font-size:2.38125px;font-family:'Courier New', monospace;dominant-baseline:auto;text-anchor:middle;fill:#1a3a5c;stroke:none;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter"
+       id="text88">STRATÉGIE D'ARCHIVAGE</text>
+    <text
+       x="131.46469"
+       y="66.445595"
+       font-family="Courier New, monospace"
+       font-size="7.5"
+       fill="#888"
+       text-anchor="middle"
+       style="color:#fbfbfe;font-weight:400;font-size:1.98438px;font-family:'Courier New', monospace;dominant-baseline:auto;text-anchor:middle;fill:#888888;stroke:none;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter"
+       id="text89">Conservation légale</text>
+  </g>
+</svg>

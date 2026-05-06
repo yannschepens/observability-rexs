@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="95.779167mm"
+   height="16.933334mm"
+   viewBox="0 0 95.779167 16.933334"
+   version="1.1"
+   id="svg1"
+   sodipodi:docname="rex2-plan-step2.svg"
+   inkscape:version="1.4.3 (fcd0343856, 2026-01-01)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     inkscape:zoom="2.2400246"
+     inkscape:cx="189.73006"
+     inkscape:cy="158.70361"
+     inkscape:window-width="1878"
+     inkscape:window-height="1136"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs1">
+    <marker
+       id="arr"
+       markerWidth="8"
+       markerHeight="8"
+       refX="6"
+       refY="3"
+       orient="auto">
+      <path
+         d="M 0,0 V 6 L 8,3 Z"
+         fill="#1a3a5c"
+         id="path1" />
+    </marker>
+  </defs>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(27.814478,-14.058098)">
+    <rect
+       x="-27.549894"
+       y="14.322681"
+       width="95.25"
+       height="16.404167"
+       rx="1.8520833"
+       fill="#FAF6EE"
+       stroke="#1a3a5c"
+       stroke-width="2"
+       style="color:#fbfbfe;font-weight:400;font-size:16px;font-family:'Anthropic Sans', '-apple-system', BlinkMacSystemFont, 'Segoe UI', sans-serif;dominant-baseline:auto;text-anchor:start;fill:#faf6ee;stroke:#1a3a5c;stroke-width:0.529167px;stroke-linecap:butt;stroke-linejoin:miter"
+       id="rect69" />
+    <rect
+       x="-25.962395"
+       y="15.910181"
+       width="92.074997"
+       height="13.229166"
+       rx="1.3229166"
+       fill="none"
+       stroke="#c0392b"
+       stroke-width="1.2"
+       style="color:#fbfbfe;font-weight:400;font-size:16px;font-family:'Anthropic Sans', '-apple-system', BlinkMacSystemFont, 'Segoe UI', sans-serif;dominant-baseline:auto;text-anchor:start;fill:none;stroke:#c0392b;stroke-width:0.3175px;stroke-linecap:butt;stroke-linejoin:miter"
+       id="rect70" />
+    <rect
+       x="-27.549894"
+       y="14.322681"
+       width="9.5249996"
+       height="16.404167"
+       rx="1.8520833"
+       fill="#1a3a5c"
+       style="color:#fbfbfe;font-weight:400;font-size:16px;font-family:'Anthropic Sans', '-apple-system', BlinkMacSystemFont, 'Segoe UI', sans-serif;dominant-baseline:auto;text-anchor:start;fill:#1a3a5c;stroke:none;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter"
+       id="rect71" />
+    <text
+       x="-22.787394"
+       y="23.318514"
+       font-family="Courier New, monospace"
+       font-size="11"
+       font-weight="700"
+       fill="#7ab3d4"
+       text-anchor="middle"
+       dominant-baseline="central"
+       style="color:#fbfbfe;font-weight:700;font-size:2.91042px;font-family:'Courier New', monospace;dominant-baseline:central;text-anchor:middle;fill:#7ab3d4;stroke:none;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter"
+       id="text71">2</text>
+    <text
+       x="22.720938"
+       y="20.672682"
+       font-family="Courier New, monospace"
+       font-size="9"
+       font-weight="700"
+       fill="#1a3a5c"
+       text-anchor="middle"
+       style="color:#fbfbfe;font-weight:700;font-size:2.38125px;font-family:'Courier New', monospace;dominant-baseline:auto;text-anchor:middle;fill:#1a3a5c;stroke:none;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter"
+       id="text72">CATÉGORISATION</text>
+    <text
+       x="22.720938"
+       y="24.641432"
+       font-family="Courier New, monospace"
+       font-size="7.5"
+       fill="#888"
+       text-anchor="middle"
+       style="color:#fbfbfe;font-weight:400;font-size:1.98438px;font-family:'Courier New', monospace;dominant-baseline:auto;text-anchor:middle;fill:#888888;stroke:none;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter"
+       id="text73">Type, niveau, rétention, débit</text>
+  </g>
+</svg>
