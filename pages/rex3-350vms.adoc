@@ -1,8 +1,6 @@
 = 🏭 350 VMs — La laverie industrielle
 :imagesdir: assets/default/images
 
-== !
-
 [NOTE.speaker]
 ====
 Qui dit laverie, dit machine à laver, et il était temps pour NettoieLogs2000 d'étendre ces activités avec une approche plus industrielles.
@@ -22,7 +20,7 @@ Transition : Le contexte d'abord.
 [%notitle]
 == L'enfer sonore
 
-image::rex3-bips.svg[enfer des alertes, 80%]
+image::rex3/rex3-laverie_nl2000.svg[enfer des alertes, 100%]
 
 [NOTE.speaker]
 ====
@@ -44,40 +42,24 @@ Transition : Voyons l'infrastructure en question.
 [%notitle]
 == Contexte
 
-Mission d'uniformisation du monitoring chez un client grand compte
+image::rex3/rex3-infra_architecture_nl2000_v3.svg[]
 
-[%step]
+[NOTE.speaker]
+====
+Le client est un groupe important avec une DSI structurée, mais avec des rachats donc un SI hétérogène
+
 * ~350 VMs — Debian, CentOS, Windows
 * Deux hébergeurs : AWS + on-premise
+** AWS : provisionnement as code, Terraform + Puppet — infra propre côté cloud
+** On-prem : géré manuellement, hétérogène
 * ~200 applications, pilotées par 50 personnes
-* AWS géré en code (Terraform + Puppet) — le reste, à la main
-
-[NOTE.speaker]
-====
-* Le client est un groupe important avec une DSI structurée, mais avec des rachats donc un SI hétérogène
-* AWS : provisionnement as code, Terraform + Puppet — infra propre côté cloud
-* On-prem : géré manuellement, hétérogène
 * Pas de lien réseau direct entre AWS et l'on-prem — deux mondes qui coexistent
 
-Transition : Et avant notre arrivée, il y avait déjà du monitoring en place.
-====
+Et avant notre arrivée, il y avait déjà du monitoring en place.
 
-[%notitle]
-== L'existant : deux systèmes qui coexistent
-
-[%step]
-* *Prometheus + Grafana* — AWS + on-prem Debian +
-  chaque équipe gère ses dashboards et alertes séparément
-* *Une solution proprietaire* — on-prem uniquement +
-  configuré à la main, alertes "au besoin"
+* *Prometheus + Grafana* — AWS + on-prem Debian : chaque équipe gère ses dashboards et alertes séparément
+* *Une solution proprietaire* — on-prem uniquement : configuré à la main, alertes "au besoin"
 * Zéro couverture des services extérieurs (RDS, load balancers, SaaS...)
-
-[NOTE.speaker]
-====
-* Prometheus est déjà en place sur AWS — c'est une bonne base
-* Mais chaque équipe gère ses dashboards de son côté → pas d'uniformité, pas de vision globale
-* La solution proprietaire couvre un datacenter seulement — et personne ne sait vraiment qui répond à ses alertes
-* Résultat : deux systèmes qui ne se parlent pas, des alertes qui partent dans tous les sens — le bruit
 
 Transition : Avant de proposer quoi que ce soit, on a posé nos convictions.
 ====
