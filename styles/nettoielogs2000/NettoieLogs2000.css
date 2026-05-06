@@ -6,6 +6,7 @@
 :root {
   --nl-marine: #1a3a5c;
   --nl-red: #c0392b;
+  --nl-green: #46c02b;
   --nl-cream: #F2E8D5;
   --nl-cream-warm: #F5EDD8;
   --nl-off-white: #FAF6EE;
@@ -182,6 +183,12 @@
   border-color: var(--nl-red);
   box-shadow: inset 0 0 0 2px var(--nl-cream), inset 0 0 0 4px var(--nl-red);
   color: var(--nl-red);
+}
+
+.nl-badge.ok {
+  border-color: var(--nl-green);
+  box-shadow: inset 0 0 0 2px var(--nl-cream), inset 0 0 0 4px var(--nl-green);
+  color: var(--nl-green);
 }
 
 /* ── Log lines (stylisées) ── */

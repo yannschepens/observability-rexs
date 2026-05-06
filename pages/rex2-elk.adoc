@@ -85,7 +85,18 @@ Transition : L'objectif est donc clair.
 [%notitle]
 == Objectifs
 
-image::rex2/elk_objectifs_disque_stable.svg[]
+
+
+[cols="^.^,2",frame=none,grid=none]
+|===
+a|
+[%step]
+* [.nl-badge]#Diminuer empreinte disque#
+* [.nl-badge]#Simplifier#
+a|
+image::rex2/elk_objectifs_disque_stable.svg[1, 150%]
+|===
+
 
 [NOTE.speaker]
 ====
@@ -210,7 +221,9 @@ image::rex2/rex2-plan-step3.svg[1, 80%]
 * Ajout de *métadonnées* sur les logs (ECS Elasticsearch)
 * *Datastreams* par catégorie
 * *ILM* (Index Lifecycle Management) par datastream
-* hot → warm → cold → delete
+
+[%step]
+[.nl-badge]#hot# → [.nl-badge]#warm# → [.nl-badge]#cold# → [.nl-badge.founded]#delete#
 
 [NOTE.speaker]
 ====
@@ -240,9 +253,9 @@ image::rex2/rex2-plan-step4.svg[1, 80%]
 
 [%step]
 * Analyse de la configuration existante
-* Ajout des métadonnées dans les filtres
+* Ajout des *métadonnées* dans les filtres
 * *Variabilisation* des outputs basée sur les métas
-* Sécurisation des mots de passe
+* *Sécurisation* des mots de passe
 
 [NOTE.speaker]
 ====
@@ -274,8 +287,8 @@ image::rex2/rex2-plan-step6.svg[1, 150%]
 Étudiés, pas encore déployés
 
 [%step]
-* [.nl-badge.founded]#Agrégation# : downsampling, rollup ou transformation
-* [.nl-badge.founded]#Archivage# : snapshot Elasticsearch ou export manuel
+* [.nl-badge]#Agrégation# : downsampling, rollup ou transformation
+* [.nl-badge]#Archivage# : snapshot Elasticsearch ou export manuel
 
 [NOTE.speaker]
 ====
@@ -292,16 +305,26 @@ Transition : Les résultats globaux.
 [%notitle]
 == Résultats
 
+[cols="^.^,2",frame=none,grid=none]
+|===
+a|
 [%step]
-* Volumétrie maîtrisée — même espace disque, données plus pertinentes
-* Diminution du débit d'ingestion
-* Stabilité de l'espace disque — plus de croissance non contrôlée
+* [.nl-badge.founded]#Diminuer empreinte disque#
+* [.nl-badge.ok]#Simplifier#
+a|
+image::rex2/elk_objectifs_disque_stable.svg[1, 150%]
+|===
 
 [NOTE.speaker]
 ====
 Et donc, sur ce travail de nettoyage et de tri :
 
-* Stepper
+* Les résultats :
+
+** Step: Ben on a pas réduit l'empreinte, par contre Volumétrie maîtrisée — même espace disque, données plus pertinentes
+** Diminution du débit d'ingestion
+** Stabilité de l'espace disque — plus de croissance non contrôlée
+* Step : Pour la simplification, on maitrise les données, donc c'est plus facile à maintenir
 
 * La vraie victoire : les données qui restent sont utiles. Le bruit est éliminé.
 * On n'a pas forcément moins de données — on a de meilleures données
@@ -312,18 +335,22 @@ Transition : Et des bénéfices inattendus.
 [%notitle]
 == Conséquences induites
 
+Conséquences induites
+
 [%step]
-. *Automatisation* — le travail sur Logstash a poussé l'équipe à automatiser le déploiement des configs
-. *Vision plus claire* — sur les données manipulées par la stack
-. *Meilleure maîtrise des outils* — fonctionnalités méconnues découvertes
-. *De nouveaux usages* — partage d'infos inter-équipes, observabilité métier
-. *Gestion simplifiée* — le redécoupage permet des actions plus fines
+* [.nl-badge]#Automatisation#
+* [.nl-badge]#Meilleure maîtrise des outils#
+* [.nl-badge]#De nouveaux usages#
 
 [NOTE.speaker]
 ====
 On déroule les steps
 
-* Ces 5 points n'étaient pas dans les objectifs initiaux — ils sont apparus en cours de route
+* Step: Automatisation — le travail sur Logstash a poussé l'équipe à automatiser le déploiement des configs
+* Step: Meilleure maîtrise des outils — fonctionnalités méconnues découvertes
+* Step: De nouveaux usages — partage d'infos inter-équipes, observabilité métier
+
+* Ces 3 points n'étaient pas dans les objectifs initiaux — ils sont apparus en cours de route
 * On commence par le disque, on finit par l'organisation. C'est souvent comme ça dans les missions d'audit.
 
 Transition : Le take-away.
