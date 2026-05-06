@@ -180,10 +180,10 @@ image::rex2/rex2-plan-step2.svg[1, 80%]
 [%step]
 Découper chaque index selon :
 [%step]
-* *Type* — system, appli, réseau, métier...
-* *Niveau* — error, warn, info, debug
-* *Conservation* — légale, opérationnelle, aucune
-* *Débit* — volumétrie par unité de temps
+* `Type` — system, appli, réseau, métier...
+* `Niveau` — error, warn, info, debug
+* `Conservation` — légale, opérationnelle, aucune
+* `Débit` — volumétrie par unité de temps
 
 [NOTE.speaker]
 ====
