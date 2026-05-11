@@ -11,6 +11,7 @@ Qui dit laverie, dit machine à laver, et il était temps pour NettoieLogs2000 d
 * L'image de ce REX : la laverie industrielle.
 * On ne gère pas 350 VMs comme on lave son pull préféré à la main.
 * Il faut de l'automatisation et une stratégie qui évite la "fatigue d'alerte".
+* Et uniformiser le monitoring pour simplifier la gestion
 
 Transition : Le contexte d'abord.
 ====
@@ -25,13 +26,12 @@ image::rex3/rex3-laverie_nl2000.svg[enfer des alertes, 100%]
 [NOTE.speaker]
 ====
 * 350 VMs. Si chaque machine bippe pour un CPU à 80%, c'est l'enfer sonore.
-
 * La fatigue d'alerte, c'est le moment où les équipes ops coupent les notifications.
 * Parce qu'il y en a trop, elles ne veulent plus rien dire.
 
 * Ce REX, c'est comment passer d'un système qui crie :
 ** dans différentes langues
-** et tout le temps
+** tout le temps
 ** à un système qui parle quand c'est important.
 
 Transition : Voyons l'infrastructure en question.
@@ -46,19 +46,13 @@ image::rex3/rex3-infra_architecture_nl2000_v3.svg[]
 
 [NOTE.speaker]
 ====
-Le client est un groupe important avec une DSI structurée, mais avec des rachats donc un SI hétérogène
+Le client est un groupe important avec une DSI structurée, mais un SI hétérogène
 
-* ~350 VMs — Debian, CentOS, Windows
-* Deux hébergeurs : AWS + on-premise
-** AWS : provisionnement as code, Terraform + Puppet — infra propre côté cloud
-** On-prem : géré manuellement, hétérogène
-* ~200 applications, pilotées par 50 personnes
-* Pas de lien réseau direct entre AWS et l'on-prem — deux mondes qui coexistent
-
-Et avant notre arrivée, il y avait déjà du monitoring en place.
-
-* *Prometheus + Grafana* — AWS + on-prem Debian : chaque équipe gère ses dashboards et alertes séparément
-* *Une solution proprietaire* — on-prem uniquement : configuré à la main, alertes "au besoin"
+* ~350 VMs Debian, CentOS, Windows, ~200 applications, pilotées par 50 personnes
+* Deux hébergeurs : AWS (terraform et puppet) + on-premise (à la main)
+* Pas de lien réseau direct entre AWS et l'on-prem et côté monitoring :
+** *Prometheus + Grafana* — AWS + on-prem Debian : chaque équipe gère ses dashboards et alertes séparément
+** *Une solution proprietaire* — on-prem uniquement : configuré à la main, alertes "au besoin"
 * Zéro couverture des services extérieurs (RDS, load balancers, SaaS...)
 
 Transition : Avant de proposer quoi que ce soit, on a posé nos convictions.
@@ -69,19 +63,20 @@ Transition : Avant de proposer quoi que ce soit, on a posé nos convictions.
 [%notitle]
 == Nos convictions
 
+VM dev != BD de prod
+
 [%step]
-* *Monitorer tout le SI avec les mêmes règles : pas réaliste*
-* La criticité dépend du rôle, du contexte, de l'impact
-* La labélisation est la clé — technique *et* fonctionnelle
-* Simplicité d'abord — un système de monitoring complexe ne sera pas maintenu
+[.nl-badge.founded]#Criticité# : [.nl-badge]#Rôle#, [.nl-badge]#Contexte#, [.nl-badge]#Impact#
 
 [NOTE.speaker]
 ====
 
-* Step : Monitorer tout le SI avec les mêmes règles : pas réaliste
-* Step : Une alerte CPU à 80% sur un batch de nuit et sur une base de données de production — ce n'est pas la même chose
-* Step : Le monitoring ne sert à rien si personne ne le lit — simplifier avant d'enrichir
+* Monitorer tout le SI avec les mêmes règles : pas réaliste
+* Une alerte CPU à 80% sur un batch de nuit et sur une base de données de production — ce n'est pas la même chose
+* Le monitoring ne sert à rien si personne ne le lit — simplifier avant d'enrichir
+** Simplicité d'abord — un système de monitoring complexe ne sera pas maintenu
 * C'est la même logique qu'une laverie industrielle : des programmes différents selon le type de tissu
+** Et comme les étiquettes sur les tshirts : La labélisation est la clé — technique *et* fonctionnelle
 
 Transition : L'approche qu'on a proposée.
 ====
@@ -89,43 +84,42 @@ Transition : L'approche qu'on a proposée.
 [%notitle]
 == L'approche : pas de révolution
 
+L'approche : *pas de révolution*
+
 [%step]
-* On garde les technos en place — Prometheus + Grafana
+* On garde les technos en place — *Prometheus + Grafana*
 * On garde les métriques existantes — elles suffisent
 * On *uniformise la labélisation* — en ajoutant une dimension métier
 * On définit une *matrice de criticité*
-* On s'appuie sur l'existant pour déployer les nouveaux labels
 
 [NOTE.speaker]
 ====
-* Step x2 : Pas de révolution technologique — les équipes connaissent Prometheus et Grafana
-* Step x2 : Le vrai travail est dans la labélisation et la stratégie d'alerting — pas dans le remplacement d'outils
-* Step : On ajoute : blackbox_exporter pour les sondes HTTP, un exporter spécifuque pour intégrer la solution proprietaire dans Prometheus
+* Step : Pas de révolution technologique — les équipes connaissent Prometheus et Grafana
+* Step : On garde les métriques existantes — elles suffisent
+* Step : Le vrai travail est dans la labélisation et la stratégie d'alerting — pas dans le remplacement d'outils
+* Step : Donc on définit une matrice de criticé
 
-Transition : La stack cible.
+Transition : Au dela des labels : La stack cible.
 ====
 
 // ─── ARCHITECTURE MONITORING ─────────────────────────────────────────────────
 
-== Architecture monitoring
-
 [%notitle]
 == Stack retenue
 
-[%step]
-* *Collecte* : node_exporter (Linux), windows_exporter, blackbox_exporter (HTTP), specifique_exporter
-* *Stockage* : Prometheus
-* *Alerting* : Alertmanager → Teams + SMS (critiques)
-* *Visualisation* : Grafana
-
-//TODO : schéma d'architecture de collecte
+image::rex3/rex3-monitoring_archi_nl2000_v2.svg[]
 
 [NOTE.speaker]
 ====
-* node_exporter déjà déployé sur Debian par Puppet — on étend sur CentOS et Windows
-* blackbox_exporter : sonde les URLs HTTP/HTTPS — code réponse + temps de réponse
-* specifique_exporter : fait le pont entre La solution proprietaire et Prometheus — tout au même endroit
-* Alertmanager : remplace les alertes Slack bricolées par équipe — centralise et orchestre
+Donc la stack retenu
+
+* *Collecte* :
+** node_exporter déjà déployé sur Debian par Puppet — on étend sur CentOS et Windows (windows exporter)
+** blackbox_exporter : sonde les URLs HTTP/HTTPS — code réponse + temps de réponse
+** specifique_exporter : fait le pont entre La solution proprietaire et Prometheus — tout au même endroit
+* *Stockage* : Prometheus
+* *Alerting* : Alertmanager → Teams + SMS (critiques)
+* *Visualisation* : Grafana
 
 Transition : Métriques à collecter.
 ====
