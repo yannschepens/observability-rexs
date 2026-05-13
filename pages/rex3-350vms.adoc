@@ -42,7 +42,7 @@ Transition : Voyons l'infrastructure en question.
 [%notitle]
 == Contexte
 
-image::rex3/rex3-infra_architecture_nl2000_v3.svg[]
+image::rex3/rex3-infra_architecture_nl2000_v3.svg[1,110%]
 
 [NOTE.speaker]
 ====
@@ -88,7 +88,7 @@ L'approche : *pas de révolution*
 
 [%step]
 * On garde les technos en place — *Prometheus + Grafana*
-* On garde les métriques existantes — elles suffisent
+* On garde les *métriques existantes* — elles suffisent
 * On *uniformise la labélisation* — en ajoutant une dimension métier
 * On définit une *matrice de criticité*
 
@@ -107,7 +107,7 @@ Transition : Au dela des labels : La stack cible.
 [%notitle]
 == Stack retenue
 
-image::rex3/rex3-monitoring_archi_nl2000_v2.svg[]
+image::rex3/rex3-monitoring_archi_nl2000_v2.svg[1, 110%]
 
 [NOTE.speaker]
 ====
@@ -127,12 +127,12 @@ Transition : Métriques à collecter.
 [%notitle]
 == Métriques clés à collecter
 
-Le moins possible, mais les bonnes
+Les *métriques*
 
 [%step]
-* CPU / RAM / Disque / Réseau — pour les VMs
-* Code HTTP + temps de réponse — pour les services
-* Métriques spécifiques — pour les services extérieurs (RDS, stockage...)
+* `CPU / RAM / Disque / Réseau` — pour les VMs
+* `Code HTTP` + `temps de réponse` — pour les services
+* `Métriques spécifiques` — pour les services extérieurs (RDS, stockage...)
 
 [NOTE.speaker]
 ====
@@ -149,7 +149,7 @@ Transition : La vraie valeur ajoutée — la labélisation.
 [%notitle]
 == La clé : la labélisation
 
-Sans labels métier, pas d'alerting intelligent
+Les *labels*
 
 [%step]
 * `environment` — prod / preprod / dev
@@ -168,7 +168,7 @@ Sans labels métier, pas d'alerting intelligent
 * Valeur par défaut à `unknown` — permet de repérer les trous de couverture
 * C'est l'étiquette sur la chemise de la machine à laver — sans elle, on lave tout ensemble et on abîme tout
 
-Transition : Avec ces labels, on peut définir une stratégie d'alerting différenciée.
+Transition : Avec ces labels, on peut définir une stratégie d'alerting différenciée car un des risques c'est  ....
 ====
 
 // ─── STRATÉGIE D'ALERTING ────────────────────────────────────────────────────
@@ -176,10 +176,12 @@ Transition : Avec ces labels, on peut définir une stratégie d'alerting différ
 [%notitle]
 == Éviter la fatigue d'alerte
 
-Le problème n°1 : trop d'alertes = plus d'alertes
+image::rex3/rex3-fatigue_alerte_nl2000.svg[]
 
 [NOTE.speaker]
 ====
+Le problème n°1 : trop d'alertes = plus d'alertes
+
 * On définit la sévérité : *critical* (action immédiate) / *warning* (traitement dans la journée)
 * Une notification *uniquement pour une intervention immédiate*
 * Les autres alertes, les warning par exemple: un dashboard de suivi, check chaque matin
@@ -194,9 +196,7 @@ Transition : Des seuils par rôle, pas des seuils universels.
 [%notitle]
 == Seuils par rôle (production)
 
-//TODO : tableau seuils
-
-
+image::rex3/rex3-seuils-map.png[]
 
 [NOTE.speaker]
 ====
@@ -217,17 +217,17 @@ Transition : Et une fois l'alerte déclenchée, qui reçoit quoi ?
 [%notitle]
 == Canaux d'alerting
 
-La bonne alerte, à la bonne équipe, au bon moment
 
-[%step]
+image::rex3/rex3-routing_alertes_nl2000.svg[1, 120%]
+
+[NOTE.speaker]
+====
+La bonne alerte, à la bonne équipe, au bon moment :
+
 * *Par projet* — canal Teams de l'équipe projet
 * *Par domaine* — responsable de domaine (critique uniquement)
 * *Par hébergeur* — équipe hébergement concernée
 * *Hypercritiques* — SMS en plus (ne pas banaliser)
-
-[NOTE.speaker]
-====
-=> Dérouler les steps en lisant
 
 * L'organisation des canaux correspond à l'organisation des équipes — c'est intentionnel
 * Canal SMS réservé aux services hypercritiques — banaliser le SMS, c'est s'assurer que les gens le coupent
@@ -241,16 +241,19 @@ Transition : Maintenant, il faut gérer les faux positifs et les données inconn
 [%notitle]
 == Gérer les faux positifs
 
+Quelques exemples :
+
 [%step]
-* Labels `unknown` → dashboard dédié — quelles VMs ne sont pas encore couvertes ?
-* Maintenance windows — silences Alertmanager pendant les interventions
-* Affiner les seuils à l'usage — les premiers réglages ne seront pas parfaits
+* Labels `unknown` → dashboard dédié
+* Maintenance windows
+* Affiner les seuils à l'usage
 
 [NOTE.speaker]
 ====
 => Déroulé les steps
 
 * Le dashboard des "unknown" est un outil de qualité de données
+** Identification des VMs ne sont pas encore couvertes ?
 * Les silences Alertmanager doivent être posés AVANT l'intervention, pas après
 * Les seuils initiaux sont un point de départ — ils se calibrent sur la durée
 
@@ -260,9 +263,7 @@ Transition : Et quand l'alerte est réelle, encore faut-il savoir quoi faire.
 [%notitle]
 == Runbook & escalade
 
-"Si l'alarme sonne, on doit savoir quelle lessive utiliser sans réfléchir."
-
-
+image::rex3/rex3-runbook_escalade_nl2000_v2.svg[]
 
 [NOTE.speaker]
 ====
@@ -273,13 +274,28 @@ On doit définir un runbook :
 * Challenger les alertes régulièrement — si aucune action en 3 mois, la supprimer
 
 * Le runbook n'a pas besoin d'être exhaustif — "regarder ce dashboard en premier" suffit
-* L'escalade sans règle écrite : chacun improvise. On a défini 3 niveaux :
-  ** L1 : équipe projet — warning → canal Teams
-  ** L2 : responsable domaine — critical → Teams + autre canal
-  ** L3 : hébergement + DSI — service hypercritique → SMS
+* Le runbook doit contenir la chaine d'escalade, qui doit être prévenu et à quel moment.
+** Sinon c'est le chaos si on est bloqué
 * Challenger les alertes : si une alerte ne déclenche jamais d'action, c'est un seuil trop bas ou une alerte inutile
 
-Transition : Les alertes c'est bien, mais pour avoir la santé générale de l'infra, on fait des dashboards
+Transition : Comme on dirait chez NL2000
+====
+
+[%notitle]
+== Blague
+
+[quote]
+____
+"Si l'alarme sonne, on doit savoir quelle lessive utiliser sans réfléchir."
+
+— Mantra NettoieLogs2000, par un vieux sage du coin
+____
+
+[NOTE.speaker]
+====
+Lire le mantra avec une touche d'ironie appuyée.
+
+Transition : sinon pour finir, un élément très important, des dashboards précis
 ====
 
 [%notitle]
