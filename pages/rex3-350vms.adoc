@@ -218,7 +218,7 @@ Transition : Et une fois l'alerte déclenchée, qui reçoit quoi ?
 == Canaux d'alerting
 
 
-image::rex3/rex3-routing_alertes_nl2000.svg[1, 120%]
+image::rex3/rex3-routing_alertes_nl2000.svg[1, 130%]
 
 [NOTE.speaker]
 ====
@@ -263,7 +263,7 @@ Transition : Et quand l'alerte est réelle, encore faut-il savoir quoi faire.
 [%notitle]
 == Runbook & escalade
 
-image::rex3/rex3-runbook_escalade_nl2000_v2.svg[]
+image::rex3/rex3-runbook_escalade_nl2000_v2.svg[1, 80%]
 
 [NOTE.speaker]
 ====
@@ -295,24 +295,82 @@ ____
 ====
 Lire le mantra avec une touche d'ironie appuyée.
 
-Transition : sinon pour finir, un élément très important, des dashboards précis
+Transition : sinon pour finir, les alarmes c'est bien, mais avoir une visu générale c'est important aussi
 ====
 
 [%notitle]
 == 3 niveaux de dashboards
 
 [%step]
-* *Map* — vue cartographique des services (heartbeat HTTP), lisible par les non-techs
-* *Vue globale instances* — état de toutes les VMs, groupées par env et projet
-* *Détail instance* — drilldown : quelle métrique est en difficulté ?
+* *Map*
+* *Vue globale instances*
+* *Détail instance*
 
 [NOTE.speaker]
 ====
-* La map : vue SVG interactive avec indicateurs de couleur (Grafana Flow Panel)
-* La vue globale : code couleur OK/Warning/Critical — "est-ce que tout va bien ?" en un coup d'œil
-* Le drilldown : un clic depuis la vue globale → métriques CPU/RAM/Disk de la VM concernée
+On a décidé de monter 3 type de dashboards uniformes pour 2 type de public
 
-Transition : Avec tout ça, on est pas mal, le bilan.
+* La map : lisible par les non-techs
+* La vue globale : "est-ce que tout va bien ?" en un coup d'œil
+* Le drilldown : Pour du debug : quelle métrique est en difficulté ?
+
+Transition : On va jeter un coup d'oeil à tout ça
+====
+
+[%notitle]
+== Map
+
+image::rex3/rex3-map-dashboard.png[]
+
+[NOTE.speaker]
+====
+La map : lisible par les non-techs, affichable dans les couloirs
+
+La carte n'est pas complète !
+
+* screenshot pendant la phase de construction
+
+* vue cartographique des services vitaux et visible(heartbeat HTTP),
+* vue SVG interactive avec indicateurs de couleur (Grafana Flow Panel)
+
+* Hyper pratique car tout le monde peut la lire et savoir ce qu'il se passe dans le SI.
+
+Transition : Et maintenant pour la maintenance
+====
+
+[%notitle]
+== Visu globale
+
+image::rex3/rex3-glob_dashboard.png[]
+
+[NOTE.speaker]
+====
+Vue globale instances :
+
+* état de toutes les VMs et service, groupées par env et projet sur un écran
+* code couleur OK/Warning/Critical — "est-ce que tout va bien ?" en un coup d'œil
+* basé sur les metriques systèmes pour les VM
+* et sur les codes HTTP et temps de réponse pour les services
+
+Transition : Et quand on clique sur un des élément, on arrive sur le dernier niveau de profondeur.
+====
+
+[%notitle]
+== 3 niveaux de dashboards
+
+image::rex3/rex3-detailled_dashboard.png[]
+
+[NOTE.speaker]
+====
+Détail instance : quelle métrique est en difficulté ?
+
+* Le drilldown : un clic depuis la vue globale
+** métriques CPU/RAM/Disk pour la VM
+** Stats HTTP pour les services
+
+Avec ces trois dashboard, on a une visu complète et uniforme de l'infra. Lisible par plusieurs niveaux de lecteurs
+
+Transition : Le bilan.
 ====
 
 // ─── RÉSULTATS ───────────────────────────────────────────────────────────────
