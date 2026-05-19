@@ -163,16 +163,15 @@ image::rex1/rex1-filebeat.svg[1, 40%]
 Transition : Et pour les containers — la sortie standard Docker.
 ====
 
-[%notitle]
+[.image-with-badge%notitle]
 == Collecteur : Docker
 
-[cols="1,1",frame=none,grid=none]
-|===
-a|
-image::rex1/rex1-docker.svg[1,200%]
-a|
+[.badge]
+image::rex1/rex1-docker.svg[1]
+
+[.main-image]
 image::rex1/rex1-docker-driver.png[1]
-|===
+
 
 [NOTE.speaker]
 ====
@@ -204,7 +203,7 @@ Transition : et pour ça, on va utilisé un ....
 [%notitle]
 == Agrégateur : Logstash
 
-[cols="1,1",frame=none,grid=none]
+[cols="1,2",frame=none,grid=none]
 |===
 a|
 image::rex1/rex1-logstash.svg[1, 200%]
@@ -234,16 +233,14 @@ Lis les steppers, puis
 Transition :  C'est bien on a nos logs, mais on les stocke où ?
 ====
 
-[%notitle]
+[.image-with-badge%notitle]
 == Stockage
 
-[cols="1,1",frame=none,grid=none]
-|===
-a|
+[.badge]
 image::rex1/rex1-es.svg[1, 200%]
-a|
+
+[.main-image]
 image::rex1/rex1-indexes.png[1]
-|===
 
 
 [NOTE.speaker]
@@ -277,16 +274,15 @@ Transition : La dernière brique — la visualisation.
 Transition : concernant kibana, on s'est simplifié la vie
 ====
 
-[%notitle]
+[.image-with-badge%notitle]
 == Viz' : Kibana
 
-[cols="1,1",frame=none,grid=none]
-|===
-a|
-image::rex1/rex1-kibana.svg[1, 200%]
-a|
-image::rex1/kibana.png[1]
-|===
+[.badge]
+image::rex1/rex1-kibana.svg[1]
+
+[.main-image]
+image::rex1/kibana.png[1, 60%]
+
 
 [NOTE.speaker]
 ====
@@ -297,16 +293,15 @@ image::rex1/kibana.png[1]
 Transition : Mais Grafana est le vrai point central.
 ====
 
-[%notitle]
+[.image-with-badge%notitle]
 == Viz' : Grafana
 
-[cols="1,1",frame=none,grid=none]
-|===
-a|
-image::rex1/rex1-grafana.svg[1, 200%]
-a|
-image::rex1/grafana.png[1]
-|===
+[.badge]
+image::rex1/rex1-grafana.svg[1]
+
+[.main-image]
+image::rex1/grafana.png[1, 60%]
+
 
 [NOTE.speaker]
 ====

@@ -282,3 +282,25 @@
 
 /* End of first page desing */
 
+
+/* === Layout: badge top-left + image centrale === */
+
+.reveal section.image-with-badge .imageblock.badge {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  z-index: 10;
+  margin: 0;
+}
+
+.reveal section.image-with-badge .imageblock.badge img {
+  width: 200px;
+  height: auto;
+  padding: 0 !important;
+}
+
+.reveal section.image-with-badge .imageblock.main-image img {
+  max-height: 70vh;
+  /*width: auto;*/
+  max-width: 85%;
+}

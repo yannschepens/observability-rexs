@@ -169,6 +169,18 @@ a|
 image::illustrations/metriques-propres.svg[métriques propres,100%]
 |===
 
+
+// ─── DÉMO: layout badge top-left + image centrale ────────────────────────────
+
+[.image-with-badge%notitle]
+== Démo layout badge
+
+[.badge]
+image::logo-NettoieLogs2000.svg[NettoieLogs2000]
+
+[.main-image]
+image::illustrations/metriques-propres.svg[Méthode d'audit, 80%]
+
 // ─── pipeline-realtime ───────────────────────────────────────────────────────
 
 [%notitle]
