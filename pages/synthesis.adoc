@@ -121,7 +121,7 @@ Lire la citation, avec un step
 * C'est pour que les Ops dorment mieux la nuit
 * Et pour qu'une fois pour toutes, on arrête d'acheter des disques durs en urgence un dimanche matin
 
-Transition : Merci à tousDes questions ?
+Transition : Merci à tous Des questions ?
 ====
 
 // ─── Q&A ─────────────────────────────────────────────────────────────────────

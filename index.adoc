@@ -44,4 +44,4 @@ include::pages/synthesis.adoc[leveloffset=+1]
 include::pages/end.adoc[leveloffset=+1]
 
 // ── Démo thème — retirer en prod ──────────────────────────────────────────
-include::pages/demo-theme.adoc[leveloffset=+1]
+//include::pages/demo-theme.adoc[leveloffset=+1]

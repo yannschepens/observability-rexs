@@ -1,4 +1,15 @@
+[%notitle]
 = End
 
+*Merci !*
 
-* lien vers la playlist youtube, article, etc.
+:imagesdir: styles/nettoielogs2000
+
+[.end-qrcode]
+image::qrcode-placeholder.png[QR Code,300]
+
+[.social-links]
+* image:socials/linkedin.png[LinkedIn,28] https://www.linkedin.com/in/yann-schepens-a279871a/[LinkedIn : Yann Schepens]
+* image:socials/youtube.png[YouTube,28] https://www.youtube.com/playlist?list=PL0nu-nPszPRBxOrGGrqV47tiQusGVjLKV[Youtube : @YannSchepens]
+* image:socials/github.png[GitHub,28] https://github.com/yannschepens/observability-rexs[Github : yannschepens]
+* image:socials/devto.png[Dev.to,28] https://dev.to/yannschepens[Dev.to : yannschepens]
