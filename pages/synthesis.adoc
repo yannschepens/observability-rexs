@@ -123,15 +123,3 @@ Lire la citation, avec un step
 
 Transition : Merci à tous Des questions ?
 ====
-
-// ─── Q&A ─────────────────────────────────────────────────────────────────────
-
-[%notitle]
-== Q&A
-
-[NOTE.speaker]
-====
-* Ouvrir les questions
-* Slides disponibles sur ... (à compléter)
-* Me retrouver sur ... (à compléter)
-====

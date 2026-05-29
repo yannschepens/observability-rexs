@@ -84,15 +84,6 @@ Transition : On doit surveiller quoi concrètement ?
 Transition : Et ces logs, c'est quoi exactement ?
 ====
 
-// ─── LES LOGS ────────────────────────────────────────────────────────────────
-
-== Les logs de l'infra
-
-[NOTE.speaker]
-====
-Déjà, quand on parle de logs, on parle de quoi précisément ?
-====
-
 [%notitle]
 == Le tas de linge
 
@@ -197,7 +188,7 @@ Transition : On a collecté nos logs — maintenant on les trie.
 * C'est l'étape la plus importante — et souvent la plus négligée.
 * Si tu envoies tout brut dans Elasticsearch, tu as stocké du bruit, pas de la donnée.
 
-Transition : et pour ça, on va utilisé un ....
+Transition : et pour ça, on va utilisé un agrégateur
 ====
 
 [%notitle]

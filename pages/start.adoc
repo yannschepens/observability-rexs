@@ -30,13 +30,11 @@ image::logo-NettoieLogs2000.svg[]
 
 [NOTE.speaker]
 ====
-Lire les notes
+Lire le slide
 
-Mon métier d'expert en nettoyage de logs et métriques
-
-* Donc aujourd'hui, je vous propose de découvrir mon quotidien,
+* Donc aujourd'hui, je vous propose de découvrir mon quotidien
 ** les missions d'un expert en nettoyage de logs
 ** les bonnes pratiques associés, etc.
 
-Transition : A travers trois missions que l'on a confié pour lancer "NettoieLogs2000".
+Transition : A travers trois missions que l'on m'a confié pour lancer "NettoieLogs2000".
 ====

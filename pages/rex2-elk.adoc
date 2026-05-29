@@ -167,12 +167,13 @@ Lire les valeurs
 
 * *Rien qu'en supprimant ce qui ne devrait pas être là*
 
-Plus précisemsnet
+Plus précisemsnet :
+
 * Firewall : 80 Go → 60 Go (−25%)
 * VMWare : 140 Go → 80 Go (−43%)
 
+Ces gains sont obtenus avant de toucher à la configuration
 
-* Ces gains sont obtenus avant de toucher à la configuration
 * Juste en ouvrant l'armoire et en jetant ce qui est clairement inutile
 * Ça illustre bien l'état des lieux initial — des logs de DEBUG vieux de plusieurs mois, personne ne les lisait
 
@@ -227,12 +228,9 @@ image::rex2/rex2-plan-step3.svg[1, 80%]
 
 [NOTE.speaker]
 ====
-Les logs froids à la cave
-
 Ici, on va réflechir à ranger les logs selon deux dimensions : où et quand
 
-* Step : On va déjà ajouté les méta données basée sur nos catégories en suivant le standard ECS
-** Dans logstash
+* Step : On va déjà ajouté les méta données basée sur nos catégories en suivant le standard ECS (Dans logstash)
 * Step : Ensuite on utiliser la technologie des datastreams : index virtuelle au dessus de plusieurs index physique. Ce qui débloque les
 * Step : ILM = Index Lifecycle Management. On peut définir des règles de gestions des indexs dans Kibana, par exempke
 ** Step : Les logs chauds restent accessibles rapidement (hot), les logs froids sont compressés sur des nœuds moins chers (warm/cold), et expirés automatiquement (delete)
